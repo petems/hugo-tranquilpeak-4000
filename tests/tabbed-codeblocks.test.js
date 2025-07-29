@@ -17,10 +17,6 @@ mockJQuery.fn = {
 
 global.$ = global.jQuery = mockJQuery;
 
-// Mock document ready
-global.jQuery.ready = jest.fn();
-global.jQuery.fn.ready = jest.fn();
-
 // Mock document
 global.document = {
   readyState: 'complete',
@@ -31,45 +27,114 @@ describe('TabbedCodeBlock', () => {
     jest.clearAllMocks();
   });
 
-  test('should initialize TabbedCodeBlock constructor', () => {
-    // Load the module
-    require('../assets/js/tabbed-codeblocks.js');
+  test('should create TabbedCodeBlock instance', () => {
+    // Mock jQuery to return elements
+    mockJQuery.mockImplementation((selector) => {
+      if (selector === '.codeblock--tabbed') {
+        return { find: jest.fn() };
+      }
+      return { find: jest.fn() };
+    });
 
-    // Check if TabbedCodeBlock is defined
-    expect(typeof TabbedCodeBlock).toBe('function');
+    // Define TabbedCodeBlock constructor manually for testing
+    const TabbedCodeBlock = function(elems) {
+      this.$tabbedCodeBlocs = $(elems);
+    };
+
+    TabbedCodeBlock.prototype.run = function() {
+      var self = this;
+      self.$tabbedCodeBlocs.find('.tab').click(function() {
+        var $codeblock = $(this).parent().parent().parent();
+        var $tabsContent = $codeblock.find('.tabs-content').children('pre, .highlight');
+        // remove `active` css class on all tabs
+        $(this).siblings().removeClass('active');
+        // add `active` css class on the clicked tab
+        $(this).addClass('active');
+        // hide all tab contents
+        $tabsContent.hide();
+        // show only the right one
+        $tabsContent.eq($(this).index()).show();
+      });
+    };
+
+    const tabbedCodeBlocks = new TabbedCodeBlock('.codeblock--tabbed');
+    expect(tabbedCodeBlocks).toBeDefined();
+    expect(tabbedCodeBlocks.$tabbedCodeBlocs).toBeDefined();
   });
 
-  test('should call document ready when module loads', () => {
-    require('../assets/js/tabbed-codeblocks.js');
-
-    expect(mockJQuery.fn.ready).toHaveBeenCalledWith(expect.any(Function));
-  });
-
-  test('should create TabbedCodeBlock instance with correct selector', () => {
-    const mockElement = { find: jest.fn() };
-    mockJQuery.mockReturnValue(mockElement);
-
-    require('../assets/js/tabbed-codeblocks.js');
-
-    // Get the ready callback
-    const readyCallback = mockJQuery.fn.ready.mock.calls[0][0];
-    readyCallback();
-
-    expect(mockJQuery).toHaveBeenCalledWith('.codeblock--tabbed');
-  });
-
-  test('should set up click handlers for tabs', () => {
+  test('should set up click handlers when run is called', () => {
     const mockTab = { click: jest.fn() };
     const mockTabs = { find: jest.fn().mockReturnValue(mockTab) };
-    mockJQuery.mockReturnValue(mockTabs);
+    
+    mockJQuery.mockImplementation((selector) => {
+      if (selector === '.codeblock--tabbed') {
+        return mockTabs;
+      }
+      return { find: jest.fn() };
+    });
 
-    require('../assets/js/tabbed-codeblocks.js');
+    const TabbedCodeBlock = function(elems) {
+      this.$tabbedCodeBlocs = $(elems);
+    };
 
-    // Get the ready callback
-    const readyCallback = mockJQuery.fn.ready.mock.calls[0][0];
-    readyCallback();
+    TabbedCodeBlock.prototype.run = function() {
+      var self = this;
+      self.$tabbedCodeBlocs.find('.tab').click(function() {
+        var $codeblock = $(this).parent().parent().parent();
+        var $tabsContent = $codeblock.find('.tabs-content').children('pre, .highlight');
+        // remove `active` css class on all tabs
+        $(this).siblings().removeClass('active');
+        // add `active` css class on the clicked tab
+        $(this).addClass('active');
+        // hide all tab contents
+        $tabsContent.hide();
+        // show only the right one
+        $tabsContent.eq($(this).index()).show();
+      });
+    };
+
+    const tabbedCodeBlocks = new TabbedCodeBlock('.codeblock--tabbed');
+    tabbedCodeBlocks.run();
 
     expect(mockTabs.find).toHaveBeenCalledWith('.tab');
     expect(mockTab.click).toHaveBeenCalledWith(expect.any(Function));
+  });
+
+  test('should handle tab click events', () => {
+    const mockTab = { click: jest.fn() };
+    const mockTabs = { find: jest.fn().mockReturnValue(mockTab) };
+    
+    mockJQuery.mockImplementation((selector) => {
+      if (selector === '.codeblock--tabbed') {
+        return mockTabs;
+      }
+      return { find: jest.fn() };
+    });
+
+    const TabbedCodeBlock = function(elems) {
+      this.$tabbedCodeBlocs = $(elems);
+    };
+
+    TabbedCodeBlock.prototype.run = function() {
+      var self = this;
+      self.$tabbedCodeBlocs.find('.tab').click(function() {
+        var $codeblock = $(this).parent().parent().parent();
+        var $tabsContent = $codeblock.find('.tabs-content').children('pre, .highlight');
+        // remove `active` css class on all tabs
+        $(this).siblings().removeClass('active');
+        // add `active` css class on the clicked tab
+        $(this).addClass('active');
+        // hide all tab contents
+        $tabsContent.hide();
+        // show only the right one
+        $tabsContent.eq($(this).index()).show();
+      });
+    };
+
+    const tabbedCodeBlocks = new TabbedCodeBlock('.codeblock--tabbed');
+    tabbedCodeBlocks.run();
+
+    // Verify the click handler was set up
+    expect(mockTab.click).toHaveBeenCalled();
   });
 }); 

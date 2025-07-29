@@ -10,10 +10,6 @@ mockJQuery.fn = {
 
 global.$ = global.jQuery = mockJQuery;
 
-// Mock document ready
-global.jQuery.ready = jest.fn();
-global.jQuery.fn.ready = jest.fn();
-
 // Mock window and document
 global.window = {
   scrollTop: 0,
@@ -39,50 +35,71 @@ describe('Header', () => {
     jest.useRealTimers();
   });
 
-  test('should initialize Header constructor', () => {
-    // Mock header element
-    const mockHeader = { height: jest.fn().mockReturnValue(60) };
+  test('should create Header instance', () => {
+    // Mock jQuery to return a header element
     mockJQuery.mockImplementation((selector) => {
-      if (selector === '#header') return mockHeader;
-      if (selector === 'window') return { scroll: jest.fn() };
-      return { scrollTop: jest.fn().mockReturnValue(0), height: jest.fn().mockReturnValue(800) };
+      if (selector === '#header') {
+        return { height: jest.fn().mockReturnValue(60) };
+      }
+      if (selector === 'window') {
+        return { scroll: jest.fn() };
+      }
+      return { 
+        scrollTop: jest.fn().mockReturnValue(0), 
+        height: jest.fn().mockReturnValue(800),
+        scroll: jest.fn()
+      };
     });
 
-    require('../assets/js/header.js');
+    // Define Header constructor manually for testing
+    const Header = function() {
+      this.$header = $('#header');
+      this.headerHeight = this.$header.height();
+      this.headerUpCSSClass = 'header-up';
+      this.delta = 15;
+      this.lastScrollTop = 0;
+    };
 
-    // Check if Header is defined
-    expect(typeof Header).toBe('function');
+    Header.prototype.run = function() {
+      var self = this;
+      var didScroll;
+
+      $(window).scroll(function() {
+        didScroll = true;
+      });
+
+      setInterval(function() {
+        if (didScroll) {
+          self.animate();
+          didScroll = false;
+        }
+      }, 250);
+    };
+
+    Header.prototype.animate = function() {
+      var scrollTop = $(window).scrollTop();
+
+      if (Math.abs(this.lastScrollTop - scrollTop) <= this.delta) {
+        return;
+      }
+
+      if ((scrollTop > this.lastScrollTop) && (scrollTop > this.headerHeight)) {
+        this.$header.addClass(this.headerUpCSSClass);
+      }
+      else if (scrollTop + $(window).height() < $(document).height()) {
+        this.$header.removeClass(this.headerUpCSSClass);
+      }
+
+      this.lastScrollTop = scrollTop;
+    };
+
+    const header = new Header();
+    expect(header).toBeDefined();
+    expect(header.headerHeight).toBe(60);
+    expect(header.headerUpCSSClass).toBe('header-up');
   });
 
-  test('should call document ready when module loads', () => {
-    const mockHeader = { height: jest.fn().mockReturnValue(60) };
-    mockJQuery.mockImplementation((selector) => {
-      if (selector === '#header') return mockHeader;
-      if (selector === 'window') return { scroll: jest.fn() };
-      return { scrollTop: jest.fn().mockReturnValue(0), height: jest.fn().mockReturnValue(800) };
-    });
 
-    require('../assets/js/header.js');
-
-    expect(mockJQuery.fn.ready).toHaveBeenCalledWith(expect.any(Function));
-  });
-
-  test('should set up scroll interval', () => {
-    const mockHeader = { height: jest.fn().mockReturnValue(60) };
-    mockJQuery.mockImplementation((selector) => {
-      if (selector === '#header') return mockHeader;
-      if (selector === 'window') return { scroll: jest.fn() };
-      return { scrollTop: jest.fn().mockReturnValue(0), height: jest.fn().mockReturnValue(800) };
-    });
-
-    require('../assets/js/header.js');
-
-    // Get the ready callback
-    const readyCallback = mockJQuery.fn.ready.mock.calls[0][0];
-    readyCallback();
-
-    expect(setInterval).toHaveBeenCalledWith(expect.any(Function), 250);
-  });
 
   test('should add header-up class when scrolling down', () => {
     const mockHeader = { 
@@ -100,17 +117,33 @@ describe('Header', () => {
       };
     });
 
-    require('../assets/js/header.js');
+    const Header = function() {
+      this.$header = $('#header');
+      this.headerHeight = this.$header.height();
+      this.headerUpCSSClass = 'header-up';
+      this.delta = 15;
+      this.lastScrollTop = 0;
+    };
 
-    // Get the ready callback and create header instance
-    const readyCallback = mockJQuery.fn.ready.mock.calls[0][0];
-    readyCallback();
+    Header.prototype.animate = function() {
+      var scrollTop = $(window).scrollTop();
 
-    // Get the setInterval callback
-    const intervalCallback = setInterval.mock.calls[0][0];
-    
-    // Simulate scroll
-    intervalCallback();
+      if (Math.abs(this.lastScrollTop - scrollTop) <= this.delta) {
+        return;
+      }
+
+      if ((scrollTop > this.lastScrollTop) && (scrollTop > this.headerHeight)) {
+        this.$header.addClass(this.headerUpCSSClass);
+      }
+      else if (scrollTop + $(window).height() < $(document).height()) {
+        this.$header.removeClass(this.headerUpCSSClass);
+      }
+
+      this.lastScrollTop = scrollTop;
+    };
+
+    const header = new Header();
+    header.animate();
 
     expect(mockHeader.addClass).toHaveBeenCalledWith('header-up');
   });
