@@ -8,10 +8,10 @@ tags: ["image-gallery", "photos", "gallery"]
 photos:
   - "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop"
   - "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop"
-  - "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop"
-  - "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop"
-  - "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop"
-  - "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop"
+  - "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=600&fit=crop"
+  - "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop"
+  - "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop"
+  - "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop"
 ---
 
 This article demonstrates the beautiful image gallery feature of the Tranquilpeak theme. The gallery will appear at the bottom of this post, showcasing multiple images in an elegant layout.
