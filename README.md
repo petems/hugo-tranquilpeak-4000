@@ -39,25 +39,32 @@ The theme is ready for use with modern Hugo installations.
 
 ## Quick Start
 
-To use this modernized theme:
+To use this modernized theme in your Hugo site:
 
-1. **Clone this repository** into your Hugo site's `themes` directory:
+1. **Create a new Hugo site** (if you don't have one):
+   ```bash
+   hugo new site myblog
+   cd myblog
+   ```
+
+2. **Clone this repository** into your site's `themes` directory:
    ```bash
    cd themes
    git clone https://github.com/petems/hugo-tranquilpeak-4000.git
+   cd ..
    ```
 
-2. **Configure your site** by copying the example configuration:
+3. **Configure your site** by copying the example configuration:
    ```bash
    cp themes/hugo-tranquilpeak-4000/exampleSite/config.toml .
    ```
 
-3. **Update the config** to use the modernized theme:
+4. **Update the config** to use the modernized theme:
    ```toml
-   theme = "hugo-tranquilpeak-4000"
+   theme = "Tranquilpeak4000"
    ```
 
-4. **Run Hugo**:
+5. **Run Hugo**:
    ```bash
    hugo server
    ```
