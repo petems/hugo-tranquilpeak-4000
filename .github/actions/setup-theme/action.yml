@@ -9,7 +9,16 @@ runs:
       run: |
         cd exampleSite
         mkdir -p themes
-        # Remove existing symlink or directory if it exists
+        # Remove existing theme directory if it exists
         rm -rf themes/Tranquilpeak4000
-        # Create the symlink
-        ln -sf ../.. themes/Tranquilpeak4000 
+        # Copy the theme files from the root directory
+        cp -r ../layouts ../assets ../static ../archetypes ../i18n themes/Tranquilpeak4000/ 2>/dev/null || true
+        # Copy theme.toml and other theme files
+        cp ../theme.toml themes/Tranquilpeak4000/ 2>/dev/null || true
+        # Verify the theme was copied correctly
+        ls -la themes/Tranquilpeak4000/
+        echo "Theme files copied to themes/Tranquilpeak4000/"
+        echo "Checking if theme.toml exists:"
+        ls -la themes/Tranquilpeak4000/theme.toml || echo "theme.toml not found"
+        echo "Checking layouts directory:"
+        ls -la themes/Tranquilpeak4000/layouts/ || echo "layouts directory not found" 
