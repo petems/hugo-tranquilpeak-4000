@@ -26,21 +26,21 @@ YouTube is the most popular video platform. You can embed videos using the YouTu
 
 Vimeo is popular among creators for its high-quality videos:
 
-{{% vimeo "148751763" %}}
+{{% vimeo "76979871" %}}
 
 ### Vimeo with custom title
 
-{{% vimeo "148751763" "Beautiful Mountain Landscape" %}}
+{{% vimeo "76979871" "Beautiful Mountain Landscape" %}}
 
 ## Dailymotion videos
 
 Dailymotion is another popular video platform:
 
-{{% dailymotion "x3c1ihj" %}}
+{{% dailymotion "x8c19s" %}}
 
 ### Dailymotion with custom title
 
-{{% dailymotion "x3c1ihj" "Amazing Nature Video" %}}
+{{% dailymotion "x8c19s" "Amazing Nature Video" %}}
 
 ## How to use video shortcodes
 
@@ -74,13 +74,13 @@ The video ID is the part after `v=` in the URL:
 
 ### Vimeo
 The video ID is the number in the URL:
-- URL: `https://vimeo.com/148751763`
-- ID: `148751763`
+- URL: `https://vimeo.com/76979871`
+- ID: `76979871`
 
 ### Dailymotion
 The video ID is the part after the last `/`:
-- URL: `https://www.dailymotion.com/video/x3c1ihj`
-- ID: `x3c1ihj`
+- URL: `https://www.dailymotion.com/video/x8c19s`
+- ID: `x8c19s`
 
 ## Responsive design
 
@@ -116,11 +116,11 @@ All videos are embedded using iframes with responsive CSS to ensure they scale p
 
 ### Nature videos
 
-{{% vimeo "148751763" "Beautiful Mountain Landscape" %}}
+{{% vimeo "76979871" "Beautiful Mountain Landscape" %}}
 
 ### Technology videos
 
-{{% dailymotion "x3c1ihj" "Technology Showcase" %}}
+{{% dailymotion "x8c19s" "Technology Showcase" %}}
 
 ## Conclusion
 
