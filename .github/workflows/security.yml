@@ -40,6 +40,7 @@ jobs:
         if: always()
         with:
           sarif_file: 'trivy-results.sarif'
+        continue-on-error: true
 
       - name: Check for secrets in code
         uses: trufflesecurity/trufflehog@main
