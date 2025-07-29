@@ -45,6 +45,19 @@ canonifyurls = true
       unsafe = true
 
 # ------
+# Math
+# ------
+[params.math]
+  enable = true
+  # MathJax configuration
+  [params.math.mathjax]
+    enable = true
+    # MathJax CDN
+    cdn = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    # MathJax configuration
+    config = "TeX-MML-AM_CHTML"
+
+# ------
 # Author
 # ------
 [params.author]

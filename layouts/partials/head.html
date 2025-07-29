@@ -61,5 +61,26 @@
     {{ if .Site.Params.googleAnalytics }}
       {{ template "_internal/google_analytics.html" . }}
     {{ end }}
+
+    {{ if .Site.Params.math.enable }}
+      {{ if .Site.Params.math.mathjax.enable }}
+        <script>
+          window.MathJax = {
+            tex: {
+              inlineMath: [['$', '$'], ['\\(', '\\)']],
+              displayMath: [['$$', '$$'], ['\\[', '\\]']],
+              processEscapes: true,
+              processEnvironments: true
+            },
+            options: {
+              ignoreHtmlClass: 'tex2jax_ignore',
+              processHtmlClass: 'tex2jax_process'
+            }
+          };
+        </script>
+        <script id="MathJax-script" async src="{{ .Site.Params.math.mathjax.cdn }}"></script>
+      {{ end }}
+    {{ end }}
+
     {{ partial "head_end.html" . }}
   </head>
