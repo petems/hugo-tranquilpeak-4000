@@ -2,7 +2,7 @@
 title: "Cover image showcase"
 date: 2015-05-28T22:40:32.169Z
 description: "This article shows how to use cover images in the Tranquilpeak theme"
-thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop"
+coverimage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop"
 categories: ["showcase"]
 tags: ["cover-image", "images", "featured"]
 photos:
@@ -15,16 +15,16 @@ This article demonstrates how to use cover images in the Tranquilpeak theme. Cov
 
 ## What are cover images?
 
-Cover images are featured images that appear at the top of your blog posts. They can be set using the `thumbnail` parameter in your post's front matter, or by using the `photos` array for image galleries.
+Cover images are featured images that appear at the top of your blog posts. They can be set using the `coverimage` parameter in your post's front matter, or by using the `photos` array for image galleries.
 
 ## Setting a cover image
 
-To set a cover image for your post, add the `thumbnail` parameter to your front matter:
+To set a cover image for your post, add the `coverimage` parameter to your front matter:
 
 ```yaml
 ---
 title: "My Post"
-thumbnail: "https://example.com/image.jpg"
+coverimage: "https://example.com/image.jpg"
 ---
 ```
 
