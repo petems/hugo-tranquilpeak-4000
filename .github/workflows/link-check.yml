@@ -16,16 +16,11 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
-      - name: Setup theme for exampleSite
-        run: |
-          cd exampleSite
-          mkdir -p themes
-          ln -sf ../.. themes/Tranquilpeak4000
+      - name: Setup theme
+        uses: ./.github/actions/setup-theme
 
       - name: Build site
-        run: |
-          cd exampleSite
-          hugo --minify --gc --buildDrafts --buildFuture
+        uses: ./.github/actions/hugo-build
 
       - name: Check links
         uses: lycheeverse/lychee-action@v1.7.0

@@ -1,0 +1,12 @@
+name: 'Setup Hugo Theme'
+description: 'Setup the Hugo theme for exampleSite'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup theme for exampleSite
+      shell: bash
+      run: |
+        cd exampleSite
+        mkdir -p themes
+        ln -sf ../.. themes/Tranquilpeak4000 

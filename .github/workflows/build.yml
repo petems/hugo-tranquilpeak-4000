@@ -1,4 +1,5 @@
-name: Build and Test
+name: Build Assets
+
 on: [push, pull_request]
 
 jobs:
@@ -12,32 +13,36 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: ./.github/actions/setup-node
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        uses: ./.github/actions/install-deps
 
-      - name: Run build
-        run: npm run build
+      - name: Build theme assets
+        uses: ./.github/actions/build-assets
 
       - name: Check for build artifacts
         run: |
-          if [ -d "static/css" ]; then
-            echo "✅ CSS files built successfully"
+          echo "📊 Checking build artifacts..."
+          if [ -d "static/css" ] && [ -d "static/js" ]; then
+            echo "✅ CSS and JS directories found"
+            echo "📁 CSS files:"
             ls -la static/css/
-          else
-            echo "❌ CSS files not found"
-            exit 1
-          fi
-          
-          if [ -d "static/js" ]; then
-            echo "✅ JS files built successfully"
+            echo "📁 JS files:"
             ls -la static/js/
           else
-            echo "❌ JS files not found"
+            echo "❌ Build artifacts not found"
             exit 1
-          fi 
+          fi
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-assets-node-${{ matrix.node-version }}
+          path: |
+            static/css/
+            static/js/
+          retention-days: 7 

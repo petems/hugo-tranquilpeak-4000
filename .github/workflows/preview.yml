@@ -1,13 +1,12 @@
-name: Deploy Preview
+name: Preview Site
+
 on:
   pull_request:
-    branches: [master, main]
+    branches: [ master, main ]
 
 jobs:
-  deploy-preview:
+  preview:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.draft == false
-    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -20,23 +19,20 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
-      - name: Setup theme for exampleSite
-        run: |
-          cd exampleSite
-          mkdir -p themes
-          ln -sf ../.. themes/Tranquilpeak4000
+      - name: Setup theme
+        uses: ./.github/actions/setup-theme
 
       - name: Build site
-        run: |
-          cd exampleSite
-          hugo --minify --gc --baseURL "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/preview/pr-${{ github.event.number }}/"
+        uses: ./.github/actions/hugo-build
+        with:
+          working-directory: exampleSite
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./exampleSite/public
-          destination_dir: ./preview/pr-${{ github.event.number }}
+          destination_dir: preview/pr-${{ github.event.number }}
           force_orphan: true
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
@@ -98,51 +94,48 @@ jobs:
           echo "⏳ Waiting 30 seconds for GitHub Pages deployment..."
           sleep 30
 
-            - name: Take screenshot (disabled)
+      - name: Take screenshot (disabled)
         run: |
           echo "📸 Screenshot functionality temporarily disabled"
           echo "Preview URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/preview/pr-${{ github.event.number }}/"
 
       - name: Upload screenshots
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: preview-screenshots-${{ github.event.number }}
           path: |
             preview-screenshot.png
             preview-viewport.png
             preview-error.png
-          retention-days: 30
+          retention-days: 7
 
-      - name: Add screenshot to PR
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            
-            try {
-              // Check if screenshot exists
-              if (fs.existsSync('preview-screenshot.png')) {
-                const screenshot = fs.readFileSync('preview-screenshot.png');
-                
-                // Upload screenshot to PR
-                await github.rest.issues.createComment({
-                  issue_number: context.issue.number,
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  body: `📸 **Preview Screenshot**
-                  
-                  Here's a screenshot of your preview deployment:
-                  
-                  ![Preview Screenshot](data:image/png;base64,${screenshot.toString('base64')})
-                  
-                  ---
-                  *Screenshot taken automatically by GitHub Actions*`
-                });
-                
-                console.log('✅ Screenshot added to PR');
-              } else {
-                console.log('⚠️ Screenshot file not found');
-              }
-            } catch (error) {
-              console.error('❌ Failed to add screenshot to PR:', error.message);
-            } 
+      - name: Validate preview
+        run: |
+          echo "🔍 Validating preview deployment..."
+          preview_url="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/preview/pr-${{ github.event.number }}/"
+          
+          # Wait a bit more for deployment
+          sleep 10
+          
+          # Check if the preview is accessible
+          if curl -f -s "$preview_url" > /dev/null; then
+            echo "✅ Preview is accessible at: $preview_url"
+          else
+            echo "⚠️ Preview might not be ready yet at: $preview_url"
+            echo "This is normal for new deployments, check back in a few minutes."
+          fi
+
+      - name: Check for broken links in preview
+        run: |
+          echo "🔍 Checking for broken links in preview..."
+          preview_url="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/preview/pr-${{ github.event.number }}/"
+          
+          # Use lychee to check the deployed preview
+          if command -v lychee &> /dev/null; then
+            lychee --format markdown --exclude mailto: --exclude tel: --exclude file: "$preview_url" || {
+              echo "⚠️ Some links in the preview may be broken. Check the lychee output above."
+            }
+          else
+            echo "⚠️ lychee not available, skipping link check"
+          fi 

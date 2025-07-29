@@ -37,16 +37,11 @@ jobs:
     - name: Build theme assets
       run: npm run build
 
-          - name: Setup theme for exampleSite
-        run: |
-          cd exampleSite
-          mkdir -p themes
-          ln -sf ../.. themes/Tranquilpeak4000
+    - name: Setup theme
+      uses: ./.github/actions/setup-theme
 
     - name: Test with example site
-      run: |
-        cd exampleSite
-        hugo --minify --gc --buildDrafts --buildFuture
+      uses: ./.github/actions/hugo-build
 
     - name: Check for build errors
       run: |

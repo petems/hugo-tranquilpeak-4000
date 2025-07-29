@@ -14,23 +14,17 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Setup Hugo ${{ matrix.hugo-version }}
+      - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: ${{ matrix.hugo-version }}
           extended: true
 
-      - name: Setup theme for exampleSite
-        run: |
-          cd exampleSite
-          mkdir -p themes
-          ln -sf ../.. themes/Tranquilpeak4000
+      - name: Setup theme
+        uses: ./.github/actions/setup-theme
 
-      - name: Build with Hugo
-        run: |
-          cd exampleSite
-          hugo --minify --gc --buildDrafts --buildFuture
-          echo "✅ Hugo build completed successfully"
+      - name: Build site
+        uses: ./.github/actions/hugo-build
 
       - name: Check build output
         run: |
