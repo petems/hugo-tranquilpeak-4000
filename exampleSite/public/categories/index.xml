@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Hugo tranquilpeak theme</title>
+    <link>http://localhost:1313/categories/</link>
+    <description>Recent content in Categories on Hugo tranquilpeak theme</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 15 Jun 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Releases</title>
+      <link>http://localhost:1313/categories/releases/</link>
+      <pubDate>Mon, 15 Jun 2015 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/releases/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tranquilpeak</title>
+      <link>http://localhost:1313/categories/tranquilpeak/</link>
+      <pubDate>Mon, 15 Jun 2015 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/tranquilpeak/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Showcase</title>
+      <link>http://localhost:1313/categories/showcase/</link>
+      <pubDate>Sun, 14 Jun 2015 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/showcase/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Features</title>
+      <link>http://localhost:1313/categories/features/</link>
+      <pubDate>Thu, 28 May 2015 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/features/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,43 @@
+name: Generate Preview
+
+on:
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: 'latest'
+        extended: true
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build theme assets
+      run: npm run build
+
+    - name: Build example site
+      run: |
+        cd exampleSite
+        hugo --themesDir ../.. --theme hugo-tranquilpeak-4000 --minify --baseURL "/${{ github.repository }}/"
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./exampleSite/public
+        destination_dir: ./preview 
