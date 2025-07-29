@@ -68,10 +68,12 @@ jobs:
           --exclude mailto:
           --exclude tel:
           --exclude file:
-          --exclude twitter.com
-          --exclude player.vimeo.com
-          --exclude github.io
-          --exclude netlify.com
+          --exclude "twitter.com/*"
+          --exclude "player.vimeo.com/*"
+          --exclude "*.github.io"
+          --exclude "*.netlify.com"
+          --exclude "*.netlify.app"
+          --exclude "*.gitlab.io"
           --exclude balloon.asia
           --exclude agonyus.com
           --exclude cruzrincon.com.ve
@@ -82,6 +84,8 @@ jobs:
           --exclude zentechnista.github.io
           --exclude yueyvettehao.netlify.com
           --exclude rekkodo.gitlab.io
+          --exclude "*.tk"
+          --exclude "*.ve"
           --timeout 10
           --max-redirects 3
           exampleSite/public/
