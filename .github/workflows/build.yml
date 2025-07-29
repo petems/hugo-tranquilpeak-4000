@@ -1,0 +1,46 @@
+name: Build and Test
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16, 18, 20]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run build
+        run: npm run build
+
+      - name: Run tests (if available)
+        run: npm test --if-present
+
+      - name: Check for build artifacts
+        run: |
+          if [ -d "static/css" ]; then
+            echo "✅ CSS files built successfully"
+            ls -la static/css/
+          else
+            echo "❌ CSS files not found"
+            exit 1
+          fi
+          
+          if [ -d "static/js" ]; then
+            echo "✅ JS files built successfully"
+            ls -la static/js/
+          else
+            echo "❌ JS files not found"
+            exit 1
+          fi 
