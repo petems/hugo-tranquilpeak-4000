@@ -17,6 +17,10 @@ mockJQuery.fn = {
 
 global.$ = global.jQuery = mockJQuery;
 
+// Mock document ready
+global.jQuery.ready = jest.fn();
+global.jQuery.fn.ready = jest.fn();
+
 // Mock document
 global.document = {
   readyState: 'complete',

@@ -10,6 +10,10 @@ mockJQuery.fn = {
 
 global.$ = global.jQuery = mockJQuery;
 
+// Mock document ready
+global.jQuery.ready = jest.fn();
+global.jQuery.fn.ready = jest.fn();
+
 // Mock window and document
 global.window = {
   scrollTop: 0,

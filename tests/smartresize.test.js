@@ -4,6 +4,9 @@ global.$ = global.jQuery = jest.fn(() => ({
   trigger: jest.fn(),
 }));
 
+// Mock jQuery.fn
+global.jQuery.fn = {};
+
 // Load the smartresize module
 require('../assets/js/smartresize.js');
 
