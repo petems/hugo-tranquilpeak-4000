@@ -10,8 +10,6 @@ photos:
   - "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop"
 ---
 
-# Welcome to the new Tranquilpeak
-
 Welcome to the new version of the **Tranquilpeak** theme for Hugo! This beautiful, responsive theme has been completely redesigned and enhanced to provide an even better blogging experience.
 
 ## What's new in this version?

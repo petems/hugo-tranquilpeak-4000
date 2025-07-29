@@ -10,8 +10,6 @@ photos:
   - "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop"
 ---
 
-# Video integrations showcase
-
 This article demonstrates the video integration features of the Tranquilpeak theme. You can easily embed videos from various platforms using shortcodes.
 
 ## YouTube videos

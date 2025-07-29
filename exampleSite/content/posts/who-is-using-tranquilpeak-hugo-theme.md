@@ -10,8 +10,6 @@ photos:
   - "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop"
 ---
 
-# Who is using Tranquilpeak Hugo Theme
-
 The Tranquilpeak theme has been adopted by many amazing developers, designers, and content creators around the world. Here are some inspiring examples of how people are using the theme to create beautiful, functional websites.
 
 ## Featured Websites

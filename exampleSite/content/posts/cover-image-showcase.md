@@ -11,8 +11,6 @@ photos:
   - "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop"
 ---
 
-# Cover image showcase
-
 This article demonstrates how to use cover images in the Tranquilpeak theme. Cover images are displayed prominently at the top of blog posts and can create a beautiful visual impact.
 
 ## What are cover images?

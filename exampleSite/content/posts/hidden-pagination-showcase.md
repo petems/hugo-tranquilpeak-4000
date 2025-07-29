@@ -10,8 +10,6 @@ photos:
   - "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop"
 ---
 
-# Hidden pagination showcase
-
 This article demonstrates the pagination features of the Tranquilpeak theme. Pagination helps organize content and improve navigation for readers.
 
 ## What is pagination?

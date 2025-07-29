@@ -10,8 +10,6 @@ photos:
   - "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop"
 ---
 
-# Hidden tag section showcase
-
 This article demonstrates the tag features and organization capabilities of the Tranquilpeak theme. Tags help organize your content and make it easier for readers to find related posts.
 
 ## What are tags?

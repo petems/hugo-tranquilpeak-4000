@@ -10,8 +10,6 @@ photos:
   - "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop"
 ---
 
-# Welcome to Tranquilpeak
-
 Tranquilpeak is a gorgeous responsive theme for Hugo blog framework. It has many features and integrated services that you can enable or disable, customize the style, colors, sidebar, static pages and even set the behavior of the sidebar.
 
 ## Features

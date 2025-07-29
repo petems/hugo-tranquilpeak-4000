@@ -10,8 +10,6 @@ photos:
   - "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=600&fit=crop"
 ---
 
-# Elements showcase
-
 Check out this article to see how the tranquilpeak theme display common HTML elements, typography, and other features.
 
 ## Typography

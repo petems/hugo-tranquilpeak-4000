@@ -10,8 +10,6 @@ photos:
   - "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop"
 ---
 
-# Highlighted code showcase
-
 This article demonstrates the syntax highlighting features of the Tranquilpeak theme. The theme supports multiple programming languages with beautiful syntax highlighting.
 
 ## JavaScript

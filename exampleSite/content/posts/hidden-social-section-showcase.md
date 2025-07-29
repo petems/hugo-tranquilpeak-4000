@@ -10,8 +10,6 @@ photos:
   - "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop"
 ---
 
-# Hidden social section showcase
-
 This article demonstrates the social media integration features of the Tranquilpeak theme. The theme includes comprehensive social media support for sharing content and connecting with readers.
 
 ## Social sharing buttons

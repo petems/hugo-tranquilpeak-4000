@@ -14,8 +14,6 @@ photos:
   - "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop"
 ---
 
-# Image gallery showcase
-
 This article demonstrates the beautiful image gallery feature of the Tranquilpeak theme. The gallery will appear at the bottom of this post, showcasing multiple images in an elegant layout.
 
 ## How to create image galleries
