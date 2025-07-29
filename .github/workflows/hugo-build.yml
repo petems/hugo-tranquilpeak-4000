@@ -20,6 +20,12 @@ jobs:
           hugo-version: ${{ matrix.hugo-version }}
           extended: true
 
+      - name: Setup theme for exampleSite
+        run: |
+          cd exampleSite
+          mkdir -p themes
+          ln -sf ../.. themes/Tranquilpeak4000
+
       - name: Build with Hugo
         run: |
           cd exampleSite

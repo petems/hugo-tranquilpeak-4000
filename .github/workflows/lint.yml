@@ -58,7 +58,7 @@ jobs:
       - name: Check file sizes
         run: |
           echo "📊 Checking file sizes..."
-          find . -name "*.js" -o -name "*.css" -o -name "*.scss" | xargs wc -l | sort -nr | head -10
+          find . -name "*.js" -o -name "*.css" -o -name "*.scss" -print0 | xargs -0 wc -l | sort -nr | head -10
 
       - name: Validate package.json
         run: |

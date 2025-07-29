@@ -16,6 +16,12 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
+      - name: Setup theme for exampleSite
+        run: |
+          cd exampleSite
+          mkdir -p themes
+          ln -sf ../.. themes/Tranquilpeak4000
+
       - name: Build site
         run: |
           cd exampleSite

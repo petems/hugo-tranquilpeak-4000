@@ -20,6 +20,12 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
+      - name: Setup theme for exampleSite
+        run: |
+          cd exampleSite
+          mkdir -p themes
+          ln -sf ../.. themes/Tranquilpeak4000
+
       - name: Build site
         run: |
           cd exampleSite
@@ -57,7 +63,7 @@ jobs:
             🔗 **Preview URL:** ${previewUrl}
             
             📝 **Changes in this PR:**
-            ${{ github.event.pull_request.title }}
+            ${context.payload.pull_request.title}
             
             ⏰ **Preview will be available until PR is closed**
             
@@ -92,51 +98,10 @@ jobs:
           echo "⏳ Waiting 30 seconds for GitHub Pages deployment..."
           sleep 30
 
-      - name: Take screenshot
-        uses: microsoft/playwright-github-action@v1
-        with:
-          browser: chromium
-          args: |
-            npx playwright install chromium
-            node -e "
-              const { chromium } = require('playwright');
-              (async () => {
-                const browser = await chromium.launch();
-                const page = await browser.newPage();
-                await page.setViewportSize({ width: 1280, height: 720 });
-                
-                const previewUrl = 'https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/preview/pr-${{ github.event.number }}/';
-                console.log('📸 Taking screenshot of:', previewUrl);
-                
-                try {
-                  await page.goto(previewUrl, { waitUntil: 'networkidle', timeout: 30000 });
-                  await page.waitForTimeout(2000); // Wait for any animations
-                  
-                  // Take full page screenshot
-                  await page.screenshot({ 
-                    path: 'preview-screenshot.png',
-                    fullPage: true 
-                  });
-                  
-                  // Take viewport screenshot
-                  await page.screenshot({ 
-                    path: 'preview-viewport.png',
-                    fullPage: false 
-                  });
-                  
-                  console.log('✅ Screenshots saved');
-                } catch (error) {
-                  console.error('❌ Failed to take screenshot:', error.message);
-                  // Take screenshot even if page fails to load completely
-                  await page.screenshot({ 
-                    path: 'preview-error.png',
-                    fullPage: true 
-                  });
-                }
-                
-                await browser.close();
-              })();
-            "
+            - name: Take screenshot (disabled)
+        run: |
+          echo "📸 Screenshot functionality temporarily disabled"
+          echo "Preview URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/preview/pr-${{ github.event.number }}/"
 
       - name: Upload screenshots
         uses: actions/upload-artifact@v4

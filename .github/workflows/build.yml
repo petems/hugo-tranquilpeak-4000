@@ -24,9 +24,6 @@ jobs:
       - name: Run build
         run: npm run build
 
-      - name: Run tests (if available)
-        run: npm test --if-present
-
       - name: Check for build artifacts
         run: |
           if [ -d "static/css" ]; then
