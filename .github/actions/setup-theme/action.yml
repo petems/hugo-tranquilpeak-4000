@@ -9,4 +9,7 @@ runs:
       run: |
         cd exampleSite
         mkdir -p themes
+        # Remove existing symlink or directory if it exists
+        rm -rf themes/Tranquilpeak4000
+        # Create the symlink
         ln -sf ../.. themes/Tranquilpeak4000 
