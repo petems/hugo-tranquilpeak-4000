@@ -45,13 +45,20 @@ jobs:
       run: |
         cd exampleSite
         mkdir -p themes
+        # Remove existing theme directory or symlink
         rm -rf themes/Tranquilpeak4000
+        # Create symlink to the theme root directory
         ln -sfn ../.. themes/Tranquilpeak4000
+        # Verify the symlink was created correctly
+        echo "Theme symlink created:"
+        ls -la themes/
+        echo "Symlink target:"
+        readlink themes/Tranquilpeak4000
 
     - name: Build example site
       run: |
         cd exampleSite
-        hugo --themesDir ../.. --theme hugo-tranquilpeak-4000 --minify --baseURL "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/preview/pr-${{ github.event.number }}/"
+        hugo --themesDir ../.. --theme Tranquilpeak4000 --minify --baseURL "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/preview/pr-${{ github.event.number }}/"
 
     - name: Check links
       uses: lycheeverse/lychee-action@v1.9.0
