@@ -7,9 +7,15 @@ on:
 jobs:
   preview:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Setup Hugo
       uses: peaceiris/actions-hugo@v2
@@ -20,24 +26,50 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: '20'
         cache: 'npm'
 
     - name: Install dependencies
       run: npm ci
 
+    - name: Run tests
+      run: npm test
+
     - name: Build theme assets
       run: npm run build
+
+    - name: Setup theme for exampleSite
+      shell: bash
+      run: |
+        cd exampleSite
+        mkdir -p themes
+        rm -rf themes/Tranquilpeak4000
+        ln -sfn ../.. themes/Tranquilpeak4000
 
     - name: Build example site
       run: |
         cd exampleSite
         hugo --themesDir ../.. --theme hugo-tranquilpeak-4000 --minify --baseURL "/${{ github.repository }}/"
 
+    - name: Check links
+      uses: lycheeverse/lychee-action@v1.9.0
+      with:
+        args: |
+          --format markdown
+          --exclude mailto:
+          --exclude tel:
+          --exclude file:
+          --exclude twitter.com
+          --exclude player.vimeo.com
+          --exclude github.io
+          --exclude netlify.com
+          --exclude balloon.asia
+          --exclude agonyus.com
+          exampleSite/public/
+        fail: true
+
     - name: Deploy to GitHub Pages
+      if: github.event.pull_request.head.repo.full_name == github.repository
       uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./exampleSite/public
-        destination_dir: ./preview 
