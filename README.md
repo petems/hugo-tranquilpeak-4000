@@ -1,7 +1,7 @@
 # Hugo Tranquilpeak 4000
 
-[![Test Theme](https://github.com/your-username/hugo-tranquilpeak-4000/workflows/Test%20Theme/badge.svg)](https://github.com/your-username/hugo-tranquilpeak-4000/actions?query=workflow%3A%22Test+Theme%22)
-[![Lint and Quality Checks](https://github.com/your-username/hugo-tranquilpeak-4000/workflows/Lint%20and%20Quality%20Checks/badge.svg)](https://github.com/your-username/hugo-tranquilpeak-4000/actions?query=workflow%3A%22Lint+and+Quality+Checks%22)
+[![Test Theme](https://github.com/petems/hugo-tranquilpeak-4000/workflows/Test%20Theme/badge.svg)](https://github.com/petems/hugo-tranquilpeak-4000/actions?query=workflow%3A%22Test+Theme%22)
+[![Lint and Quality Checks](https://github.com/petems/hugo-tranquilpeak-4000/workflows/Lint%20and%20Quality%20Checks/badge.svg)](https://github.com/petems/hugo-tranquilpeak-4000/actions?query=workflow%3A%22Lint+and+Quality+Checks%22)
 
 A modernized fork of the [hugo-tranquilpeak-theme](https://github.com/kakawait/hugo-tranquilpeak-theme) with the goal of bringing this beautiful theme into the modern era.
 
@@ -44,7 +44,7 @@ To use this modernized theme:
 1. **Clone this repository** into your Hugo site's `themes` directory:
    ```bash
    cd themes
-   git clone https://github.com/your-username/hugo-tranquilpeak-4000.git
+   git clone https://github.com/petems/hugo-tranquilpeak-4000.git
    ```
 
 2. **Configure your site** by copying the example configuration:
