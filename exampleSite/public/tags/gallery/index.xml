@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gallery on Hugo tranquilpeak theme</title>
+    <link>http://localhost:1313/tags/gallery/</link>
+    <description>Recent content in Gallery on Hugo tranquilpeak theme</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Feb 2013 22:40:32 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/gallery/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Image gallery showcase</title>
+      <link>http://localhost:1313/2013/02/image-gallery-showcase/</link>
+      <pubDate>Sun, 24 Feb 2013 22:40:32 +0000</pubDate>
+      <guid>http://localhost:1313/2013/02/image-gallery-showcase/</guid>
+      <description>&lt;h1 id=&#34;image-gallery-showcase&#34;&gt;Image gallery showcase&lt;/h1&gt;&#xA;&lt;p&gt;This article demonstrates the beautiful image gallery feature of the Tranquilpeak theme. The gallery will appear at the bottom of this post, showcasing multiple images in an elegant layout.&lt;/p&gt;&#xA;&lt;h2 id=&#34;how-to-create-image-galleries&#34;&gt;How to create image galleries&lt;/h2&gt;&#xA;&lt;p&gt;To create an image gallery in your blog post, simply add a &lt;code&gt;photos&lt;/code&gt; array to your front matter:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;---&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;My Post&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;photos&lt;/span&gt;:&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://example.com/image1.jpg&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://example.com/image2.jpg&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://example.com/image3.jpg&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;---&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;gallery-features&#34;&gt;Gallery features&lt;/h2&gt;&#xA;&lt;p&gt;The image gallery includes several features:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

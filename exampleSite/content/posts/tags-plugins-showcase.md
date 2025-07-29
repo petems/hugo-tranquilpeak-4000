@@ -48,7 +48,7 @@ Stay hungry, stay foolish.
 
 Code blocks with syntax highlighting:
 
-{{% codeblock lang:javascript %}}
+{{% codeblock "JavaScript Example" javascript %}}
 // JavaScript example
 function greet(name) {
     return `Hello, ${name}!`;
@@ -57,7 +57,7 @@ function greet(name) {
 console.log(greet('World'));
 {{% /codeblock %}}
 
-{{% codeblock lang:python %}}
+{{% codeblock "Python Example" python %}}
 # Python example
 def fibonacci(n):
     if n <= 1:

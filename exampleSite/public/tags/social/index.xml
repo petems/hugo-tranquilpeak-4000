@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Social on Hugo tranquilpeak theme</title>
+    <link>http://localhost:1313/tags/social/</link>
+    <description>Recent content in Social on Hugo tranquilpeak theme</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Aug 2014 22:40:32 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/social/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hidden social section showcase</title>
+      <link>http://localhost:1313/2014/08/hidden-social-section-showcase/</link>
+      <pubDate>Sun, 24 Aug 2014 22:40:32 +0000</pubDate>
+      <guid>http://localhost:1313/2014/08/hidden-social-section-showcase/</guid>
+      <description>&lt;h1 id=&#34;hidden-social-section-showcase&#34;&gt;Hidden social section showcase&lt;/h1&gt;&#xA;&lt;p&gt;This article demonstrates the social media integration features of the Tranquilpeak theme. The theme includes comprehensive social media support for sharing content and connecting with readers.&lt;/p&gt;&#xA;&lt;h2 id=&#34;social-sharing-buttons&#34;&gt;Social sharing buttons&lt;/h2&gt;&#xA;&lt;p&gt;The theme includes social sharing buttons that allow readers to easily share your content on various platforms:&lt;/p&gt;&#xA;&lt;h3 id=&#34;available-platforms&#34;&gt;Available platforms&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Facebook&lt;/strong&gt;: Share posts on Facebook&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Twitter&lt;/strong&gt;: Share posts on Twitter/X&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;LinkedIn&lt;/strong&gt;: Share posts on LinkedIn&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Reddit&lt;/strong&gt;: Share posts on Reddit&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Pinterest&lt;/strong&gt;: Pin images to Pinterest&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;WhatsApp&lt;/strong&gt;: Share via WhatsApp&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Email&lt;/strong&gt;: Share via email&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;how-sharing-works&#34;&gt;How sharing works&lt;/h3&gt;&#xA;&lt;p&gt;When readers click on a social sharing button:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

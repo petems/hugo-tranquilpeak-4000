@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Featured on Hugo tranquilpeak theme</title>
+    <link>http://localhost:1313/tags/featured/</link>
+    <description>Recent content in Featured on Hugo tranquilpeak theme</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 28 May 2015 22:40:32 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/featured/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cover image showcase</title>
+      <link>http://localhost:1313/2015/05/cover-image-showcase/</link>
+      <pubDate>Thu, 28 May 2015 22:40:32 +0000</pubDate>
+      <guid>http://localhost:1313/2015/05/cover-image-showcase/</guid>
+      <description>&lt;h1 id=&#34;cover-image-showcase&#34;&gt;Cover image showcase&lt;/h1&gt;&#xA;&lt;p&gt;This article demonstrates how to use cover images in the Tranquilpeak theme. Cover images are displayed prominently at the top of blog posts and can create a beautiful visual impact.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-are-cover-images&#34;&gt;What are cover images?&lt;/h2&gt;&#xA;&lt;p&gt;Cover images are featured images that appear at the top of your blog posts. They can be set using the &lt;code&gt;thumbnail&lt;/code&gt; parameter in your post&amp;rsquo;s front matter, or by using the &lt;code&gt;photos&lt;/code&gt; array for image galleries.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
