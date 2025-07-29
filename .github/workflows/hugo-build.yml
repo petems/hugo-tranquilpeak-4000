@@ -1,0 +1,50 @@
+name: Hugo Build Validation
+on: [push, pull_request]
+
+jobs:
+  hugo-build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        hugo-version: ['0.120.0', '0.121.0', 'latest']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: ${{ matrix.hugo-version }}
+          extended: true
+
+      - name: Setup theme
+        uses: ./.github/actions/setup-theme
+
+      - name: Build site
+        uses: ./.github/actions/hugo-build
+
+      - name: Check build output
+        run: |
+          cd exampleSite
+          if [ -d "public" ]; then
+            echo "✅ Public directory created"
+            echo "📊 Build statistics:"
+            find public -name "*.html" | wc -l | xargs echo "HTML files:"
+            find public -name "*.css" | wc -l | xargs echo "CSS files:"
+            find public -name "*.js" | wc -l | xargs echo "JS files:"
+          else
+            echo "❌ Public directory not found"
+            exit 1
+          fi
+
+      - name: Validate HTML
+        run: |
+          cd exampleSite
+          if command -v html5validator &> /dev/null; then
+            html5validator --root public --format text --ignore "CSS3_*" "JS*"
+          else
+            echo "⚠️ html5validator not available, skipping HTML validation"
+          fi 

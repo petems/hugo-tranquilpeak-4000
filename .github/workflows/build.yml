@@ -1,0 +1,48 @@
+name: Build Assets
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16, 18, 20]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: ./.github/actions/setup-node
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        uses: ./.github/actions/install-deps
+
+      - name: Build theme assets
+        uses: ./.github/actions/build-assets
+
+      - name: Check for build artifacts
+        run: |
+          echo "📊 Checking build artifacts..."
+          if [ -d "static/css" ] && [ -d "static/js" ]; then
+            echo "✅ CSS and JS directories found"
+            echo "📁 CSS files:"
+            ls -la static/css/
+            echo "📁 JS files:"
+            ls -la static/js/
+          else
+            echo "❌ Build artifacts not found"
+            exit 1
+          fi
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-assets-node-${{ matrix.node-version }}
+          path: |
+            static/css/
+            static/js/
+          retention-days: 7 

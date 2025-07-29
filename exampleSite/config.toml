@@ -16,7 +16,7 @@ baseURL = "https://example.org/"
 languageCode = "en-us"
 defaultContentLanguage = "en-us"
 title = "Hugo tranquilpeak theme"
-theme = "hugo-tranquilpeak-theme"
+theme = "Tranquilpeak4000"
 disqusShortname = "hugo-tranquilpeak-theme"
 # googleAnalytics = "UA-123-45"
 [pagination]

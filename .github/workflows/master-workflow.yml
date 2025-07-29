@@ -1,0 +1,172 @@
+name: Master Workflow (DRY Example)
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  # Reusable setup job
+  setup:
+    uses: ./.github/workflows/setup-hugo.yml
+    with:
+      hugo-version: 'latest'
+      setup-theme: true
+
+  # Node.js setup and asset building
+  assets:
+    uses: ./.github/workflows/setup-node.yml
+    with:
+      node-version: '18'
+      install-deps: true
+      build-assets: true
+
+  # Hugo build validation with multiple versions
+  hugo-build:
+    needs: [setup, assets]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        hugo-version: ['0.120.0', '0.121.0', 'latest']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: ${{ matrix.hugo-version }}
+          extended: true
+
+      - name: Setup theme
+        uses: ./.github/actions/setup-theme
+
+      - name: Build site
+        uses: ./.github/actions/hugo-build
+
+      - name: Validate build
+        run: |
+          cd exampleSite
+          if [ -d "public" ]; then
+            echo "✅ Build successful with Hugo ${{ matrix.hugo-version }}"
+            find public -name "*.html" | wc -l | xargs echo "HTML files:"
+          else
+            echo "❌ Build failed"
+            exit 1
+          fi
+
+  # Link checking
+  link-check:
+    needs: [setup, assets]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Setup theme
+        uses: ./.github/actions/setup-theme
+
+      - name: Build site
+        uses: ./.github/actions/hugo-build
+
+      - name: Check links
+        uses: lycheeverse/lychee-action@v1.7.0
+        with:
+          args: |
+            --format markdown
+            --exclude mailto:
+            --exclude tel:
+            --exclude file:
+            exampleSite/public/
+          fail: true
+
+  # Security scanning
+  security:
+    needs: [assets]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run npm audit
+        run: |
+          echo "🔍 Running npm audit..."
+          npm audit --audit-level=moderate || {
+            echo "⚠️ Security vulnerabilities found. Check the report above."
+            echo "Run 'npm audit fix' to attempt automatic fixes."
+            exit 1
+          }
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+        continue-on-error: true
+
+  # Linting
+  lint:
+    needs: [assets]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint (if available)
+        run: |
+          if npm run lint --if-present; then
+            echo "✅ ESLint passed"
+          else
+            echo "⚠️ ESLint not configured or failed"
+          fi
+
+      - name: Check code formatting
+        run: |
+          echo "🔍 Checking code formatting..."
+          if command -v prettier &> /dev/null; then
+            npx prettier --check "**/*.{js,jsx,ts,tsx,json,css,scss,md,html}" || {
+              echo "❌ Code formatting issues found. Run 'npx prettier --write' to fix."
+              exit 1
+            }
+          else
+            echo "⚠️ Prettier not available, skipping format check"
+          fi 

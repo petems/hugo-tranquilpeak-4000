@@ -1,0 +1,44 @@
+name: Setup Hugo and Theme
+
+on:
+  workflow_call:
+    inputs:
+      hugo-version:
+        description: 'Hugo version to use'
+        required: false
+        default: 'latest'
+        type: string
+      setup-theme:
+        description: 'Whether to setup the theme'
+        required: false
+        default: true
+        type: boolean
+    outputs:
+      hugo-version:
+        description: 'The Hugo version that was set up'
+        value: ${{ jobs.setup.outputs.hugo-version }}
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      hugo-version: ${{ steps.setup-hugo.outputs.hugo-version }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Hugo ${{ inputs.hugo-version }}
+        id: setup-hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: ${{ inputs.hugo-version }}
+          extended: true
+
+      - name: Setup theme for exampleSite
+        if: inputs.setup-theme
+        run: |
+          cd exampleSite
+          mkdir -p themes
+          ln -sf ../.. themes/Tranquilpeak4000 

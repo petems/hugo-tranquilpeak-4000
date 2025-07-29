@@ -1,8 +1,8 @@
 {
-  "name": "hugo-tranquilpeak-theme",
+  "name": "Tranquilpeak4000",
   "version": "0.5.3-BETA",
   "description": "A gorgeous responsive theme for Hugo blog framework",
-  "main": "Gruntfile.js",
+  "main": "index.js",
   "scripts": {
     "start": "npm run grunt -- default",
     "build": "npm run prod",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kakawait/hugo-tranquilpeak-theme.git"
+    "url": "https://github.com/petems/hugo-tranquilpeak-4000.git"
   },
   "keywords": [
     "hugo",
@@ -27,9 +27,9 @@
   "author": "Thibaud Leprêtre <thibaud.lepretre@gmail.com> (https://kakawait.com)",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/kakawait/hugo-tranquilpeak-theme/issues"
+    "url": "https://github.com/petems/hugo-tranquilpeak-4000/issues"
   },
-  "homepage": "https://github.com/kakawait/hugo-tranquilpeak-theme",
+  "homepage": "https://github.com/petems/hugo-tranquilpeak-4000",
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-config-google": "^0.14.0",

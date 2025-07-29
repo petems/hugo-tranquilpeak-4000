@@ -1,0 +1,15 @@
+name: 'Setup Hugo Theme'
+description: 'Setup the Hugo theme for exampleSite'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup theme for exampleSite
+      shell: bash
+      run: |
+        cd exampleSite
+        mkdir -p themes
+        # Remove existing symlink or directory if it exists
+        rm -rf themes/Tranquilpeak4000
+        # Create the symlink
+        ln -sf ../.. themes/Tranquilpeak4000 
