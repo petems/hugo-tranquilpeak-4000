@@ -49,7 +49,7 @@ jobs:
 
       - name: Run OWASP ZAP scan (if public repo)
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        uses: zaproxy/action-full-scan@v0.8.0
+        uses: zaproxy/action-full-scan@v0.12.0
         with:
           target: 'https://your-site-url.com'  # Replace with actual URL
           rules_file_name: '.zap/rules.tsv'
