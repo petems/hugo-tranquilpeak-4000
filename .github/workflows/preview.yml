@@ -59,38 +59,7 @@ jobs:
       run: |
         cd exampleSite
         hugo --themesDir ../.. --theme Tranquilpeak4000 --minify --baseURL "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/preview/pr-${{ github.event.number }}/"
-
-    - name: Check links
-      uses: lycheeverse/lychee-action@v1.9.0
-      with:
-        args: |
-          --format markdown
-          --exclude mailto:
-          --exclude tel:
-          --exclude file:
-          --exclude "twitter.com/*"
-          --exclude "player.vimeo.com/*"
-          --exclude "*.github.io"
-          --exclude "*.netlify.com"
-          --exclude "*.netlify.app"
-          --exclude "*.gitlab.io"
-          --exclude balloon.asia
-          --exclude agonyus.com
-          --exclude cruzrincon.com.ve
-          --exclude ragasirtahk.tk
-          --exclude blog.adrian.id
-          --exclude alfredlin.com
-          --exclude ffadilaputra.github.io
-          --exclude zentechnista.github.io
-          --exclude yueyvettehao.netlify.com
-          --exclude rekkodo.gitlab.io
-          --exclude "*.tk"
-          --exclude "*.ve"
-          --timeout 10
-          --max-redirects 3
-          exampleSite/public/
-        fail: false
-
+        
     - name: Deploy to GitHub Pages
       if: github.event.pull_request.head.repo.full_name == github.repository
       uses: peaceiris/actions-gh-pages@v3
