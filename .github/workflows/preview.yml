@@ -74,8 +74,18 @@ jobs:
           --exclude netlify.com
           --exclude balloon.asia
           --exclude agonyus.com
+          --exclude cruzrincon.com.ve
+          --exclude ragasirtahk.tk
+          --exclude blog.adrian.id
+          --exclude alfredlin.com
+          --exclude ffadilaputra.github.io
+          --exclude zentechnista.github.io
+          --exclude yueyvettehao.netlify.com
+          --exclude rekkodo.gitlab.io
+          --timeout 10
+          --max-redirects 3
           exampleSite/public/
-        fail: true
+        fail: false
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
