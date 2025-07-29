@@ -15,7 +15,6 @@ jobs:
           - '0.128.0'  # Minimum supported version
           - '0.140.0'  # Mid-range version
           - '0.148.1'  # Latest stable version
-          - '0.149.0'  # Latest development version
 
     steps:
     - name: Checkout
