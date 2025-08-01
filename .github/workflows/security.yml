@@ -24,7 +24,7 @@ jobs:
           }
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@0.17.0
         with:
           scan-type: 'fs'
           scan-ref: '.'
@@ -40,17 +40,18 @@ jobs:
         continue-on-error: true
 
       - name: Check for secrets in code
-        uses: trufflesecurity/trufflehog@main
+        uses: trufflesecurity/trufflehog@v3.63.2
         with:
           path: ./
-          base: ${{ github.event.before }}
+          base: ${{ github.event.before || 'HEAD~1' }}
           head: ${{ github.sha }}
           extra_args: --only-verified
 
-      - name: Run OWASP ZAP scan (if public repo)
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        uses: zaproxy/action-full-scan@v0.8.0
-        with:
-          target: 'https://your-site-url.com'  # Replace with actual URL
-          rules_file_name: '.zap/rules.tsv'
-          cmd_options: '-a' 
+      # OWASP ZAP scan disabled until actual site URL is configured
+      # - name: Run OWASP ZAP scan (if public repo)
+      #   if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      #   uses: zaproxy/action-full-scan@v0.8.0
+      #   with:
+      #     target: 'https://your-actual-site-url.com'  # Replace with actual URL
+      #     rules_file_name: '.zap/rules.tsv'
+      #     cmd_options: '-a' 

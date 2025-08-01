@@ -26,12 +26,37 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Validate Hugo environment
+      shell: bash
+      run: |
+        hugo version
+        echo "Working directory: ${{ inputs.working-directory }}"
+        ls -la ${{ inputs.working-directory }}/
+
     - name: Build with Hugo
       shell: bash
       run: |
         cd ${{ inputs.working-directory }}
         hugo \
-          ${{ inputs.minify && '--minify' || '' }} \
-          ${{ inputs.gc && '--gc' || '' }} \
-          ${{ inputs.build-drafts && '--buildDrafts' || '' }} \
-          ${{ inputs.build-future && '--buildFuture' || '' }} 
+          ${{ inputs.minify == 'true' && '--minify' || '' }} \
+          ${{ inputs.gc == 'true' && '--gc' || '' }} \
+          ${{ inputs.build-drafts == 'true' && '--buildDrafts' || '' }} \
+          ${{ inputs.build-future == 'true' && '--buildFuture' || '' }} \
+          --verbose
+    
+    - name: Validate build output
+      shell: bash
+      run: |
+        cd ${{ inputs.working-directory }}
+        if [ ! -d "public" ]; then
+          echo "❌ Hugo build failed - no public directory created"
+          exit 1
+        fi
+        
+        html_count=$(find public -name "*.html" | wc -l)
+        if [ "$html_count" -eq 0 ]; then
+          echo "❌ Hugo build failed - no HTML files generated"
+          exit 1
+        fi
+        
+        echo "✅ Hugo build successful - generated $html_count HTML files" 
