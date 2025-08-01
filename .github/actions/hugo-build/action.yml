@@ -41,8 +41,7 @@ runs:
           ${{ inputs.minify == 'true' && '--minify' || '' }} \
           ${{ inputs.gc == 'true' && '--gc' || '' }} \
           ${{ inputs.build-drafts == 'true' && '--buildDrafts' || '' }} \
-          ${{ inputs.build-future == 'true' && '--buildFuture' || '' }} \
-          --verbose
+          ${{ inputs.build-future == 'true' && '--buildFuture' || '' }}
     
     - name: Validate build output
       shell: bash
