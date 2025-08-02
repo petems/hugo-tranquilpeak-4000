@@ -18,6 +18,21 @@ Hugo Tranquilpeak 4000 is a modernized fork of the hugo-tranquilpeak-theme. It's
 - `npm run lint` - Run ESLint for JavaScript code style checking
 - `npm run grunt` - Run Grunt task runner directly
 
+### End-to-End Testing with Playwright
+- `npm run test:e2e` - Run all Playwright end-to-end tests
+- `npm run test:e2e:ui` - Run tests with Playwright UI mode for debugging
+- `npm run test:e2e:headed` - Run tests in headed mode (visible browser)
+- `npm run test:e2e:debug` - Run tests in debug mode with step-by-step execution
+- `npm run test:e2e:report` - View the latest test report
+- `npm run test:visual` - Run visual regression tests only
+- `npm run test:all` - Run both Jest unit tests and Playwright e2e tests
+
+#### Test Coverage
+The Playwright setup includes comprehensive automated front-end issue detection:
+- **Theme Validation**: Responsive design, navigation, images, CSS/JS resources, forms, accessibility
+- **Content Validation**: Homepage structure, blog posts, archive pages, search functionality, RSS feeds
+- **Visual Regression**: Cross-browser visual comparison, responsive screenshots, UI component states
+
 ### Build Tools
 The project uses Grunt for asset processing:
 - CSS compilation from SCSS
@@ -65,6 +80,7 @@ Main workflow files:
 - `.github/workflows/test.yml` - Main testing workflow
 - `.github/workflows/lint.yml` - Code quality and structure checks  
 - `.github/workflows/test-latest.yml` - Latest Hugo version testing
+- `.github/workflows/e2e-tests.yml` - End-to-end testing with Playwright MCP integration
 
 ## Development Guidelines
 

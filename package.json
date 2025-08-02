@@ -11,7 +11,14 @@
     "lint": "node ./node_modules/eslint/bin/eslint.js .",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:debug": "playwright test --debug",
+    "test:e2e:report": "playwright show-report",
+    "test:visual": "playwright test visual-regression.spec.js",
+    "test:all": "npm run test && npm run test:e2e"
   },
   "repository": {
     "type": "git",
@@ -31,6 +38,7 @@
   },
   "homepage": "https://github.com/petems/hugo-tranquilpeak-4000",
   "devDependencies": {
+    "@playwright/test": "^1.54.2",
     "eslint": "^8.57.0",
     "eslint-config-google": "^0.14.0",
     "grunt": "^1.4.1",
@@ -51,6 +59,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "load-grunt-tasks": "^5.1.0",
     "nanoid": "^3.1.23",
+    "playwright": "^1.54.2",
     "sass": "^1.37.5"
   },
   "engines": {
