@@ -51,7 +51,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "load-grunt-tasks": "^5.1.0",
     "nanoid": "^3.1.23",
-    "sass": "^1.37.5"
+    "sass": "^1.89.2"
   },
   "engines": {
     "node": ">=20.0.0"
