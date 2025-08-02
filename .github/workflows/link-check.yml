@@ -23,7 +23,7 @@ jobs:
         uses: ./.github/actions/hugo-build
 
       - name: Check links
-        uses: lycheeverse/lychee-action@v1.7.0
+        uses: lycheeverse/lychee-action@v2.4.1
         with:
           args: |
             --format markdown
