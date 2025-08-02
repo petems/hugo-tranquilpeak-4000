@@ -4,6 +4,10 @@ on: [push, pull_request]
 jobs:
   security:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -24,7 +28,7 @@ jobs:
           }
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.17.0
+        uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'fs'
           scan-ref: '.'
@@ -40,7 +44,7 @@ jobs:
         continue-on-error: true
 
       - name: Check for secrets in code
-        uses: trufflesecurity/trufflehog@v3.63.2
+        uses: trufflesecurity/trufflehog@main
         with:
           path: ./
           base: ${{ github.event.before || 'HEAD~1' }}

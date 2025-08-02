@@ -14,4 +14,4 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/assets/js/$1'
   }
-}; 
+};

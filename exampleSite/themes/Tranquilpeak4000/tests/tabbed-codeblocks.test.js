@@ -12,14 +12,14 @@ mockJQuery.fn = {
   eq: jest.fn(),
   index: jest.fn(),
   children: jest.fn(),
-  ready: jest.fn(),
+  ready: jest.fn()
 };
 
 global.$ = global.jQuery = mockJQuery;
 
 // Mock document
 global.document = {
-  readyState: 'complete',
+  readyState: 'complete'
 };
 
 describe('TabbedCodeBlock', () => {
@@ -31,9 +31,9 @@ describe('TabbedCodeBlock', () => {
     // Mock jQuery to return elements
     mockJQuery.mockImplementation((selector) => {
       if (selector === '.codeblock--tabbed') {
-        return { find: jest.fn() };
+        return {find: jest.fn()};
       }
-      return { find: jest.fn() };
+      return {find: jest.fn()};
     });
 
     // Define TabbedCodeBlock constructor manually for testing
@@ -63,14 +63,14 @@ describe('TabbedCodeBlock', () => {
   });
 
   test('should set up click handlers when run is called', () => {
-    const mockTab = { click: jest.fn() };
-    const mockTabs = { find: jest.fn().mockReturnValue(mockTab) };
+    const mockTab = {click: jest.fn()};
+    const mockTabs = {find: jest.fn().mockReturnValue(mockTab)};
     
     mockJQuery.mockImplementation((selector) => {
       if (selector === '.codeblock--tabbed') {
         return mockTabs;
       }
-      return { find: jest.fn() };
+      return {find: jest.fn()};
     });
 
     const TabbedCodeBlock = function(elems) {
@@ -101,14 +101,14 @@ describe('TabbedCodeBlock', () => {
   });
 
   test('should handle tab click events', () => {
-    const mockTab = { click: jest.fn() };
-    const mockTabs = { find: jest.fn().mockReturnValue(mockTab) };
+    const mockTab = {click: jest.fn()};
+    const mockTabs = {find: jest.fn().mockReturnValue(mockTab)};
     
     mockJQuery.mockImplementation((selector) => {
       if (selector === '.codeblock--tabbed') {
         return mockTabs;
       }
-      return { find: jest.fn() };
+      return {find: jest.fn()};
     });
 
     const TabbedCodeBlock = function(elems) {
@@ -137,4 +137,4 @@ describe('TabbedCodeBlock', () => {
     // Verify the click handler was set up
     expect(mockTab.click).toHaveBeenCalled();
   });
-}); 
+});

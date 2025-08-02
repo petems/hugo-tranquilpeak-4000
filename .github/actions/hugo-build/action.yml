@@ -37,11 +37,28 @@ runs:
       shell: bash
       run: |
         cd ${{ inputs.working-directory }}
-        hugo \
-          ${{ inputs.minify == 'true' && '--minify' || '' }} \
-          ${{ inputs.gc == 'true' && '--gc' || '' }} \
-          ${{ inputs.build-drafts == 'true' && '--buildDrafts' || '' }} \
-          ${{ inputs.build-future == 'true' && '--buildFuture' || '' }}
+        
+        # Build Hugo command with conditional flags
+        hugo_cmd="hugo"
+        
+        if [ "${{ inputs.minify }}" = "true" ]; then
+          hugo_cmd="$hugo_cmd --minify"
+        fi
+        
+        if [ "${{ inputs.gc }}" = "true" ]; then
+          hugo_cmd="$hugo_cmd --gc"
+        fi
+        
+        if [ "${{ inputs.build-drafts }}" = "true" ]; then
+          hugo_cmd="$hugo_cmd --buildDrafts"
+        fi
+        
+        if [ "${{ inputs.build-future }}" = "true" ]; then
+          hugo_cmd="$hugo_cmd --buildFuture"
+        fi
+        
+        echo "Running: $hugo_cmd"
+        eval $hugo_cmd
     
     - name: Validate build output
       shell: bash

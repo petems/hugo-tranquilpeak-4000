@@ -1,7 +1,7 @@
 // Mock jQuery
 global.$ = global.jQuery = jest.fn(() => ({
   bind: jest.fn(),
-  trigger: jest.fn(),
+  trigger: jest.fn()
 }));
 
 // Mock jQuery.fn
@@ -27,7 +27,7 @@ describe('smartresize', () => {
 
   test('should bind resize event when function is provided', () => {
     const mockFn = jest.fn();
-    const mockElement = { bind: jest.fn(), trigger: jest.fn() };
+    const mockElement = {bind: jest.fn(), trigger: jest.fn()};
     $(mockElement);
 
     $.fn.smartresize.call(mockElement, mockFn);
@@ -36,7 +36,7 @@ describe('smartresize', () => {
   });
 
   test('should trigger smartresize event when no function is provided', () => {
-    const mockElement = { bind: jest.fn(), trigger: jest.fn() };
+    const mockElement = {bind: jest.fn(), trigger: jest.fn()};
     $(mockElement);
 
     $.fn.smartresize.call(mockElement);
@@ -46,7 +46,7 @@ describe('smartresize', () => {
 
   test('should debounce function calls', () => {
     const mockFn = jest.fn();
-    const mockElement = { bind: jest.fn(), trigger: jest.fn() };
+    const mockElement = {bind: jest.fn(), trigger: jest.fn()};
     $(mockElement);
 
     $.fn.smartresize.call(mockElement, mockFn);
@@ -67,4 +67,4 @@ describe('smartresize', () => {
 
     expect(mockFn).toHaveBeenCalledTimes(1);
   });
-}); 
+});

@@ -5,7 +5,7 @@ mockJQuery.fn = {
   addClass: jest.fn(),
   removeClass: jest.fn(),
   scrollTop: jest.fn(),
-  ready: jest.fn(),
+  ready: jest.fn()
 };
 
 global.$ = global.jQuery = mockJQuery;
@@ -14,12 +14,12 @@ global.$ = global.jQuery = mockJQuery;
 global.window = {
   scrollTop: 0,
   height: 800,
-  scroll: jest.fn(),
+  scroll: jest.fn()
 };
 
 global.document = {
   height: 2000,
-  readyState: 'complete',
+  readyState: 'complete'
 };
 
 // Mock setInterval
@@ -39,13 +39,13 @@ describe('Header', () => {
     // Mock jQuery to return a header element
     mockJQuery.mockImplementation((selector) => {
       if (selector === '#header') {
-        return { height: jest.fn().mockReturnValue(60) };
+        return {height: jest.fn().mockReturnValue(60)};
       }
       if (selector === 'window') {
-        return { scroll: jest.fn() };
+        return {scroll: jest.fn()};
       }
-      return { 
-        scrollTop: jest.fn().mockReturnValue(0), 
+      return {
+        scrollTop: jest.fn().mockReturnValue(0),
         height: jest.fn().mockReturnValue(800),
         scroll: jest.fn()
       };
@@ -100,20 +100,19 @@ describe('Header', () => {
   });
 
 
-
   test('should add header-up class when scrolling down', () => {
-    const mockHeader = { 
+    const mockHeader = {
       height: jest.fn().mockReturnValue(60),
       addClass: jest.fn(),
-      removeClass: jest.fn(),
+      removeClass: jest.fn()
     };
     
     mockJQuery.mockImplementation((selector) => {
       if (selector === '#header') return mockHeader;
-      if (selector === 'window') return { scroll: jest.fn() };
-      return { 
-        scrollTop: jest.fn().mockReturnValue(100), 
-        height: jest.fn().mockReturnValue(800) 
+      if (selector === 'window') return {scroll: jest.fn()};
+      return {
+        scrollTop: jest.fn().mockReturnValue(100),
+        height: jest.fn().mockReturnValue(800)
       };
     });
 
@@ -147,4 +146,4 @@ describe('Header', () => {
 
     expect(mockHeader.addClass).toHaveBeenCalledWith('header-up');
   });
-}); 
+});
