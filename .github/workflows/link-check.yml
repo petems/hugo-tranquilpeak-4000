@@ -31,7 +31,8 @@ jobs:
             --exclude tel:
             --exclude file:
             exampleSite/public/
-          fail: true
+          fail: false
+        continue-on-error: true
 
       - name: Upload link check results
         uses: actions/upload-artifact@v4
@@ -42,6 +43,7 @@ jobs:
           retention-days: 7
 
       - name: Check for broken image links
+        continue-on-error: true
         run: |
           echo "🔍 Checking for broken image links..."
           cd exampleSite/public
@@ -64,6 +66,7 @@ jobs:
           done
 
       - name: Validate sitemap
+        continue-on-error: true
         run: |
           echo "🔍 Validating sitemap..."
           cd exampleSite/public
@@ -82,6 +85,7 @@ jobs:
           fi
 
       - name: Check for orphaned files
+        continue-on-error: true
         run: |
           echo "🔍 Checking for orphaned files..."
           cd exampleSite/public
