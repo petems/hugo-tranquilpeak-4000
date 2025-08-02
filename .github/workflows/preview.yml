@@ -41,24 +41,12 @@ jobs:
       run: npm run build
 
     - name: Setup theme for exampleSite
-      shell: bash
-      run: |
-        cd exampleSite
-        mkdir -p themes
-        # Remove existing theme directory or symlink
-        rm -rf themes/Tranquilpeak4000
-        # Create symlink to the theme root directory
-        ln -sfn ../.. themes/Tranquilpeak4000
-        # Verify the symlink was created correctly
-        echo "Theme symlink created:"
-        ls -la themes/
-        echo "Symlink target:"
-        readlink themes/Tranquilpeak4000
+      uses: ./.github/actions/setup-theme
 
     - name: Build example site
       run: |
         cd exampleSite
-        hugo --themesDir ../.. --theme Tranquilpeak4000 --minify --baseURL "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/preview/pr-${{ github.event.number }}/"
+        hugo --minify --baseURL "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/preview/pr-${{ github.event.number }}/"
         
     - name: Deploy to GitHub Pages
       if: github.event.pull_request.head.repo.full_name == github.repository
