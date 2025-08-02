@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Photos on Hugo tranquilpeak theme</title><link>https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-18/tags/photos/</link><description>Recent content in Photos on Hugo tranquilpeak theme</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 24 Feb 2013 22:40:32 +0000</lastBuildDate><atom:link href="https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-18/tags/photos/index.xml" rel="self" type="application/rss+xml"/><item><title>Image gallery showcase</title><link>https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-18/2013/02/image-gallery-showcase/</link><pubDate>Sun, 24 Feb 2013 22:40:32 +0000</pubDate><guid>https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-18/2013/02/image-gallery-showcase/</guid><description>&lt;p>This article demonstrates the beautiful image gallery feature of the Tranquilpeak theme. The gallery will appear at the bottom of this post, showcasing multiple images in an elegant layout.&lt;/p>
+&lt;h2 id="how-to-create-image-galleries">How to create image galleries&lt;/h2>
+&lt;p>To create an image gallery in your blog post, simply add a &lt;code>photos&lt;/code> array to your front matter:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>---
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">title&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;My Post&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">photos&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#e6db74">&amp;#34;https://example.com/image1.jpg&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#e6db74">&amp;#34;https://example.com/image2.jpg&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - &lt;span style="color:#e6db74">&amp;#34;https://example.com/image3.jpg&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>---
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="gallery-features">Gallery features&lt;/h2>
+&lt;p>The image gallery includes several features:&lt;/p></description></item></channel></rss>

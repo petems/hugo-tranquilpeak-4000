@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Syntax on Hugo tranquilpeak theme</title><link>https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-18/tags/syntax/</link><description>Recent content in Syntax on Hugo tranquilpeak theme</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 23 Mar 2015 22:40:32 +0000</lastBuildDate><atom:link href="https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-18/tags/syntax/index.xml" rel="self" type="application/rss+xml"/><item><title>Highlighted code showcase</title><link>https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-18/2015/03/highlighted-code-showcase/</link><pubDate>Mon, 23 Mar 2015 22:40:32 +0000</pubDate><guid>https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-18/2015/03/highlighted-code-showcase/</guid><description>&lt;p>This article demonstrates the syntax highlighting features of the Tranquilpeak theme. The theme supports multiple programming languages with beautiful syntax highlighting.&lt;/p>
+&lt;h2 id="javascript">JavaScript&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// JavaScript example with ES6+ features
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Calculator&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">constructor&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">history&lt;/span> &lt;span style="color:#f92672">=&lt;/span> [];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">add&lt;/span>(&lt;span style="color:#a6e22e">a&lt;/span>, &lt;span style="color:#a6e22e">b&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">result&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">a&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#a6e22e">b&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">history&lt;/span>.&lt;span style="color:#a6e22e">push&lt;/span>(&lt;span style="color:#e6db74">`&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">a&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74"> + &lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">b&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74"> = &lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">result&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">`&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">result&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">subtract&lt;/span>(&lt;span style="color:#a6e22e">a&lt;/span>, &lt;span style="color:#a6e22e">b&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">result&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">a&lt;/span> &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#a6e22e">b&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">history&lt;/span>.&lt;span style="color:#a6e22e">push&lt;/span>(&lt;span style="color:#e6db74">`&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">a&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74"> - &lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">b&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74"> = &lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">result&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">`&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">result&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">getHistory&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">history&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// Usage
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">calc&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">Calculator&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">calc&lt;/span>.&lt;span style="color:#a6e22e">add&lt;/span>(&lt;span style="color:#ae81ff">5&lt;/span>, &lt;span style="color:#ae81ff">3&lt;/span>)); &lt;span style="color:#75715e">// 8
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">calc&lt;/span>.&lt;span style="color:#a6e22e">subtract&lt;/span>(&lt;span style="color:#ae81ff">10&lt;/span>, &lt;span style="color:#ae81ff">4&lt;/span>)); &lt;span style="color:#75715e">// 6
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">calc&lt;/span>.&lt;span style="color:#a6e22e">getHistory&lt;/span>());
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="python">Python&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Python example with modern features&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">from&lt;/span> typing &lt;span style="color:#f92672">import&lt;/span> List, Optional
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">from&lt;/span> dataclasses &lt;span style="color:#f92672">import&lt;/span> dataclass
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> asyncio
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@dataclass&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">User&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> name: str
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> email: str
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> age: int
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">is_adult&lt;/span>(self) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> bool:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>age &lt;span style="color:#f92672">&amp;gt;=&lt;/span> &lt;span style="color:#ae81ff">18&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">UserManager&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">__init__&lt;/span>(self):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> self&lt;span style="color:#f92672">.&lt;/span>users: List[User] &lt;span style="color:#f92672">=&lt;/span> []
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">add_user&lt;/span>(self, user: User) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">None&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">await&lt;/span> asyncio&lt;span style="color:#f92672">.&lt;/span>sleep(&lt;span style="color:#ae81ff">0.1&lt;/span>) &lt;span style="color:#75715e"># Simulate async operation&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> self&lt;span style="color:#f92672">.&lt;/span>users&lt;span style="color:#f92672">.&lt;/span>append(user)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">get_adult_users&lt;/span>(self) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> List[User]:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> [user &lt;span style="color:#66d9ef">for&lt;/span> user &lt;span style="color:#f92672">in&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>users &lt;span style="color:#66d9ef">if&lt;/span> user&lt;span style="color:#f92672">.&lt;/span>is_adult()]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">find_user_by_email&lt;/span>(self, email: str) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> Optional[User]:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> next((user &lt;span style="color:#66d9ef">for&lt;/span> user &lt;span style="color:#f92672">in&lt;/span> self&lt;span style="color:#f92672">.&lt;/span>users &lt;span style="color:#66d9ef">if&lt;/span> user&lt;span style="color:#f92672">.&lt;/span>email &lt;span style="color:#f92672">==&lt;/span> email), &lt;span style="color:#66d9ef">None&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Usage&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>():
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> manager &lt;span style="color:#f92672">=&lt;/span> UserManager()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> user1 &lt;span style="color:#f92672">=&lt;/span> User(&lt;span style="color:#e6db74">&amp;#34;Alice&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;alice@example.com&amp;#34;&lt;/span>, &lt;span style="color:#ae81ff">25&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> user2 &lt;span style="color:#f92672">=&lt;/span> User(&lt;span style="color:#e6db74">&amp;#34;Bob&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;bob@example.com&amp;#34;&lt;/span>, &lt;span style="color:#ae81ff">16&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">await&lt;/span> manager&lt;span style="color:#f92672">.&lt;/span>add_user(user1)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">await&lt;/span> manager&lt;span style="color:#f92672">.&lt;/span>add_user(user2)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> print(&lt;span style="color:#e6db74">f&lt;/span>&lt;span style="color:#e6db74">&amp;#34;Adult users: &lt;/span>&lt;span style="color:#e6db74">{&lt;/span>len(manager&lt;span style="color:#f92672">.&lt;/span>get_adult_users())&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> print(&lt;span style="color:#e6db74">f&lt;/span>&lt;span style="color:#e6db74">&amp;#34;Found user: &lt;/span>&lt;span style="color:#e6db74">{&lt;/span>manager&lt;span style="color:#f92672">.&lt;/span>find_user_by_email(&lt;span style="color:#e6db74">&amp;#39;alice@example.com&amp;#39;&lt;/span>)&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">if&lt;/span> __name__ &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#34;__main__&amp;#34;&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> asyncio&lt;span style="color:#f92672">.&lt;/span>run(main())
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="css">CSS&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-css" data-lang="css">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/* CSS example with modern features */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>:&lt;span style="color:#a6e22e">root&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --primary-color: &lt;span style="color:#ae81ff">#007acc&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --secondary-color: &lt;span style="color:#ae81ff">#6c757d&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --success-color: &lt;span style="color:#ae81ff">#28a745&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --danger-color: &lt;span style="color:#ae81ff">#dc3545&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --border-radius: &lt;span style="color:#ae81ff">0.375&lt;/span>&lt;span style="color:#66d9ef">rem&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>.&lt;span style="color:#a6e22e">card&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">background&lt;/span>: &lt;span style="color:#66d9ef">white&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">border-radius&lt;/span>: &lt;span style="color:#a6e22e">var&lt;/span>(&lt;span style="color:#f92672">--&lt;/span>border&lt;span style="color:#f92672">-&lt;/span>radius);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">box-shadow&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#ae81ff">0.125&lt;/span>&lt;span style="color:#66d9ef">rem&lt;/span> &lt;span style="color:#ae81ff">0.25&lt;/span>&lt;span style="color:#66d9ef">rem&lt;/span> rgba(&lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0.075&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">padding&lt;/span>: &lt;span style="color:#ae81ff">1.5&lt;/span>&lt;span style="color:#66d9ef">rem&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">margin-bottom&lt;/span>: &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#66d9ef">rem&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">transition&lt;/span>: &lt;span style="color:#66d9ef">all&lt;/span> &lt;span style="color:#ae81ff">0.3&lt;/span>&lt;span style="color:#66d9ef">s&lt;/span> &lt;span style="color:#66d9ef">ease&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>.&lt;span style="color:#a6e22e">card&lt;/span>:&lt;span style="color:#a6e22e">hover&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">transform&lt;/span>: translateY(&lt;span style="color:#ae81ff">-2&lt;/span>&lt;span style="color:#66d9ef">px&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">box-shadow&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#ae81ff">0.5&lt;/span>&lt;span style="color:#66d9ef">rem&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#66d9ef">rem&lt;/span> rgba(&lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0.15&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>.&lt;span style="color:#a6e22e">btn&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">display&lt;/span>: &lt;span style="color:#66d9ef">inline-block&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">padding&lt;/span>: &lt;span style="color:#ae81ff">0.5&lt;/span>&lt;span style="color:#66d9ef">rem&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#66d9ef">rem&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">border&lt;/span>: &lt;span style="color:#66d9ef">none&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">border-radius&lt;/span>: &lt;span style="color:#a6e22e">var&lt;/span>(&lt;span style="color:#f92672">--&lt;/span>border&lt;span style="color:#f92672">-&lt;/span>radius);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">cursor&lt;/span>: &lt;span style="color:#66d9ef">pointer&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">text-decoration&lt;/span>: &lt;span style="color:#66d9ef">none&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">transition&lt;/span>: &lt;span style="color:#66d9ef">background-color&lt;/span> &lt;span style="color:#ae81ff">0.3&lt;/span>&lt;span style="color:#66d9ef">s&lt;/span> &lt;span style="color:#66d9ef">ease&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>.&lt;span style="color:#a6e22e">btn-primary&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">background-color&lt;/span>: &lt;span style="color:#a6e22e">var&lt;/span>(&lt;span style="color:#f92672">--&lt;/span>primary&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#66d9ef">color&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">color&lt;/span>: &lt;span style="color:#66d9ef">white&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>.&lt;span style="color:#a6e22e">btn-primary&lt;/span>:&lt;span style="color:#a6e22e">hover&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">background-color&lt;/span>: &lt;span style="color:#a6e22e">darken&lt;/span>(&lt;span style="color:#a6e22e">var&lt;/span>(&lt;span style="color:#f92672">--&lt;/span>primary&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#66d9ef">color&lt;/span>), &lt;span style="color:#ae81ff">10&lt;/span>&lt;span style="color:#66d9ef">%&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/* Responsive design */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>@&lt;span style="color:#66d9ef">media&lt;/span> &lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#f92672">max-width&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#f92672">768px&lt;/span>&lt;span style="color:#f92672">)&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .&lt;span style="color:#a6e22e">card&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">padding&lt;/span>: &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#66d9ef">rem&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .&lt;span style="color:#a6e22e">btn&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">width&lt;/span>: &lt;span style="color:#ae81ff">100&lt;/span>&lt;span style="color:#66d9ef">%&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">margin-bottom&lt;/span>: &lt;span style="color:#ae81ff">0.5&lt;/span>&lt;span style="color:#66d9ef">rem&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="html">HTML&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&amp;lt;!DOCTYPE html&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">html&lt;/span> &lt;span style="color:#a6e22e">lang&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;en&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">head&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">meta&lt;/span> &lt;span style="color:#a6e22e">charset&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;UTF-8&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">meta&lt;/span> &lt;span style="color:#a6e22e">name&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;viewport&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">content&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;width=device-width, initial-scale=1.0&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">title&lt;/span>&amp;gt;Modern HTML Example&amp;lt;/&lt;span style="color:#f92672">title&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">link&lt;/span> &lt;span style="color:#a6e22e">rel&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;stylesheet&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">href&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;styles.css&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">head&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">body&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">header&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">nav&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">ul&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">li&lt;/span>&amp;gt;&amp;lt;&lt;span style="color:#f92672">a&lt;/span> &lt;span style="color:#a6e22e">href&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;#home&amp;#34;&lt;/span>&amp;gt;Home&amp;lt;/&lt;span style="color:#f92672">a&lt;/span>&amp;gt;&amp;lt;/&lt;span style="color:#f92672">li&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">li&lt;/span>&amp;gt;&amp;lt;&lt;span style="color:#f92672">a&lt;/span> &lt;span style="color:#a6e22e">href&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;#about&amp;#34;&lt;/span>&amp;gt;About&amp;lt;/&lt;span style="color:#f92672">a&lt;/span>&amp;gt;&amp;lt;/&lt;span style="color:#f92672">li&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">li&lt;/span>&amp;gt;&amp;lt;&lt;span style="color:#f92672">a&lt;/span> &lt;span style="color:#a6e22e">href&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;#contact&amp;#34;&lt;/span>&amp;gt;Contact&amp;lt;/&lt;span style="color:#f92672">a&lt;/span>&amp;gt;&amp;lt;/&lt;span style="color:#f92672">li&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">ul&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">nav&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">header&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">main&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">section&lt;/span> &lt;span style="color:#a6e22e">id&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;hero&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">h1&lt;/span>&amp;gt;Welcome to Our Site&amp;lt;/&lt;span style="color:#f92672">h1&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">p&lt;/span>&amp;gt;This is a modern HTML5 example with semantic elements.&amp;lt;/&lt;span style="color:#f92672">p&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">button&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;btn btn-primary&amp;#34;&lt;/span>&amp;gt;Get Started&amp;lt;/&lt;span style="color:#f92672">button&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">section&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">section&lt;/span> &lt;span style="color:#a6e22e">id&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;features&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">article&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;card&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">h2&lt;/span>&amp;gt;Feature 1&amp;lt;/&lt;span style="color:#f92672">h2&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">p&lt;/span>&amp;gt;Description of the first feature.&amp;lt;/&lt;span style="color:#f92672">p&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">article&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">article&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;card&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">h2&lt;/span>&amp;gt;Feature 2&amp;lt;/&lt;span style="color:#f92672">h2&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">p&lt;/span>&amp;gt;Description of the second feature.&amp;lt;/&lt;span style="color:#f92672">p&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">article&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">section&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">main&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">footer&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">p&lt;/span>&amp;gt;&amp;amp;copy; 2024 Your Company. All rights reserved.&amp;lt;/&lt;span style="color:#f92672">p&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">footer&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">script&lt;/span> &lt;span style="color:#a6e22e">src&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;app.js&amp;#34;&lt;/span>&amp;gt;&amp;lt;/&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">body&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">html&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="go">Go&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// Go example with modern features&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">package&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> (
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;context&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;encoding/json&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;fmt&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;log&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;net/http&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;time&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">type&lt;/span> &lt;span style="color:#a6e22e">User&lt;/span> &lt;span style="color:#66d9ef">struct&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">ID&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#e6db74">`json:&amp;#34;id&amp;#34;`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Name&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span> &lt;span style="color:#e6db74">`json:&amp;#34;name&amp;#34;`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Email&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span> &lt;span style="color:#e6db74">`json:&amp;#34;email&amp;#34;`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Created&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span> &lt;span style="color:#e6db74">`json:&amp;#34;created_at&amp;#34;`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">type&lt;/span> &lt;span style="color:#a6e22e">UserService&lt;/span> &lt;span style="color:#66d9ef">struct&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">users&lt;/span> &lt;span style="color:#66d9ef">map&lt;/span>[&lt;span style="color:#66d9ef">int&lt;/span>]&lt;span style="color:#a6e22e">User&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">NewUserService&lt;/span>() &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">UserService&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#f92672">&amp;amp;&lt;/span>&lt;span style="color:#a6e22e">UserService&lt;/span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">users&lt;/span>: make(&lt;span style="color:#66d9ef">map&lt;/span>[&lt;span style="color:#66d9ef">int&lt;/span>]&lt;span style="color:#a6e22e">User&lt;/span>),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> (&lt;span style="color:#a6e22e">s&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">UserService&lt;/span>) &lt;span style="color:#a6e22e">CreateUser&lt;/span>(&lt;span style="color:#a6e22e">ctx&lt;/span> &lt;span style="color:#a6e22e">context&lt;/span>.&lt;span style="color:#a6e22e">Context&lt;/span>, &lt;span style="color:#a6e22e">name&lt;/span>, &lt;span style="color:#a6e22e">email&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span>) (&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">User&lt;/span>, &lt;span style="color:#66d9ef">error&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">select&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> &lt;span style="color:#f92672">&amp;lt;-&lt;/span>&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">Done&lt;/span>():
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>, &lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">Err&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">default&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// Simulate some work&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Sleep&lt;/span>(&lt;span style="color:#ae81ff">100&lt;/span> &lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Millisecond&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">user&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">User&lt;/span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">ID&lt;/span>: len(&lt;span style="color:#a6e22e">s&lt;/span>.&lt;span style="color:#a6e22e">users&lt;/span>) &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Name&lt;/span>: &lt;span style="color:#a6e22e">name&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Email&lt;/span>: &lt;span style="color:#a6e22e">email&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Created&lt;/span>: &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Now&lt;/span>().&lt;span style="color:#a6e22e">Format&lt;/span>(&lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">RFC3339&lt;/span>),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">s&lt;/span>.&lt;span style="color:#a6e22e">users&lt;/span>[&lt;span style="color:#a6e22e">user&lt;/span>.&lt;span style="color:#a6e22e">ID&lt;/span>] = &lt;span style="color:#a6e22e">user&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#f92672">&amp;amp;&lt;/span>&lt;span style="color:#a6e22e">user&lt;/span>, &lt;span style="color:#66d9ef">nil&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> (&lt;span style="color:#a6e22e">s&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">UserService&lt;/span>) &lt;span style="color:#a6e22e">GetUser&lt;/span>(&lt;span style="color:#a6e22e">id&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>) (&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">User&lt;/span>, &lt;span style="color:#66d9ef">error&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">user&lt;/span>, &lt;span style="color:#a6e22e">exists&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">s&lt;/span>.&lt;span style="color:#a6e22e">users&lt;/span>[&lt;span style="color:#a6e22e">id&lt;/span>]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> !&lt;span style="color:#a6e22e">exists&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>, &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Errorf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;user not found: %d&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">id&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#f92672">&amp;amp;&lt;/span>&lt;span style="color:#a6e22e">user&lt;/span>, &lt;span style="color:#66d9ef">nil&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">userHandler&lt;/span>(&lt;span style="color:#a6e22e">service&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">UserService&lt;/span>) &lt;span style="color:#a6e22e">http&lt;/span>.&lt;span style="color:#a6e22e">HandlerFunc&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">func&lt;/span>(&lt;span style="color:#a6e22e">w&lt;/span> &lt;span style="color:#a6e22e">http&lt;/span>.&lt;span style="color:#a6e22e">ResponseWriter&lt;/span>, &lt;span style="color:#a6e22e">r&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">http&lt;/span>.&lt;span style="color:#a6e22e">Request&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">switch&lt;/span> &lt;span style="color:#a6e22e">r&lt;/span>.&lt;span style="color:#a6e22e">Method&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> &lt;span style="color:#e6db74">&amp;#34;POST&amp;#34;&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">req&lt;/span> &lt;span style="color:#66d9ef">struct&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Name&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span> &lt;span style="color:#e6db74">`json:&amp;#34;name&amp;#34;`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Email&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span> &lt;span style="color:#e6db74">`json:&amp;#34;email&amp;#34;`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">json&lt;/span>.&lt;span style="color:#a6e22e">NewDecoder&lt;/span>(&lt;span style="color:#a6e22e">r&lt;/span>.&lt;span style="color:#a6e22e">Body&lt;/span>).&lt;span style="color:#a6e22e">Decode&lt;/span>(&lt;span style="color:#f92672">&amp;amp;&lt;/span>&lt;span style="color:#a6e22e">req&lt;/span>); &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">http&lt;/span>.&lt;span style="color:#a6e22e">Error&lt;/span>(&lt;span style="color:#a6e22e">w&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>.&lt;span style="color:#a6e22e">Error&lt;/span>(), &lt;span style="color:#a6e22e">http&lt;/span>.&lt;span style="color:#a6e22e">StatusBadRequest&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">ctx&lt;/span>, &lt;span style="color:#a6e22e">cancel&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">context&lt;/span>.&lt;span style="color:#a6e22e">WithTimeout&lt;/span>(&lt;span style="color:#a6e22e">r&lt;/span>.&lt;span style="color:#a6e22e">Context&lt;/span>(), &lt;span style="color:#ae81ff">5&lt;/span>&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Second&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">defer&lt;/span> &lt;span style="color:#a6e22e">cancel&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">user&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">service&lt;/span>.&lt;span style="color:#a6e22e">CreateUser&lt;/span>(&lt;span style="color:#a6e22e">ctx&lt;/span>, &lt;span style="color:#a6e22e">req&lt;/span>.&lt;span style="color:#a6e22e">Name&lt;/span>, &lt;span style="color:#a6e22e">req&lt;/span>.&lt;span style="color:#a6e22e">Email&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">http&lt;/span>.&lt;span style="color:#a6e22e">Error&lt;/span>(&lt;span style="color:#a6e22e">w&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>.&lt;span style="color:#a6e22e">Error&lt;/span>(), &lt;span style="color:#a6e22e">http&lt;/span>.&lt;span style="color:#a6e22e">StatusInternalServerError&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">w&lt;/span>.&lt;span style="color:#a6e22e">Header&lt;/span>().&lt;span style="color:#a6e22e">Set&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Content-Type&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;application/json&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">json&lt;/span>.&lt;span style="color:#a6e22e">NewEncoder&lt;/span>(&lt;span style="color:#a6e22e">w&lt;/span>).&lt;span style="color:#a6e22e">Encode&lt;/span>(&lt;span style="color:#a6e22e">user&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> &lt;span style="color:#e6db74">&amp;#34;GET&amp;#34;&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// Handle GET request&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">w&lt;/span>.&lt;span style="color:#a6e22e">Write&lt;/span>([]byte(&lt;span style="color:#e6db74">&amp;#34;User service is running&amp;#34;&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">default&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">http&lt;/span>.&lt;span style="color:#a6e22e">Error&lt;/span>(&lt;span style="color:#a6e22e">w&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;Method not allowed&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">http&lt;/span>.&lt;span style="color:#a6e22e">StatusMethodNotAllowed&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">service&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">NewUserService&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">http&lt;/span>.&lt;span style="color:#a6e22e">HandleFunc&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;/users&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">userHandler&lt;/span>(&lt;span style="color:#a6e22e">service&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">log&lt;/span>.&lt;span style="color:#a6e22e">Println&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Server starting on :8080&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">log&lt;/span>.&lt;span style="color:#a6e22e">Fatal&lt;/span>(&lt;span style="color:#a6e22e">http&lt;/span>.&lt;span style="color:#a6e22e">ListenAndServe&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;:8080&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">nil&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="rust">Rust&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-rust" data-lang="rust">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// Rust example with modern features
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">use&lt;/span> std::collections::HashMap;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">use&lt;/span> std::error::Error;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">use&lt;/span> std::fmt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">use&lt;/span> tokio;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#[derive(Debug, Clone)]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">struct&lt;/span> &lt;span style="color:#a6e22e">User&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> id: &lt;span style="color:#66d9ef">u32&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> name: String,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> email: String,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#[derive(Debug)]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">enum&lt;/span> &lt;span style="color:#a6e22e">UserError&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> NotFound(&lt;span style="color:#66d9ef">u32&lt;/span>),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> InvalidEmail(String),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">impl&lt;/span> fmt::Display &lt;span style="color:#66d9ef">for&lt;/span> UserError {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">fn&lt;/span> &lt;span style="color:#a6e22e">fmt&lt;/span>(&lt;span style="color:#f92672">&amp;amp;&lt;/span>self, f: &lt;span style="color:#66d9ef">&amp;amp;&lt;/span>&lt;span style="color:#a6e22e">mut&lt;/span> fmt::Formatter) -&amp;gt; &lt;span style="color:#a6e22e">fmt&lt;/span>::Result {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">match&lt;/span> self {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> UserError::NotFound(id) &lt;span style="color:#f92672">=&amp;gt;&lt;/span> &lt;span style="color:#a6e22e">write!&lt;/span>(f, &lt;span style="color:#e6db74">&amp;#34;User not found: {}&amp;#34;&lt;/span>, id),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> UserError::InvalidEmail(email) &lt;span style="color:#f92672">=&amp;gt;&lt;/span> &lt;span style="color:#a6e22e">write!&lt;/span>(f, &lt;span style="color:#e6db74">&amp;#34;Invalid email: {}&amp;#34;&lt;/span>, email),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">impl&lt;/span> Error &lt;span style="color:#66d9ef">for&lt;/span> UserError {}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">struct&lt;/span> &lt;span style="color:#a6e22e">UserService&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> users: &lt;span style="color:#a6e22e">HashMap&lt;/span>&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">u32&lt;/span>, User&lt;span style="color:#f92672">&amp;gt;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> next_id: &lt;span style="color:#66d9ef">u32&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">impl&lt;/span> UserService {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">fn&lt;/span> &lt;span style="color:#a6e22e">new&lt;/span>() -&amp;gt; &lt;span style="color:#a6e22e">Self&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Self {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> users: &lt;span style="color:#a6e22e">HashMap&lt;/span>::new(),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> next_id: &lt;span style="color:#ae81ff">1&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">fn&lt;/span> &lt;span style="color:#a6e22e">create_user&lt;/span>(&lt;span style="color:#f92672">&amp;amp;&lt;/span>&lt;span style="color:#66d9ef">mut&lt;/span> self, name: String, email: String) -&amp;gt; Result&lt;span style="color:#f92672">&amp;lt;&lt;/span>User, UserError&lt;span style="color:#f92672">&amp;gt;&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#f92672">!&lt;/span>email.contains(&lt;span style="color:#e6db74">&amp;#39;@&amp;#39;&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> Err(UserError::InvalidEmail(email));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">let&lt;/span> user &lt;span style="color:#f92672">=&lt;/span> User {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> id: &lt;span style="color:#a6e22e">self&lt;/span>.next_id,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> name,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> email,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> };
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> self.users.insert(user.id, user.clone());
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> self.next_id &lt;span style="color:#f92672">+=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Ok(user)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">fn&lt;/span> &lt;span style="color:#a6e22e">get_user&lt;/span>(&lt;span style="color:#f92672">&amp;amp;&lt;/span>self, id: &lt;span style="color:#66d9ef">u32&lt;/span>) -&amp;gt; Result&lt;span style="color:#f92672">&amp;lt;&amp;amp;&lt;/span>User, UserError&lt;span style="color:#f92672">&amp;gt;&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> self.users.get(&lt;span style="color:#f92672">&amp;amp;&lt;/span>id).ok_or(UserError::NotFound(id))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">fn&lt;/span> &lt;span style="color:#a6e22e">list_users&lt;/span>(&lt;span style="color:#f92672">&amp;amp;&lt;/span>self) -&amp;gt; Vec&lt;span style="color:#f92672">&amp;lt;&amp;amp;&lt;/span>User&lt;span style="color:#f92672">&amp;gt;&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> self.users.values().collect()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#[tokio::main]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">fn&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() -&amp;gt; Result&lt;span style="color:#f92672">&amp;lt;&lt;/span>(), Box&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">dyn&lt;/span> Error&lt;span style="color:#f92672">&amp;gt;&amp;gt;&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#66d9ef">mut&lt;/span> service &lt;span style="color:#f92672">=&lt;/span> UserService::new();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// Create some users
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">let&lt;/span> user1 &lt;span style="color:#f92672">=&lt;/span> service.create_user(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;Alice&amp;#34;&lt;/span>.to_string(),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;alice@example.com&amp;#34;&lt;/span>.to_string(),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> )&lt;span style="color:#f92672">?&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">let&lt;/span> user2 &lt;span style="color:#f92672">=&lt;/span> service.create_user(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;Bob&amp;#34;&lt;/span>.to_string(),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;bob@example.com&amp;#34;&lt;/span>.to_string(),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> )&lt;span style="color:#f92672">?&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">println!&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Created user: &lt;/span>&lt;span style="color:#e6db74">{:?}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>, user1);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">println!&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Created user: &lt;/span>&lt;span style="color:#e6db74">{:?}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>, user2);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// Get a user
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">let&lt;/span> retrieved_user &lt;span style="color:#f92672">=&lt;/span> service.get_user(&lt;span style="color:#ae81ff">1&lt;/span>)&lt;span style="color:#f92672">?&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">println!&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Retrieved user: &lt;/span>&lt;span style="color:#e6db74">{:?}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>, retrieved_user);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// List all users
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">let&lt;/span> all_users &lt;span style="color:#f92672">=&lt;/span> service.list_users();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">println!&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;All users: &lt;/span>&lt;span style="color:#e6db74">{:?}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>, all_users);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Ok(())
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="conclusion">Conclusion&lt;/h2>
+&lt;p>The Tranquilpeak theme provides excellent syntax highlighting for many programming languages. The highlighting is powered by highlight.js and supports a wide variety of languages and themes. You can customize the highlighting by modifying the theme&amp;rsquo;s CSS or by using different highlight.js themes.&lt;/p></description></item></channel></rss>

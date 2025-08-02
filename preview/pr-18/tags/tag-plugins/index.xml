@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tag-Plugins on Hugo tranquilpeak theme</title><link>https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-18/tags/tag-plugins/</link><description>Recent content in Tag-Plugins on Hugo tranquilpeak theme</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 24 Oct 2014 22:40:32 +0000</lastBuildDate><atom:link href="https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-18/tags/tag-plugins/index.xml" rel="self" type="application/rss+xml"/><item><title>Tags plugins showcase</title><link>https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-18/2014/10/tags-plugins-showcase/</link><pubDate>Fri, 24 Oct 2014 22:40:32 +0000</pubDate><guid>https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-18/2014/10/tags-plugins-showcase/</guid><description>&lt;p>This article demonstrates the various tags and plugins available in the Tranquilpeak theme. These shortcodes make it easy to add rich content to your blog posts.&lt;/p>
+&lt;h2 id="alerts">Alerts&lt;/h2>
+&lt;p>Alerts are useful for highlighting important information:&lt;/p>
+&lt;div class="alert info ">
+ &lt;p>This is an &lt;strong>info alert&lt;/strong> with a &lt;a href="https://github.com/kakawait/hugo-tranquilpeak-theme">link&lt;/a>.&lt;/p>
+&lt;/div>
+&lt;div class="alert success ">
+ &lt;p>This is a &lt;strong>success alert&lt;/strong> indicating that something went well.&lt;/p>
+&lt;/div>
+&lt;div class="alert warning ">
+ &lt;p>This is a &lt;strong>warning alert&lt;/strong> to draw attention to potential issues.&lt;/p>
+&lt;/div>
+&lt;div class="alert danger ">
+ &lt;p>This is a &lt;strong>danger alert&lt;/strong> for critical information or errors.&lt;/p></description></item></channel></rss>

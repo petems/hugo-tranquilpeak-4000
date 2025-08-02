@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vimeo on Hugo tranquilpeak theme</title><link>https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-18/tags/vimeo/</link><description>Recent content in Vimeo on Hugo tranquilpeak theme</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 24 Aug 2014 22:40:32 +0000</lastBuildDate><atom:link href="https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-18/tags/vimeo/index.xml" rel="self" type="application/rss+xml"/><item><title>Video integrations showcase</title><link>https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-18/2014/08/video-integrations-showcase/</link><pubDate>Sun, 24 Aug 2014 22:40:32 +0000</pubDate><guid>https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-18/2014/08/video-integrations-showcase/</guid><description>&lt;p>This article demonstrates the video integration features of the Tranquilpeak theme. You can easily embed videos from various platforms using shortcodes.&lt;/p>
+&lt;h2 id="youtube-videos">YouTube videos&lt;/h2>
+&lt;p>YouTube is the most popular video platform. You can embed videos using the YouTube shortcode:&lt;/p>
+&lt;div class="video-container">
+ &lt;iframe 
+ src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+ title="YouTube video"
+ frameborder="0"
+ allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+ allowfullscreen>
+ &lt;/iframe>
+&lt;/div> 
+&lt;h3 id="youtube-with-custom-title">YouTube with custom title&lt;/h3>
+&lt;div class="video-container">
+ &lt;iframe 
+ src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+ title="Rick Astley - Never Gonna Give You Up"
+ frameborder="0"
+ allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+ allowfullscreen>
+ &lt;/iframe>
+&lt;/div> 
+&lt;h2 id="vimeo-videos">Vimeo videos&lt;/h2>
+&lt;p>Vimeo is popular among creators for its high-quality videos:&lt;/p></description></item></channel></rss>
