@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Videos-Integration on Hugo tranquilpeak theme</title>
+    <link>http://localhost:1313/tags/videos-integration/</link>
+    <description>Recent content in Videos-Integration on Hugo tranquilpeak theme</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Aug 2014 22:40:32 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/videos-integration/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Video integrations showcase</title>
+      <link>http://localhost:1313/2014/08/video-integrations-showcase/</link>
+      <pubDate>Sun, 24 Aug 2014 22:40:32 +0000</pubDate>
+      <guid>http://localhost:1313/2014/08/video-integrations-showcase/</guid>
+      <description>&lt;p&gt;This article demonstrates the video integration features of the Tranquilpeak theme. You can easily embed videos from various platforms using shortcodes.&lt;/p&gt;&#xA;&lt;h2 id=&#34;youtube-videos&#34;&gt;YouTube videos&lt;/h2&gt;&#xA;&lt;p&gt;YouTube is the most popular video platform. You can embed videos using the YouTube shortcode:&lt;/p&gt;&#xA;&lt;div class=&#34;video-container&#34;&gt;&#xA;  &lt;iframe &#xA;    src=&#34;https://www.youtube.com/embed/dQw4w9WgXcQ&#34;&#xA;    title=&#34;YouTube video&#34;&#xA;    frameborder=&#34;0&#34;&#xA;    allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&#34;&#xA;    allowfullscreen&gt;&#xA;  &lt;/iframe&gt;&#xA;&lt;/div&gt; &#xA;&lt;h3 id=&#34;youtube-with-custom-title&#34;&gt;YouTube with custom title&lt;/h3&gt;&#xA;&lt;div class=&#34;video-container&#34;&gt;&#xA;  &lt;iframe &#xA;    src=&#34;https://www.youtube.com/embed/dQw4w9WgXcQ&#34;&#xA;    title=&#34;Rick Astley - Never Gonna Give You Up&#34;&#xA;    frameborder=&#34;0&#34;&#xA;    allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&#34;&#xA;    allowfullscreen&gt;&#xA;  &lt;/iframe&gt;&#xA;&lt;/div&gt; &#xA;&lt;h2 id=&#34;vimeo-videos&#34;&gt;Vimeo videos&lt;/h2&gt;&#xA;&lt;p&gt;Vimeo is popular among creators for its high-quality videos:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

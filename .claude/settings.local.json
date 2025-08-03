@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp:*)",
+      "Bash(rm:*)",
+      "Bash(hugo server:*)",
+      "Bash(npm run test:e2e:*)"
+    ],
+    "deny": []
+  }
+}
