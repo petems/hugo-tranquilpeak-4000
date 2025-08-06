@@ -2,116 +2,180 @@ name: E2E Tests with Playwright
 
 on:
   push:
-    branches: [ master, main ]
+    branches: [master, main]
   pull_request:
-    branches: [ master, main ]
+    branches: [master, main]
   schedule:
     # Run E2E tests daily at 2 AM UTC
-    - cron: '0 2 * * *'
+    - cron: "0 2 * * *"
 
 jobs:
   e2e-tests:
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v3
-      with:
-        hugo-version: '0.148.2'
-        extended: true
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.148.2"
+          extended: true
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'npm'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
 
-    - name: Build theme assets
-      run: npm run build
+      - name: Make setup script executable
+        run: chmod +x setup-examplesite.sh
 
-    - name: Setup theme
-      uses: ./.github/actions/setup-theme
+      - name: Build theme assets and setup exampleSite
+        run: |
+          npm run build
+          ./setup-examplesite.sh
 
-    - name: Run Playwright tests
-      run: npm run test:e2e
-      env:
-        CI: true
+      - name: Run Playwright tests
+        run: npm run test:e2e:ci
+        env:
+          CI: true
 
-    - name: Upload Playwright Report
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 7
+      - name: Upload Playwright Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
 
-    - name: Upload test results
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: playwright-results
-        path: test-results/
-        retention-days: 7
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-results
+          path: test-results/
+          retention-days: 7
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-screenshots
+          path: test-results/**/*.png
+          retention-days: 7
 
   visual-regression:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v3
-      with:
-        hugo-version: '0.148.2'
-        extended: true
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.148.2"
+          extended: true
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'npm'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps chromium
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
 
-    - name: Build theme assets
-      run: npm run build
+      - name: Make setup script executable
+        run: chmod +x setup-examplesite.sh
 
-    - name: Setup theme
-      uses: ./.github/actions/setup-theme
+      - name: Build theme assets and setup exampleSite
+        run: |
+          npm run build
+          ./setup-examplesite.sh
 
-    - name: Run Visual Regression Tests
-      run: npm run test:visual
-      env:
-        CI: true
+      - name: Generate baseline screenshots
+        run: npm run test:visual:baselines:all
+        env:
+          CI: true
 
-    - name: Upload Visual Test Results
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: visual-test-results
-        path: test-results/
-        retention-days: 14
+      - name: Run Visual Regression Tests
+        run: npm run test:visual:ci
+        env:
+          CI: true
 
-    - name: Upload Screenshots
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: screenshots
-        path: test-results/**/
-        retention-days: 14
+      - name: Upload Visual Test Results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-test-results
+          path: test-results/
+          retention-days: 14
+
+      - name: Upload Screenshots
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-screenshots
+          path: |
+            test-results/**/*.png
+            e2e/visual-regression.spec.js-snapshots/
+          retention-days: 14
+
+  test-summary:
+    runs-on: ubuntu-latest
+    needs: [e2e-tests, visual-regression]
+    if: always()
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download test results
+        uses: actions/download-artifact@v4
+        with:
+          name: playwright-results
+          path: playwright-results
+
+      - name: Download visual test results
+        uses: actions/download-artifact@v4
+        with:
+          name: visual-test-results
+          path: visual-test-results
+
+      - name: Generate Test Summary
+        run: |
+          echo "## 🧪 Playwright Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ -f "playwright-results/results.json" ]; then
+            echo "### E2E Tests" >> $GITHUB_STEP_SUMMARY
+            echo "- ✅ Tests completed successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### E2E Tests" >> $GITHUB_STEP_SUMMARY
+            echo "- ❌ Tests failed or no results found" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ -d "visual-test-results" ]; then
+            echo "### Visual Regression Tests" >> $GITHUB_STEP_SUMMARY
+            echo "- ✅ Visual tests completed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### Visual Regression Tests" >> $GITHUB_STEP_SUMMARY
+            echo "- ❌ Visual tests failed or no results found" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📊 View detailed results in the artifacts above." >> $GITHUB_STEP_SUMMARY

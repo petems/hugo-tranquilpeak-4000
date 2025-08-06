@@ -1,115 +1,190 @@
 # Hugo Tranquilpeak 4000
 
-[![Test Theme](https://github.com/petems/hugo-tranquilpeak-4000/workflows/Test%20Theme/badge.svg)](https://github.com/petems/hugo-tranquilpeak-4000/actions?query=workflow%3A%22Test+Theme%22)
-[![Lint and Quality Checks](https://github.com/petems/hugo-tranquilpeak-4000/workflows/Lint%20and%20Quality%20Checks/badge.svg)](https://github.com/petems/hugo-tranquilpeak-4000/actions?query=workflow%3A%22Lint+and+Quality+Checks%22)
+A gorgeous responsive theme for Hugo blog framework.
 
-A modernized fork of the [hugo-tranquilpeak-theme](https://github.com/kakawait/hugo-tranquilpeak-theme) with the goal of bringing this beautiful theme into the modern era.
+[![Tests](https://github.com/petems/hugo-tranquilpeak-4000/workflows/E2E%20Tests%20with%20Playwright/badge.svg)](https://github.com/petems/hugo-tranquilpeak-4000/actions?query=workflow%3A%22E2E+Tests+with+Playwright%22)
 
-## Project Goals
+## 🎨 Features
 
-### Primary Objectives
+- **Responsive Design**: Mobile-first approach with beautiful layouts
+- **Modern UI**: Clean and elegant design with smooth animations
+- **Customizable**: Extensive configuration options
+- **Fast**: Optimized for performance and SEO
+- **Accessible**: WCAG compliant with proper semantic markup
+- **Multilingual**: Built-in internationalization support
+- **Rich Content**: Support for images, videos, code highlighting, and more
 
-1. **Cherry-pick Community Fixes**: Review and integrate the best open pull requests from the original repository to fix bugs and improve functionality
-2. **Modernize the Codebase**: Update dependencies, build tools, and code patterns to current standards
-3. **Latest Hugo Compatibility**: Ensure full compatibility with the latest Hugo static site generator
-4. **Personal Website Revival**: Get my personal website back up and running with a modern, maintained theme
+## 🚀 Quick Start
 
-### Secondary Goals
+### Prerequisites
 
-- **Community Revival**: If the modernization is successful, potentially gain traction to create a maintained version that others can use
-- **Performance Improvements**: Optimize for modern web standards and faster loading times
-- **Security Updates**: Address any security vulnerabilities in dependencies
-- **Documentation**: Improve and update documentation for modern Hugo usage
+- Hugo Extended 0.128+
+- Node.js 20+ (for development and testing)
 
-## Current Status
+### Installation
 
-✅ **Theme Successfully Modernized!** 
+1. **Clone the repository**:
 
-The theme is now fully compatible with Hugo v0.148.1 and working. Key fixes include:
-
-- ✅ Updated pagination config for Hugo v0.128+
-- ✅ Fixed deprecated Google Analytics templates
-- ✅ Updated all `.Site.Author` references to `.Site.Params.Author`
-- ✅ Fixed Disqus configuration for modern Hugo
-- ✅ Added Goldmark renderer configuration
-- ✅ Replaced deprecated gist shortcode
-- ✅ Updated minimum Hugo version requirement to 0.128
-
-The theme is ready for use with modern Hugo installations.
-
-## Quick Start
-
-To use this modernized theme in your Hugo site:
-
-1. **Create a new Hugo site** (if you don't have one):
    ```bash
-   hugo new site myblog
-   cd myblog
-   ```
-
-2. **Clone this repository** into your site's `themes` directory:
-   ```bash
-   cd themes
    git clone https://github.com/petems/hugo-tranquilpeak-4000.git
-   cd ..
+   cd hugo-tranquilpeak-4000
    ```
 
-3. **Configure your site** by copying the example configuration:
+2. **Install dependencies**:
+
    ```bash
-   cp themes/hugo-tranquilpeak-4000/exampleSite/config.toml .
+   npm install
    ```
 
-4. **Update the config** to use the modernized theme:
-   ```toml
-   theme = "Tranquilpeak4000"
-   ```
+3. **Build assets**:
 
-5. **Run Hugo**:
    ```bash
-   hugo server
+   npm run build
    ```
 
-## GitHub Actions
+4. **Setup example site**:
 
-This repository includes comprehensive GitHub Actions workflows for testing and quality assurance:
+   ```bash
+   ./setup-examplesite.sh
+   ```
 
-### 🤖 **Automated Testing**
+5. **Start development server**:
+   ```bash
+   cd exampleSite
+   hugo server --buildDrafts --buildFuture --disableFastRender
+   ```
 
-- **Multi-version Hugo testing**: Tests against Hugo 0.128.0, 0.140.0, 0.148.1, and 0.149.0
-- **Latest version monitoring**: Weekly tests against the latest Hugo versions
-- **Build validation**: Ensures the theme builds successfully with the example site
-- **Asset compilation**: Validates that all CSS/JS assets compile correctly
+Visit `http://localhost:1313` to see your site!
 
-### 🔍 **Quality Checks**
+## 🧪 Testing
 
-- **ESLint**: JavaScript code quality and style checking
-- **Security audits**: npm security vulnerability scanning
-- **Theme structure validation**: Ensures all required directories and files exist
-- **Configuration validation**: Verifies theme.toml and example site configuration
+This theme includes comprehensive end-to-end testing using Playwright.
 
-### 📋 **Workflow Files**
+### Setup Testing Environment
 
-- `.github/workflows/test.yml` - Main testing workflow
-- `.github/workflows/lint.yml` - Code quality and structure checks
-- `.github/workflows/test-latest.yml` - Latest Hugo version testing
-- `.github/workflows/validate-actions.yml` - GitHub Actions syntax validation
+```bash
+# Install Playwright browsers
+npx playwright install --with-deps
 
-## Contributing
+# Build assets and setup exampleSite
+npm run build
+./setup-examplesite.sh
+```
 
-If you're interested in helping further improve this theme:
+### Running Tests
 
-1. Check the [original repository's open issues and PRs](https://github.com/kakawait/hugo-tranquilpeak-theme/issues)
-2. Look for pull requests that fix bugs or add useful features
-3. Test changes against the latest Hugo version
-4. Ensure backward compatibility where possible
-5. All changes are automatically tested via GitHub Actions
+```bash
+# Run all E2E tests
+npm run test:e2e
 
-## License
+# Run visual regression tests
+npm run test:visual
 
-This project maintains the same GPL-3.0 license as the original theme.
+# Run tests with UI (for debugging)
+npm run test:e2e:ui
 
-## Acknowledgments
+# Run tests in headed mode
+npm run test:e2e:headed
 
-- Original theme by [Thibaud Leprêtre (kakawait)](https://github.com/kakawait) and [Louis Barranqueiro](https://github.com/LouisBarranqueiro)
-- All contributors to the original repository whose fixes we're incorporating
-- The Hugo community for maintaining such an excellent static site generator 
+# Generate baseline screenshots for visual tests
+npm run test:visual:baselines:all
+
+# Update visual test snapshots
+npm run test:visual:update
+```
+
+### CI/CD
+
+The project includes GitHub Actions workflows for automated testing:
+
+- **E2E Tests**: Runs comprehensive end-to-end tests on multiple browsers
+- **Visual Regression**: Ensures UI consistency across changes
+- **Test Summary**: Provides detailed test results and artifacts
+
+### Test Structure
+
+- `e2e/theme-validation.spec.js` - Core theme functionality tests
+- `e2e/content-validation.spec.js` - Content and page structure tests
+- `e2e/visual-regression.spec.js` - Visual consistency tests
+
+### Configuration
+
+- `playwright.config.js` - Local development configuration
+- `playwright.ci.config.js` - CI/CD optimized configuration
+
+## 📁 Project Structure
+
+```
+hugo-tranquilpeak-4000/
+├── assets/              # Source assets (SCSS, JS)
+├── layouts/             # Hugo templates
+├── static/              # Static files (images, fonts, etc.)
+├── archetypes/          # Content templates
+├── i18n/                # Internationalization files
+├── exampleSite/         # Example Hugo site
+├── e2e/                 # Playwright test files
+├── tasks/               # Grunt build tasks
+├── docs/                # Documentation
+└── tests/               # Unit tests
+```
+
+## 🛠️ Development
+
+### Build Commands
+
+```bash
+# Development build (with source maps)
+npm start
+
+# Production build
+npm run build
+
+# Watch for changes
+npm run grunt -- watch
+```
+
+### Available Scripts
+
+- `npm start` - Start development server with file watching
+- `npm run build` - Build production assets
+- `npm run test` - Run unit tests
+- `npm run test:e2e` - Run end-to-end tests
+- `npm run lint` - Run ESLint
+- `npm run test:visual` - Run visual regression tests
+
+## 📖 Documentation
+
+- [Theme Configuration](docs/configuration.md)
+- [Content Types](docs/content-types.md)
+- [Customization](docs/customization.md)
+- [Deployment](docs/deployment.md)
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### Development Setup
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests: `npm run test:all`
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+This theme is based on the original [Tranquilpeak theme](https://github.com/kakawait/hugo-tranquilpeak-theme) by [Thibaud Leprêtre](https://github.com/kakawait).
+
+## 📞 Support
+
+- **Issues**: [GitHub Issues](https://github.com/petems/hugo-tranquilpeak-4000/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/petems/hugo-tranquilpeak-4000/discussions)
+- **Documentation**: [Wiki](https://github.com/petems/hugo-tranquilpeak-4000/wiki)
+
+---
+
+Made with ❤️ by the Hugo community

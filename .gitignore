@@ -10,3 +10,25 @@ static/css/*
 !static/css/style-*.min.css
 
 pr-body.md
+
+# DevContainer
+.devcontainer/cache/
+.devcontainer/.env
+
+# Test artifacts
+playwright-report/
+test-results/
+e2e/*.spec.js-snapshots/
+
+# Generated Hugo site files
+exampleSite/public/
+
+# Build artifacts
+*.min.css
+*.min.js
+!static/css/style-*.min.css
+!static/js/script-*.min.js
+
+# Temporary files
+*.tmp
+*.temp

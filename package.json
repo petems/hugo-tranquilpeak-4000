@@ -17,8 +17,16 @@
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:debug": "playwright test --debug",
     "test:e2e:report": "playwright show-report",
+    "test:e2e:ci": "playwright test --config=playwright.ci.config.js",
     "test:visual": "playwright test visual-regression.spec.js",
-    "test:all": "npm run test && npm run test:e2e"
+    "test:visual:update": "playwright test visual-regression.spec.js --update-snapshots",
+    "test:visual:ci": "playwright test visual-regression.spec.js --config=playwright.ci.config.js",
+    "test:visual:dev": "NODE_ENV=development playwright test visual-regression.spec.js",
+    "test:visual:headed": "playwright test visual-regression.spec.js --headed",
+    "test:visual:baselines": "node generate-baselines.js",
+    "test:visual:baselines:all": "node generate-all-baselines.js",
+    "test:all": "npm run test && npm run test:e2e",
+    "test:ci": "npm run test && npm run test:e2e:ci"
   },
   "repository": {
     "type": "git",
