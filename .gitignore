@@ -19,6 +19,7 @@ pr-body.md
 playwright-report/
 test-results/
 e2e/*.spec.js-snapshots/
+allure-results/
 
 # Generated Hugo site files
 exampleSite/public/

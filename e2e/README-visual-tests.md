@@ -1,6 +1,6 @@
 # Visual Regression Testing with Playwright
 
-This directory contains end-to-end tests for the Hugo Tranquilpeak theme, including comprehensive visual regression testing.
+This directory contains end-to-end tests for the Hugo Tranquilpeak 4000 theme, including comprehensive visual regression testing.
 
 ## Overview
 
@@ -21,6 +21,7 @@ The visual regression tests ensure that the theme's appearance remains consisten
 ### Prerequisites
 
 1. Install dependencies:
+
    ```bash
    npm install
    ```
@@ -30,6 +31,7 @@ The visual regression tests ensure that the theme's appearance remains consisten
 ### Running Tests
 
 #### Local Development
+
 ```bash
 # Run all E2E tests
 npm run test:e2e
@@ -45,6 +47,7 @@ npm run test:visual:update
 ```
 
 #### CI Environment
+
 ```bash
 # Run tests in CI mode
 npm run test:e2e:ci
@@ -54,6 +57,7 @@ npm run test:visual:baselines:ci
 ```
 
 #### Docker Baseline Generation (Recommended)
+
 For consistent snapshots across all environments, use Docker:
 
 ```bash
@@ -79,21 +83,24 @@ The Docker approach ensures that baseline snapshots are generated in a consisten
 ### Usage
 
 1. **Generate snapshots using Docker**:
+
    ```bash
    npm run test:visual:baselines:docker
    ```
 
 2. **The script will**:
+
    - Build a Docker image with Node.js, Hugo, and Playwright
    - Run the baseline generation in a Linux environment
    - Generate snapshots for all browsers (Linux only)
    - Create consistent baseline images for CI testing
 
 3. **Manual Docker usage**:
+
    ```bash
    # Build the image
    docker build -f Dockerfile.baselines -t hugo-tranquilpeak-baselines .
-   
+
    # Run baseline generation
    docker run --rm \
      -v $(pwd)/temp-snapshots:/app/e2e/visual-regression.spec.js-snapshots \
@@ -121,31 +128,38 @@ The repository includes a GitHub Actions workflow (`.github/workflows/generate-b
 ### Common Issues and Solutions
 
 #### 1. Missing Snapshots (Most Common)
+
 **Error**: `A snapshot doesn't exist at [path], writing actual`
 
-**Solution**: 
+**Solution**:
+
 - For local development: `npm run test:visual:update`
 - For CI environment: `npm run test:visual:baselines:ci`
 - For all environments: `npm run test:visual:baselines:all`
 
 #### 2. Snapshot Mismatches
+
 **Error**: Screenshots don't match baseline images
 
 **Causes**:
+
 - Platform differences (Linux vs macOS vs Windows)
 - Font rendering differences
 - Timing issues with animations
 - Browser version differences
 
 **Solutions**:
+
 - The tests now use ultra-relaxed tolerance for CI environments
 - Increased wait times for page stabilization
 - Better error handling for missing elements
 
 #### 3. Navigation Test Timeouts
+
 **Error**: `Test timeout of 30000ms exceeded` or `Target page, context or browser has been closed`
 
-**Solution**: 
+**Solution**:
+
 - Updated test with better error handling
 - Added page stability checks
 - Increased timeouts for CI environments
@@ -155,18 +169,20 @@ The repository includes a GitHub Actions workflow (`.github/workflows/generate-b
 When you need to regenerate snapshots (e.g., after UI changes):
 
 1. **Clean up existing snapshots**:
+
    ```bash
    npm run test:visual:cleanup
    ```
 
 2. **Generate new snapshots**:
+
    ```bash
    # For local development
    npm run test:visual:update
-   
+
    # For CI environment
    npm run test:visual:baselines:ci
-   
+
    # For all environments
    npm run test:visual:baselines:all
    ```
@@ -182,31 +198,38 @@ The visual test tolerance levels are configured in `visual-test-config.js`:
 ### Test Categories
 
 1. **Homepage Visual Comparison**
+
    - Full page screenshots
    - Viewport screenshots
 
 2. **Responsive Design**
+
    - Desktop (1200x800)
    - Tablet (768x1024)
    - Mobile (375x667)
 
 3. **Sidebar and Navigation**
+
    - Sidebar closed/open states
    - Navigation functionality
 
 4. **Blog Post Pages**
+
    - Individual post layouts
    - Content rendering
 
 5. **Footer and Copyright**
+
    - Footer area screenshots
    - Copyright information
 
 6. **Dark Mode**
+
    - Light/dark theme switching
    - Theme consistency
 
 7. **Search Functionality**
+
    - Search overlay screenshots
    - Search interaction
 
@@ -219,9 +242,11 @@ The visual test tolerance levels are configured in `visual-test-config.js`:
 ### Tests Fail in CI but Pass Locally
 
 1. **Platform Differences**: CI runs on Linux, local might be macOS/Windows
+
    - Solution: Use `npm run test:visual:baselines:ci` to generate CI-specific snapshots
 
 2. **Timing Issues**: CI environments are slower
+
    - Solution: Increased timeouts and wait times in test configuration
 
 3. **Font Rendering**: Different font availability between platforms
@@ -230,6 +255,7 @@ The visual test tolerance levels are configured in `visual-test-config.js`:
 ### Tests Fail Due to Missing Elements
 
 The tests are designed to be flexible and handle missing elements gracefully:
+
 - If sidebar doesn't exist, sidebar tests are skipped
 - If dark mode toggle doesn't exist, dark mode tests are skipped
 - If search functionality doesn't exist, search tests are skipped
@@ -257,6 +283,7 @@ The tests are configured to run automatically in GitHub Actions:
 - **Content Validation**: Checks accessibility and structure
 
 The CI configuration includes:
+
 - Increased timeouts for stability
 - Ultra-relaxed tolerance for platform differences
 - Better error handling and reporting
@@ -282,4 +309,4 @@ The CI configuration includes:
 
 - When tests fail due to timing issues (fix the timing instead)
 - When tests fail due to missing elements (fix the selectors instead)
-- When tests fail due to CI environment issues (fix the CI configuration instead) 
+- When tests fail due to CI environment issues (fix the CI configuration instead)

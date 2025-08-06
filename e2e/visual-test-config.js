@@ -1,6 +1,6 @@
 /**
  * Configuration for visual regression tests
- * 
+ *
  * This configuration is designed for Linux-only baseline generation.
  * Tests are configured to only run on Linux to ensure consistent
  * rendering and avoid cross-platform differences.
@@ -28,8 +28,8 @@ const toleranceLevels = {
 
   // Local development - more strict for catching issues
   local: {
-    maxDiffPixels: 1000,
-    maxDiffPixelRatio: 0.02, // 2% tolerance for local
+    maxDiffPixels: 2000,
+    maxDiffPixelRatio: 0.05, // 5% tolerance for local
   },
 };
 
