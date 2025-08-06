@@ -3,26 +3,37 @@
 echo "🚀 Setting up exampleSite for Hugo Tranquilpeak 4000"
 echo "=================================================="
 
-# Build assets first
-echo "📦 Building assets..."
-echo "🔍 Debug: Checking if grunt-cli exists..."
-if [ -f "node_modules/grunt-cli/bin/grunt" ]; then
-  echo "✅ grunt-cli found"
+# Check if assets need to be built
+echo "📦 Checking assets..."
+if [ -f "static/css/tranquilpeak.css" ] && [ -f "static/js/tranquilpeak.js" ]; then
+  echo "✅ Assets already exist, skipping build"
 else
-  echo "❌ grunt-cli not found at node_modules/grunt-cli/bin/grunt"
-  echo "📋 Contents of node_modules:"
-  ls -la node_modules/ | head -10
-  exit 1
-fi
-
-echo "🔍 Running npm run build with verbose output..."
-if ! npm run build -- --verbose; then
-  echo "❌ Failed to build assets"
-  echo "🔍 Debug: Trying to run grunt directly..."
-  if ! ./node_modules/.bin/grunt buildProd --verbose; then
-    echo "❌ Direct grunt command also failed"
+  echo "📦 Building assets..."
+  echo "🔍 Debug: Checking if grunt-cli exists..."
+  if [ -f "node_modules/grunt-cli/bin/grunt" ]; then
+    echo "✅ grunt-cli found"
+  else
+    echo "❌ grunt-cli not found at node_modules/grunt-cli/bin/grunt"
+    echo "🔍 Maybe assets were already built in a previous job?"
+    echo "📋 Looking for existing assets in static/:"
+    if [ -d "static" ]; then
+      find static -name "*.css" -o -name "*.js" | head -10 || echo "No CSS/JS files found"
+    else
+      echo "No static directory found"
+    fi
+    echo "❌ Cannot build assets without node_modules, but this might be expected in CI"
+    exit 1
   fi
-  exit 1
+
+  echo "🔍 Running npm run build with verbose output..."
+  if ! npm run build -- --verbose; then
+    echo "❌ Failed to build assets"
+    echo "🔍 Debug: Trying to run grunt directly..."
+    if ! ./node_modules/.bin/grunt buildProd --verbose; then
+      echo "❌ Direct grunt command also failed"
+    fi
+    exit 1
+  fi
 fi
 
 # Setup exampleSite theme
