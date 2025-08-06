@@ -76,23 +76,11 @@ async function waitForServer() {
 function startHugoServer() {
   const isCI = process.env.CI === "true";
 
-  let command, args;
-
-  if (isCI) {
-    // CI environment - build first, then start server
-    command = "bash";
-    args = [
-      "-c",
-      "npm run build && ./setup-examplesite.sh && cd exampleSite && hugo server --buildDrafts --buildFuture --disableFastRender --bind 0.0.0.0 --port 1313",
-    ];
-  } else {
-    // Local environment - just start server
-    command = "bash";
-    args = [
-      "-c",
-      "./setup-examplesite.sh && cd exampleSite && hugo server --buildDrafts --buildFuture --disableFastRender --bind 0.0.0.0",
-    ];
-  }
+  command = "bash";
+  args = [
+    "-c",
+    "./setup-examplesite.sh && cd exampleSite && hugo server --buildDrafts --buildFuture --disableFastRender --bind 0.0.0.0",
+  ];
 
   console.log("🚀 Starting Hugo server...");
   console.log(`Command: ${command} ${args.join(" ")}`);
