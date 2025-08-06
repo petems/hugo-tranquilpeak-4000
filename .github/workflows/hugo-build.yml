@@ -19,6 +19,24 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Setup Node.js
+        uses: ./.github/actions/setup-node
+        with:
+          node-version: "20"
+
+      - name: Cache Node.js dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            ~/.npm
+          key: node-20-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            node-20-
+
+      - name: Install dependencies
+        uses: ./.github/actions/install-deps
+
       - name: Setup Hugo
         uses: ./.github/actions/setup-hugo
         with:
