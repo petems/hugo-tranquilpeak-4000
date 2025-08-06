@@ -295,7 +295,7 @@ LOG_LEVEL=debug npm run test:e2e
   "scripts": {
     "test:e2e": "playwright test",
     "test:e2e:debug": "LOG_LEVEL=debug playwright test",
-    "test:e2e:ci": "LOG_LEVEL=error playwright test --config=playwright.ci.config.js"
+    "test:e2e:ci": "LOG_LEVEL=error playwright test"
   }
 }
 ```

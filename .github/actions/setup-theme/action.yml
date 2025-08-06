@@ -1,5 +1,5 @@
-name: 'Setup Hugo Theme'
-description: 'Setup the Hugo theme for exampleSite'
+name: "Setup Hugo Theme"
+description: "Setup the Hugo theme for exampleSite using the setup-examplesite.sh script"
 
 runs:
   using: "composite"
@@ -7,38 +7,30 @@ runs:
     - name: Setup theme for exampleSite
       shell: bash
       run: |
-        cd exampleSite
-        mkdir -p themes
-        
-        # Remove existing theme directory if it exists
-        if [ -d "themes/Tranquilpeak4000" ]; then
-          rm -rf themes/Tranquilpeak4000
+        # Make the script executable
+        chmod +x setup-examplesite.sh
+
+        # Run the setup script which handles all theme setup logic
+        ./setup-examplesite.sh
+
+        # Verify the setup was successful
+        if [ ! -d "exampleSite/themes/Tranquilpeak4000" ]; then
+          echo "❌ Theme directory was not created"
+          exit 1
         fi
-        
-        # Create theme directory
-        mkdir -p themes/Tranquilpeak4000
-        
-        # Copy theme files with error checking
-        echo "Copying theme files..."
-        cp -r ../layouts themes/Tranquilpeak4000/ || { echo "Failed to copy layouts"; exit 1; }
-        cp -r ../assets themes/Tranquilpeak4000/ || { echo "Failed to copy assets"; exit 1; }
-        cp -r ../static themes/Tranquilpeak4000/ || { echo "Failed to copy static"; exit 1; }
-        cp -r ../archetypes themes/Tranquilpeak4000/ || { echo "Failed to copy archetypes"; exit 1; }
-        cp -r ../i18n themes/Tranquilpeak4000/ || { echo "Failed to copy i18n"; exit 1; }
-        cp ../theme.toml themes/Tranquilpeak4000/ || { echo "Failed to copy theme.toml"; exit 1; }
-        
+
         # Validate theme structure
         echo "Validating theme structure..."
         for dir in layouts assets static archetypes i18n; do
-          if [ ! -d "themes/Tranquilpeak4000/$dir" ]; then
+          if [ ! -d "exampleSite/themes/Tranquilpeak4000/$dir" ]; then
             echo "❌ Missing required directory: $dir"
             exit 1
           fi
         done
-        
-        if [ ! -f "themes/Tranquilpeak4000/theme.toml" ]; then
+
+        if [ ! -f "exampleSite/themes/Tranquilpeak4000/theme.toml" ]; then
           echo "❌ Missing theme.toml"
           exit 1
         fi
-        
-        echo "✅ Theme setup completed successfully" 
+
+        echo "✅ Theme setup completed successfully using setup-examplesite.sh"
