@@ -25,6 +25,9 @@
     "test:visual:headed": "playwright test visual-regression.spec.js --headed",
     "test:visual:baselines": "node generate-baselines.js",
     "test:visual:baselines:all": "node generate-all-baselines.js",
+    "test:visual:baselines:ci": "node generate-all-baselines.js ci",
+    "test:visual:cleanup": "node cleanup-snapshots.js",
+    "test:visual:baselines:docker": "./scripts/generate-baselines-docker.sh",
     "test:all": "npm run test && npm run test:e2e",
     "test:ci": "npm run test && npm run test:e2e:ci"
   },

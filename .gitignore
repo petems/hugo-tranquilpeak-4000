@@ -32,3 +32,12 @@ exampleSite/public/
 # Temporary files
 *.tmp
 *.temp
+/exampleSite/themes/Tranquilpeak4000/layouts
+/exampleSite/themes/Tranquilpeak4000/static/css
+/exampleSite/themes/Tranquilpeak4000/static/js
+exampleSite/themes/Tranquilpeak4000/layouts/partials/head.html
+exampleSite/themes/Tranquilpeak4000/layouts/partials/script.html
+/static/css
+/static/css
+/static/js
+/static/js

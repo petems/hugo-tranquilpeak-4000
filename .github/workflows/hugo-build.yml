@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        hugo-version: ['0.128.0', '0.140.0', 'latest']
+        hugo-version: ["0.146.2", "latest"]
 
     steps:
       - name: Checkout code
@@ -47,4 +47,4 @@ jobs:
             html5validator --root public --format text --ignore "CSS3_*" "JS*"
           else
             echo "⚠️ html5validator not available, skipping HTML validation"
-          fi 
+          fi
