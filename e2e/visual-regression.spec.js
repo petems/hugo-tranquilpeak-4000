@@ -8,7 +8,7 @@ test.describe("Visual Regression Tests", () => {
     await page.waitForLoadState("networkidle");
 
     // Wait for any animations to complete
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(2000);
 
     // Wait for any dynamic content to settle
     await page
@@ -16,32 +16,47 @@ test.describe("Visual Regression Tests", () => {
         () => {
           return !document.querySelector("[data-loading], .loading, .spinner");
         },
-        { timeout: 5000 }
+        { timeout: 10000 }
       )
       .catch(() => {
         // Ignore if no loading elements found
+        console.log("No loading elements found, continuing...");
       });
+
+    // Additional wait for CI environment
+    if (process.env.CI) {
+      await page.waitForTimeout(3000);
+    }
   }
 
   test("homepage visual comparison", async ({ page }) => {
-    await page.goto("/");
-    await waitForStabilization(page);
+    try {
+      await page.goto("/");
+      await waitForStabilization(page);
 
-    // Get configuration based on environment
-    const config = process.env.CI
-      ? getCIConfig("homepage")
-      : getVisualTestConfig("homepage");
+      // Get configuration based on environment
+      const config = process.env.CI
+        ? getCIConfig("homepage")
+        : getVisualTestConfig("homepage");
 
-    // Take full page screenshot with stabilization CSS
-    await expect(page).toHaveScreenshot("homepage-full.png", {
-      fullPage: true,
-      ...config,
-    });
+      console.log("Taking homepage screenshots with config:", JSON.stringify(config, null, 2));
 
-    // Take viewport screenshot
-    await expect(page).toHaveScreenshot("homepage-viewport.png", {
-      ...config,
-    });
+      // Take full page screenshot with stabilization CSS
+      await expect(page).toHaveScreenshot("homepage-full.png", {
+        fullPage: true,
+        ...config,
+      });
+
+      // Take viewport screenshot
+      await expect(page).toHaveScreenshot("homepage-viewport.png", {
+        ...config,
+      });
+
+      console.log("✅ Homepage screenshots taken successfully");
+    } catch (error) {
+      console.error("❌ Error taking homepage screenshots:", error);
+      throw error;
+    }
   });
 
   test("responsive design screenshots", async ({ page }) => {

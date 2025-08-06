@@ -19,9 +19,22 @@ async function generateAllBaselines() {
   const page = await context.newPage();
 
   try {
-    // Navigate to the site
-    await page.goto("http://localhost:1313");
-    await page.waitForLoadState("networkidle");
+    // Navigate to the site with retry mechanism
+    let retries = 3;
+    while (retries > 0) {
+      try {
+        await page.goto("http://localhost:1313");
+        await page.waitForLoadState("networkidle");
+        break;
+      } catch (error) {
+        retries--;
+        if (retries === 0) {
+          throw error;
+        }
+        console.log(`⚠️  Failed to load page, retrying... (${retries} attempts left)`);
+        await new Promise(resolve => setTimeout(resolve, 5000));
+      }
+    }
 
     // Create snapshots directory if it doesn't exist
     const snapshotsDir = path.join(
@@ -246,9 +259,18 @@ async function main() {
   const serverRunning = await checkServer();
   if (!serverRunning) {
     console.error("❌ Hugo server is not running on http://localhost:1313");
-    console.log("💡 Please start the Hugo server first:");
+    console.log("💡 In CI environment, this should be handled by Playwright's webServer config");
+    console.log("💡 For local development, please start the Hugo server first:");
     console.log("   npm run test:e2e");
-    process.exit(1);
+    
+    // In CI, we'll continue anyway as the webServer should start automatically
+    if (process.env.CI) {
+      console.log("🔄 Continuing in CI environment...");
+      // Wait a bit more for the server to start
+      await new Promise(resolve => setTimeout(resolve, 10000));
+    } else {
+      process.exit(1);
+    }
   }
 
   await generateAllBaselines();

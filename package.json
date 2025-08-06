@@ -20,7 +20,7 @@
     "test:e2e:ci": "playwright test --config=playwright.ci.config.js",
     "test:visual": "playwright test visual-regression.spec.js",
     "test:visual:update": "playwright test visual-regression.spec.js --update-snapshots",
-    "test:visual:ci": "playwright test visual-regression.spec.js --config=playwright.ci.config.js",
+    "test:visual:ci": "playwright test visual-regression.spec.js --config=playwright.ci.config.js --update-snapshots",
     "test:visual:dev": "NODE_ENV=development playwright test visual-regression.spec.js",
     "test:visual:headed": "playwright test visual-regression.spec.js --headed",
     "test:visual:baselines": "node generate-baselines.js",

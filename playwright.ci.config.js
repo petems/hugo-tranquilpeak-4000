@@ -20,7 +20,7 @@ module.exports = defineConfig({
   use: {
     baseURL: "http://localhost:1313",
     trace: "on-first-retry",
-    screenshot: "only-on-failure",
+    screenshot: "on",
     video: "retain-on-failure",
   },
 
