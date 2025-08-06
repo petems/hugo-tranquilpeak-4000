@@ -193,43 +193,43 @@ jobs:
 
       - name: Generate Test Summary
         run: |
-          echo "## 🧪 Playwright Test Results" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 🧪 Playwright Test Results" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
 
           # Check E2E test results
           if [ -f "playwright-results/results.json" ]; then
-            echo "### E2E Tests" >> $GITHUB_STEP_SUMMARY
-            echo "- ✅ Tests completed successfully" >> $GITHUB_STEP_SUMMARY
+            echo "### E2E Tests" >> "$GITHUB_STEP_SUMMARY"
+            echo "- ✅ Tests completed successfully" >> "$GITHUB_STEP_SUMMARY"
           elif [ -d "playwright-results" ]; then
-            echo "### E2E Tests" >> $GITHUB_STEP_SUMMARY
-            echo "- ⚠️ Tests ran but results.json not found" >> $GITHUB_STEP_SUMMARY
+            echo "### E2E Tests" >> "$GITHUB_STEP_SUMMARY"
+            echo "- ⚠️ Tests ran but results.json not found" >> "$GITHUB_STEP_SUMMARY"
           else
-            echo "### E2E Tests" >> $GITHUB_STEP_SUMMARY
-            echo "- ❌ Tests failed or no results found" >> $GITHUB_STEP_SUMMARY
+            echo "### E2E Tests" >> "$GITHUB_STEP_SUMMARY"
+            echo "- ❌ Tests failed or no results found" >> "$GITHUB_STEP_SUMMARY"
           fi
 
           # Check Visual Regression test results
           if [ -d "visual-test-results" ]; then
-            echo "### Visual Regression Tests" >> $GITHUB_STEP_SUMMARY
-            echo "- ✅ Visual tests completed" >> $GITHUB_STEP_SUMMARY
+            echo "### Visual Regression Tests" >> "$GITHUB_STEP_SUMMARY"
+            echo "- ✅ Visual tests completed" >> "$GITHUB_STEP_SUMMARY"
             
             # Count screenshots if available
-            screenshot_count=$(find visual-test-results -name "*.png" 2>/dev/null | wc -l)
+            screenshot_count="$(find visual-test-results -name "*.png" 2>/dev/null | wc -l)"
             if [ "$screenshot_count" -gt 0 ]; then
-              echo "- 📸 Generated $screenshot_count screenshots" >> $GITHUB_STEP_SUMMARY
+              echo "- 📸 Generated $screenshot_count screenshots" >> "$GITHUB_STEP_SUMMARY"
             else
-              echo "- ⚠️ No screenshots found in results" >> $GITHUB_STEP_SUMMARY
+              echo "- ⚠️ No screenshots found in results" >> "$GITHUB_STEP_SUMMARY"
             fi
             
             # List what's in the directory
-            echo "- 📁 Contents:" >> $GITHUB_STEP_SUMMARY
-            find visual-test-results -type f 2>/dev/null | head -5 | while read file; do
-              echo "  - $(basename "$file")" >> $GITHUB_STEP_SUMMARY
+            echo "- 📁 Contents:" >> "$GITHUB_STEP_SUMMARY"
+            find visual-test-results -type f 2>/dev/null | head -5 | while read -r file; do
+              echo "  - $(basename "$file")" >> "$GITHUB_STEP_SUMMARY"
             done
           else
-            echo "### Visual Regression Tests" >> $GITHUB_STEP_SUMMARY
-            echo "- ❌ Visual tests failed or no results found" >> $GITHUB_STEP_SUMMARY
+            echo "### Visual Regression Tests" >> "$GITHUB_STEP_SUMMARY"
+            echo "- ❌ Visual tests failed or no results found" >> "$GITHUB_STEP_SUMMARY"
           fi
 
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "📊 View detailed results in the artifacts above." >> $GITHUB_STEP_SUMMARY
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "📊 View detailed results in the artifacts above." >> "$GITHUB_STEP_SUMMARY"
