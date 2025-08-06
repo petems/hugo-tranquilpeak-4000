@@ -1,9 +1,9 @@
-name: Build Assets
+name: Build Assets and Hugo Site
 
 on: [push, pull_request]
 
 jobs:
-  build:
+  build-assets:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -20,6 +20,16 @@ jobs:
         uses: ./.github/actions/setup-node
         with:
           node-version: ${{ matrix.node-version }}
+
+      - name: Cache Node.js dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            ~/.npm
+          key: node-${{ matrix.node-version }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            node-${{ matrix.node-version }}-
 
       - name: Install dependencies
         uses: ./.github/actions/install-deps
@@ -48,4 +58,68 @@ jobs:
           path: |
             static/css/
             static/js/
-          retention-days: 7 
+          retention-days: 7
+
+  build-hugo:
+    needs: build-assets
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        hugo-version: ["0.146.2", "latest"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-assets-node-20
+          path: static/
+
+      - name: Setup Hugo and Theme
+        uses: ./.github/workflows/setup-hugo.yml
+        with:
+          hugo-version: ${{ matrix.hugo-version }}
+          setup-theme: true
+          extended: true
+          cache-hugo: true
+
+      - name: Cache Hugo build output
+        uses: actions/cache@v4
+        with:
+          path: exampleSite/public
+          key: hugo-build-${{ matrix.hugo-version }}-${{ hashFiles('exampleSite/content/**/*', 'exampleSite/layouts/**/*', 'exampleSite/static/**/*', 'exampleSite/config.toml', 'static/**/*') }}
+
+      - name: Build Hugo site
+        uses: ./.github/actions/hugo-build
+        with:
+          working-directory: exampleSite
+          build-drafts: true
+          build-future: true
+          minify: true
+          gc: true
+
+      - name: Validate build output
+        run: |
+          cd exampleSite
+          if [ -d "public" ]; then
+            echo "✅ Hugo build successful"
+            echo "📊 Build statistics:"
+            find public -name "*.html" | wc -l | xargs echo "HTML files:"
+            find public -name "*.css" | wc -l | xargs echo "CSS files:"
+            find public -name "*.js" | wc -l | xargs echo "JS files:"
+            echo "📁 Total files: $(find public -type f | wc -l)"
+          else
+            echo "❌ Hugo build failed - no public directory"
+            exit 1
+          fi
+
+      - name: Upload Hugo build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: hugo-site-${{ matrix.hugo-version }}
+          path: exampleSite/public
+          retention-days: 7

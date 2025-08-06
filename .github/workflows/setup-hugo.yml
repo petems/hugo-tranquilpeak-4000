@@ -4,18 +4,28 @@ on:
   workflow_call:
     inputs:
       hugo-version:
-        description: 'Hugo version to use'
+        description: "Hugo version to use"
         required: false
-        default: 'latest'
+        default: "latest"
         type: string
       setup-theme:
-        description: 'Whether to setup the theme'
+        description: "Whether to setup the theme"
+        required: false
+        default: true
+        type: boolean
+      extended:
+        description: "Whether to use Hugo Extended"
+        required: false
+        default: true
+        type: boolean
+      cache-hugo:
+        description: "Whether to cache Hugo binary"
         required: false
         default: true
         type: boolean
     outputs:
       hugo-version:
-        description: 'The Hugo version that was set up'
+        description: "The Hugo version that was set up"
         value: ${{ jobs.setup.outputs.hugo-version }}
 
 jobs:
@@ -29,16 +39,29 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Cache Hugo binary
+        if: inputs.cache-hugo
+        uses: actions/cache@v4
+        with:
+          path: /usr/local/bin/hugo
+          key: hugo-${{ inputs.hugo-version }}-${{ inputs.extended }}-${{ runner.os }}
+
       - name: Setup Hugo ${{ inputs.hugo-version }}
         id: setup-hugo
         uses: ./.github/actions/setup-hugo
         with:
           hugo-version: ${{ inputs.hugo-version }}
-          extended: true
+          extended: ${{ inputs.extended }}
 
       - name: Setup theme for exampleSite
         if: inputs.setup-theme
         run: |
-          cd exampleSite
-          mkdir -p themes
-          ln -sf ../.. themes/Tranquilpeak4000 
+          echo "🎨 Setting up theme using setup-examplesite.sh..."
+
+          # Make sure the script is executable
+          chmod +x setup-examplesite.sh
+
+          # Run the existing setup script
+          ./setup-examplesite.sh
+
+          echo "✅ Theme setup completed using setup-examplesite.sh"

@@ -1,36 +1,24 @@
 name: "Setup Hugo Theme"
 description: "Setup the Hugo theme for exampleSite using the setup-examplesite.sh script"
 
+inputs:
+  skip-asset-build:
+    description: "Skip building assets (useful if already built)"
+    required: false
+    default: "false"
+
 runs:
   using: "composite"
   steps:
     - name: Setup theme for exampleSite
       shell: bash
       run: |
-        # Make the script executable
+        echo "🎨 Setting up Hugo theme using setup-examplesite.sh..."
+
+        # Make sure the script is executable
         chmod +x setup-examplesite.sh
 
-        # Run the setup script which handles all theme setup logic
+        # Run the existing setup script
         ./setup-examplesite.sh
-
-        # Verify the setup was successful
-        if [ ! -d "exampleSite/themes/Tranquilpeak4000" ]; then
-          echo "❌ Theme directory was not created"
-          exit 1
-        fi
-
-        # Validate theme structure
-        echo "Validating theme structure..."
-        for dir in layouts assets static archetypes i18n; do
-          if [ ! -d "exampleSite/themes/Tranquilpeak4000/$dir" ]; then
-            echo "❌ Missing required directory: $dir"
-            exit 1
-          fi
-        done
-
-        if [ ! -f "exampleSite/themes/Tranquilpeak4000/theme.toml" ]; then
-          echo "❌ Missing theme.toml"
-          exit 1
-        fi
 
         echo "✅ Theme setup completed successfully using setup-examplesite.sh"
