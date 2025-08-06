@@ -1,0 +1,72 @@
+{
+  "name": "Hugo Tranquilpeak 4000",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-typescript-next",
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+        "ms-playwright.playwright",
+        "ms-vscode.vscode-json",
+        "redhat.vscode-yaml",
+        "ms-vscode.vscode-markdown",
+        "ms-vscode.vscode-css",
+        "ms-vscode.vscode-scss",
+        "bradlc.vscode-tailwindcss",
+        "ms-vscode.vscode-html",
+        "ms-vscode.vscode-javascript",
+        "ms-vscode.vscode-node-debug2",
+        "ms-vscode.vscode-js-debug",
+        "ms-vscode.vscode-js-debug-companion"
+      ],
+      "settings": {
+        "typescript.preferences.includePackageJsonAutoImports": "on",
+        "typescript.suggest.autoImports": true,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        },
+        "files.associations": {
+          "*.scss": "scss",
+          "*.hbs": "handlebars",
+          "*.html": "html"
+        }
+      }
+    }
+  },
+
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  
+  "postStartCommand": "npm install",
+  
+  "forwardPorts": [1313, 3000, 3001],
+  
+  "portsAttributes": {
+    "1313": {
+      "label": "Hugo Server",
+      "onAutoForward": "notify"
+    },
+    "3000": {
+      "label": "Development Server",
+      "onAutoForward": "notify"
+    },
+    "3001": {
+      "label": "Playwright UI",
+      "onAutoForward": "notify"
+    }
+  },
+
+  "remoteUser": "node",
+  
+  "mounts": [
+    "source=${localWorkspaceFolder}/.devcontainer/cache,target=/home/node/.npm,type=bind"
+  ]
+} 
