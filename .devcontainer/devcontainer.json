@@ -45,7 +45,7 @@
 
   "postCreateCommand": "bash .devcontainer/setup.sh",
 
-  "postStartCommand": "npm install",
+  "postStartCommand": "npm ci",
 
   "forwardPorts": [1313, 3000, 3001],
 

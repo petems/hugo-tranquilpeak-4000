@@ -16,6 +16,13 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
+      - name: Setup Node.js and build assets
+        uses: ./.github/workflows/setup-node.yml
+        with:
+          node-version: '20'
+          install-deps: true
+          build-assets: true
+
       - name: Setup theme
         uses: ./.github/actions/setup-theme
 
