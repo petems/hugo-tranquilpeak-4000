@@ -19,13 +19,14 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Setup Hugo and Theme
-        uses: ./.github/workflows/setup-hugo.yml
+      - name: Setup Hugo
+        uses: ./.github/actions/setup-hugo
         with:
           hugo-version: ${{ matrix.hugo-version }}
-          setup-theme: true
           extended: true
-          cache-hugo: true
+
+      - name: Setup theme
+        uses: ./.github/actions/setup-theme
 
       - name: Cache Hugo build output
         uses: actions/cache@v4

@@ -97,7 +97,7 @@ jobs:
         run: npm ci
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps
 
       - name: Make setup script executable
         run: chmod +x setup-examplesite.sh
