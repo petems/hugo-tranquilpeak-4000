@@ -9,10 +9,12 @@ Hugo Tranquilpeak 4000 is a modernized fork of the hugo-tranquilpeak-theme. It's
 ## Development Commands
 
 ### Build and Development
-- `npm run start` - Build theme once and rebuild after each change (development mode)
-- `npm run build` - Same as start (development build)
+- `npm run start` - Build theme and start watch mode for development (includes build + watch task)
+- `npm run build` - Same as start (development build with watch)
+- `npm run grunt -- build` - Build theme once without watch mode (use this for one-time builds)
 - `npm run prod` - Build theme for production with optimizations (concat, minify)
 - `hugo server` - Run Hugo development server (requires Hugo to be installed)
+- `npm run serve` - Setup theme and start Hugo server in background with nohup
 
 ### Code Quality
 - `npm run lint` - Run ESLint for JavaScript code style checking
@@ -91,10 +93,13 @@ Main workflow files:
 
 ### Theme Development
 1. Source files are in `assets/` and `layouts/`
-2. Use `npm run start` for development with auto-rebuild
-3. Run `npm run lint` before committing changes
-4. Test with `hugo server` using the exampleSite
-5. Use `npm run prod` for production builds
+2. **IMPORTANT**: Before running Hugo server, you must build assets first:
+   - Run `npm run grunt -- build` to build assets once
+   - OR run `npm run start` for development with auto-rebuild (includes watch mode)
+3. Assets are compiled to `/static/css/tranquilpeak.css` and `/static/js/tranquilpeak.js`
+4. Run `npm run lint` before committing changes
+5. Test with `hugo server` using the exampleSite (or use `npm run serve` for convenience)
+6. Use `npm run prod` for production builds
 
 ### Modern Hugo Compatibility
 This fork specifically addresses modern Hugo compatibility:
