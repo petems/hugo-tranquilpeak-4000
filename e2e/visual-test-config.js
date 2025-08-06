@@ -1,6 +1,9 @@
 /**
  * Configuration for visual regression tests
- * Simplified for single main webpage screenshot
+ * 
+ * This configuration is designed for Linux-only baseline generation.
+ * Tests are configured to only run on Linux to ensure consistent
+ * rendering and avoid cross-platform differences.
  */
 
 const path = require("path");

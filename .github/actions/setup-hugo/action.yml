@@ -1,0 +1,74 @@
+name: 'Setup Hugo'
+description: 'Download and setup Hugo binary directly using wget'
+
+inputs:
+  hugo-version:
+    description: 'Hugo version to install (e.g., 0.146.2, latest)'
+    required: false
+    default: 'latest'
+  extended:
+    description: 'Whether to install Hugo Extended version'
+    required: false
+    default: 'true'
+
+outputs:
+  hugo-version:
+    description: 'The Hugo version that was installed'
+    value: ${{ steps.setup-hugo.outputs.hugo-version }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Hugo ${{ inputs.hugo-version }}
+      id: setup-hugo
+      shell: bash
+      run: |
+        # Determine the Hugo version to install
+        if [ "${{ inputs.hugo-version }}" = "latest" ]; then
+          # Get the latest version from GitHub releases
+          HUGO_VERSION=$(curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest | grep '"tag_name"' | cut -d'"' -f4 | sed 's/v//')
+        else
+          HUGO_VERSION="${{ inputs.hugo-version }}"
+        fi
+        
+        echo "Installing Hugo version: $HUGO_VERSION"
+        
+        # Determine the binary type (extended or regular)
+        if [ "${{ inputs.extended }}" = "true" ]; then
+          BINARY_TYPE="hugo_extended"
+        else
+          BINARY_TYPE="hugo"
+        fi
+        
+        # Download Hugo
+        DOWNLOAD_URL="https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/${BINARY_TYPE}_${HUGO_VERSION}_linux-amd64.tar.gz"
+        echo "Downloading from: $DOWNLOAD_URL"
+        
+        # Create temp directory and download
+        mkdir -p /tmp/hugo
+        cd /tmp/hugo
+        
+        # Download with retry logic
+        for i in {1..3}; do
+          if wget -q --show-progress "$DOWNLOAD_URL" -O hugo.tar.gz; then
+            break
+          else
+            echo "Download attempt $i failed, retrying..."
+            sleep 2
+          fi
+        done
+        
+        # Extract and install
+        tar -xzf hugo.tar.gz
+        sudo mv hugo /usr/local/bin/hugo
+        chmod +x /usr/local/bin/hugo
+        
+        # Clean up
+        rm -rf /tmp/hugo
+        
+        # Verify installation
+        echo "Hugo version installed:"
+        hugo version
+        
+        # Set output
+        echo "hugo-version=$HUGO_VERSION" >> $GITHUB_OUTPUT 

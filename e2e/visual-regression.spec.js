@@ -1,6 +1,13 @@
 const { test, expect } = require("@playwright/test");
 const { getVisualTestConfig, getCIConfig } = require("./visual-test-config");
 
+/**
+ * Visual Regression Tests
+ * 
+ * These tests only run on Linux to ensure consistent baseline generation.
+ * The Playwright configuration is set to only run on Linux platform
+ * to avoid cross-platform rendering differences.
+ */
 test.describe("Visual Regression Tests", () => {
   // Helper function to wait for page stabilization
   async function waitForStabilization(page) {

@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
+        uses: ./.github/actions/setup-hugo
         with:
           hugo-version: "0.148.2"
           extended: true
@@ -82,7 +82,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
+        uses: ./.github/actions/setup-hugo
         with:
           hugo-version: "0.148.2"
           extended: true

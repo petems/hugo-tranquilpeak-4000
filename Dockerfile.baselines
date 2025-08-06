@@ -3,6 +3,9 @@
 
 FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:20
 
+# Define build argument for Hugo version
+ARG HUGO_VERSION=0.146.2
+
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     wget \
@@ -11,7 +14,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Hugo
-RUN wget -O /tmp/hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v0.146.2/hugo_extended_0.120.4_linux-amd64.tar.gz \
+RUN wget -O /tmp/hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz \
     && tar -xzf /tmp/hugo.tar.gz -C /tmp \
     && mv /tmp/hugo /usr/local/bin/hugo \
     && rm /tmp/hugo.tar.gz \
@@ -35,7 +38,6 @@ COPY . .
 # Make scripts executable
 RUN chmod +x setup-examplesite.sh
 RUN chmod +x generate-all-baselines.js
-RUN chmod +x cleanup-snapshots.js
 
 # Set environment variable to indicate we're running in Docker
 ENV DOCKER_CONTAINER=true

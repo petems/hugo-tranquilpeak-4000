@@ -3,7 +3,7 @@
 /**
  * Script to generate baseline snapshots for visual regression tests
  * This script will run the visual regression tests and create baseline snapshots
- * for different environments (CI, local, etc.)
+ * for Linux environment only
  */
 
 const { execSync } = require('child_process');
@@ -42,48 +42,6 @@ function generateSnapshots(environment = 'local') {
   }
 }
 
-// Function to copy snapshots for different platforms
-function copySnapshotsForPlatforms() {
-  const snapshotDir = path.join(__dirname, 'e2e', 'visual-regression.spec.js-snapshots');
-  
-  if (!fs.existsSync(snapshotDir)) {
-    console.log('❌ No snapshots found to copy');
-    return;
-  }
-  
-  console.log('📋 Copying snapshots for different platforms...');
-  
-  const files = fs.readdirSync(snapshotDir);
-  const platforms = ['linux', 'darwin', 'win32'];
-  
-  files.forEach(file => {
-    if (file.endsWith('.png')) {
-      // Extract the base name and browser
-      const match = file.match(/^(.+)-(.+)-(.+)\.png$/);
-      if (match) {
-        const [, baseName, browser, platform] = match;
-        
-        // Copy for other platforms
-        platforms.forEach(targetPlatform => {
-          if (targetPlatform !== platform) {
-            const sourcePath = path.join(snapshotDir, file);
-            const targetPath = path.join(snapshotDir, `${baseName}-${browser}-${targetPlatform}.png`);
-            
-            if (!fs.existsSync(targetPath)) {
-              try {
-                fs.copyFileSync(sourcePath, targetPath);
-                console.log(`  📄 Copied ${file} to ${baseName}-${browser}-${targetPlatform}.png`);
-              } catch (error) {
-                console.warn(`  ⚠️  Failed to copy ${file} to ${targetPlatform}:`, error.message);
-              }
-            }
-          }
-        });
-      }
-    }
-  });
-}
-
 // Main execution
 async function main() {
   const args = process.argv.slice(2);
@@ -102,11 +60,6 @@ async function main() {
   // Generate snapshots for the specified environment
   generateSnapshots(environment);
   
-  // Copy snapshots for other platforms if needed
-  if (environment === 'ci') {
-    copySnapshotsForPlatforms();
-  }
-  
   console.log('🎉 Baseline snapshot generation completed!');
 }
 
@@ -120,6 +73,5 @@ if (require.main === module) {
 
 module.exports = {
   cleanupSnapshots,
-  generateSnapshots,
-  copySnapshotsForPlatforms
+  generateSnapshots
 };

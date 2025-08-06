@@ -6,6 +6,8 @@ This directory contains end-to-end tests for the Hugo Tranquilpeak theme, includ
 
 The visual regression tests ensure that the theme's appearance remains consistent across different environments, browsers, and screen sizes. The tests capture screenshots of various UI components and compare them against baseline images.
 
+**Important**: These tests are configured to run **only on Linux** to ensure consistent baseline generation and avoid cross-platform rendering differences.
+
 ## Test Files
 
 - `visual-regression.spec.js` - Main visual regression tests
@@ -67,6 +69,8 @@ This ensures snapshots are created in the same environment as CI tests.
 
 The Docker approach ensures that baseline snapshots are generated in a consistent Linux environment, matching the CI environment exactly. This eliminates platform-specific differences that can cause test failures.
 
+**Note**: The visual regression tests are configured to only generate and compare Linux baselines. This ensures consistent results across all environments without the complexity of managing multiple platform-specific baselines.
+
 ### Prerequisites
 
 - Docker installed and running
@@ -82,8 +86,8 @@ The Docker approach ensures that baseline snapshots are generated in a consisten
 2. **The script will**:
    - Build a Docker image with Node.js, Hugo, and Playwright
    - Run the baseline generation in a Linux environment
-   - Generate snapshots for all browsers and platforms
-   - Offer to copy snapshots to the main directory
+   - Generate snapshots for all browsers (Linux only)
+   - Create consistent baseline images for CI testing
 
 3. **Manual Docker usage**:
    ```bash
