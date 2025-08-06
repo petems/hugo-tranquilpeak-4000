@@ -21,18 +21,21 @@ else
     else
       echo "No static directory found"
     fi
-    echo "❌ Cannot build assets without node_modules, but this might be expected in CI"
-    exit 1
+    echo "⚠️ Cannot build assets without node_modules - continuing without asset building"
+    echo "📝 Note: Hugo may use default styling, which should be sufficient for link checking"
   fi
-
-  echo "🔍 Running npm run build with verbose output..."
-  if ! npm run build -- --verbose; then
-    echo "❌ Failed to build assets"
-    echo "🔍 Debug: Trying to run grunt directly..."
-    if ! ./node_modules/.bin/grunt buildProd --verbose; then
-      echo "❌ Direct grunt command also failed"
+  
+  # Only try to build if we have node_modules
+  if [ -d "node_modules" ]; then
+    echo "🔍 Running npm run build with verbose output..."
+    if ! npm run build -- --verbose; then
+      echo "❌ Failed to build assets"
+      echo "🔍 Debug: Trying to run grunt directly..."
+      if ! ./node_modules/.bin/grunt buildProd --verbose; then
+        echo "❌ Direct grunt command also failed"
+      fi
+      exit 1
     fi
-    exit 1
   fi
 fi
 
