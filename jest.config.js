@@ -4,6 +4,10 @@ module.exports = {
     '**/__tests__/**/*.js',
     '**/?(*.)+(spec|test).js'
   ],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/e2e/'
+  ],
   collectCoverageFrom: [
     'assets/js/**/*.js',
     '!assets/js/**/*.min.js'
