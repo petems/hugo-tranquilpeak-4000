@@ -6,4 +6,16 @@ runs:
   steps:
     - name: Install dependencies
       shell: bash
-      run: npm ci 
+      run: |
+        echo "📦 Installing dependencies with npm ci..."
+        npm ci --include=dev
+        
+        echo "✅ Dependencies installed. Verifying grunt-cli..."
+        if [ -f "node_modules/grunt-cli/bin/grunt" ]; then
+          echo "✅ grunt-cli found at node_modules/grunt-cli/bin/grunt"
+        else
+          echo "❌ grunt-cli not found!"
+          echo "📋 Contents of node_modules:"
+          ls -la node_modules/ | head -10
+          exit 1
+        fi 
