@@ -1,6 +1,6 @@
 {
   "name": "Tranquilpeak4000",
-  "version": "0.5.3-BETA",
+  "version": "4000.0.0",
   "description": "A gorgeous responsive theme for Hugo blog framework",
   "main": "index.js",
   "scripts": {
