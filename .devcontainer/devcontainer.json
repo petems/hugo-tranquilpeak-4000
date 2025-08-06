@@ -1,7 +1,7 @@
 {
   "name": "Hugo Tranquilpeak 4000",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye",
-  
+
   "features": {
     "ghcr.io/devcontainers/features/git:1": {},
     "ghcr.io/devcontainers/features/github-cli:1": {}
@@ -44,11 +44,11 @@
   },
 
   "postCreateCommand": "bash .devcontainer/setup.sh",
-  
+
   "postStartCommand": "npm install",
-  
+
   "forwardPorts": [1313, 3000, 3001],
-  
+
   "portsAttributes": {
     "1313": {
       "label": "Hugo Server",
@@ -65,8 +65,14 @@
   },
 
   "remoteUser": "node",
-  
+
   "mounts": [
     "source=${localWorkspaceFolder}/.devcontainer/cache,target=/home/node/.npm,type=bind"
-  ]
-} 
+  ],
+
+  "initializeCommand": "mkdir -p .devcontainer/cache",
+
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/hugo-tranquilpeak-4000,type=bind,consistency=cached",
+
+  "workspaceFolder": "/workspaces/hugo-tranquilpeak-4000"
+}
