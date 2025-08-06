@@ -5,8 +5,23 @@ echo "=================================================="
 
 # Build assets first
 echo "📦 Building assets..."
-if ! npm run build; then
+echo "🔍 Debug: Checking if grunt-cli exists..."
+if [ -f "node_modules/grunt-cli/bin/grunt" ]; then
+  echo "✅ grunt-cli found"
+else
+  echo "❌ grunt-cli not found at node_modules/grunt-cli/bin/grunt"
+  echo "📋 Contents of node_modules:"
+  ls -la node_modules/ | head -10
+  exit 1
+fi
+
+echo "🔍 Running npm run build with verbose output..."
+if ! npm run build -- --verbose; then
   echo "❌ Failed to build assets"
+  echo "🔍 Debug: Trying to run grunt directly..."
+  if ! ./node_modules/.bin/grunt buildProd --verbose; then
+    echo "❌ Direct grunt command also failed"
+  fi
   exit 1
 fi
 
