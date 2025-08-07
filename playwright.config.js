@@ -56,32 +56,32 @@ module.exports = defineConfig({
     {
       name: "chromium",
       use: { ...devices["Desktop Chrome"] },
-      // Only run on Linux for consistent baseline generation
-      testIgnore: process.platform !== "linux" ? /.*/ : undefined,
+      // Only run on Linux for consistent baseline generation (unless FORCE_ALL_BROWSERS is set)
+      testIgnore: (process.platform !== "linux" && !process.env.FORCE_ALL_BROWSERS) ? /.*/ : undefined,
     },
     {
       name: "firefox",
       use: { ...devices["Desktop Firefox"] },
-      // Only run on Linux for consistent baseline generation
-      testIgnore: process.platform !== "linux" ? /.*/ : undefined,
+      // Only run on Linux for consistent baseline generation (unless FORCE_ALL_BROWSERS is set)
+      testIgnore: (process.platform !== "linux" && !process.env.FORCE_ALL_BROWSERS) ? /.*/ : undefined,
     },
     {
       name: "webkit",
       use: { ...devices["Desktop Safari"] },
-      // Only run on Linux for consistent baseline generation
-      testIgnore: process.platform !== "linux" ? /.*/ : undefined,
+      // Only run on Linux for consistent baseline generation (unless FORCE_ALL_BROWSERS is set)
+      testIgnore: (process.platform !== "linux" && !process.env.FORCE_ALL_BROWSERS) ? /.*/ : undefined,
     },
     {
       name: "mobile-chrome",
       use: { ...devices["Pixel 5"] },
-      // Only run on Linux for consistent baseline generation
-      testIgnore: process.platform !== "linux" ? /.*/ : undefined,
+      // Only run on Linux for consistent baseline generation (unless FORCE_ALL_BROWSERS is set)
+      testIgnore: (process.platform !== "linux" && !process.env.FORCE_ALL_BROWSERS) ? /.*/ : undefined,
     },
     {
       name: "mobile-safari",
       use: { ...devices["iPhone 12"] },
-      // Only run on Linux for consistent baseline generation
-      testIgnore: process.platform !== "linux" ? /.*/ : undefined,
+      // Only run on Linux for consistent baseline generation (unless FORCE_ALL_BROWSERS is set)
+      testIgnore: (process.platform !== "linux" && !process.env.FORCE_ALL_BROWSERS) ? /.*/ : undefined,
     },
   ],
 

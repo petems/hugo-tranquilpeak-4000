@@ -86,8 +86,8 @@ test.describe("Navigation Helper Tests", () => {
 
     logger.step("Testing page readiness check");
 
-    // Navigate to page
-    await page.goto("/", { waitUntil: "domcontentloaded" });
+    // Navigate to page and wait for all resources to load
+    await page.goto("/", { waitUntil: "load" });
 
     // Check if page is ready
     const ready = await isPageReady(page);
