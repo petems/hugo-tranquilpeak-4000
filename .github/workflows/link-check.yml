@@ -16,12 +16,17 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
-      - name: Setup Node.js and build assets
-        uses: ./.github/workflows/setup-node.yml
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
-          install-deps: true
-          build-assets: true
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build theme assets
+        run: npm run build
 
       - name: Setup theme
         uses: ./.github/actions/setup-theme
