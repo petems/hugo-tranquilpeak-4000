@@ -4,9 +4,12 @@ module.exports = function(grunt) {
     'clean:build',
     'syncAssets',
     'replace:cssTranquilpeak',
-    'concat',
+    'concat:vendorJs',
+    'concat:appJs',
     'cssmin',
     'uglify',
-    'linkAssetsProd'
+    'sails-linker:prodVendorJs',
+    'sails-linker:prodAppJs',
+    'sails-linker:prodCss'
   ]);
 };
