@@ -1,0 +1,93 @@
+name: Shared Setup
+
+on:
+  workflow_call:
+    inputs:
+      hugo-version:
+        description: 'Hugo version to install (e.g., 0.148.1, latest)'
+        required: false
+        default: '0.148.1'
+        type: string
+      node-version:
+        description: 'Node.js version to use'
+        required: false
+        default: '20'
+        type: string
+      skip-asset-build:
+        description: 'Skip building theme assets'
+        required: false
+        default: false
+        type: boolean
+      skip-theme-setup:
+        description: 'Skip theme setup for exampleSite'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ inputs.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          echo "📦 Installing dependencies with npm ci..."
+          echo "🔍 Debug: Current working directory: $(pwd)"
+          echo "🔍 Debug: Contents of current directory:"
+          ls -la
+          
+          echo "🔍 Debug: Checking package.json and package-lock.json..."
+          if [ ! -f "package.json" ]; then
+            echo "❌ package.json not found!"
+            exit 1
+          fi
+          
+          if [ ! -f "package-lock.json" ]; then
+            echo "❌ package-lock.json not found!"
+            echo "🔍 Debug: Creating package-lock.json with npm install..."
+            npm install
+          fi
+          
+          echo "🔍 Debug: Node.js version: $(node --version)"
+          echo "🔍 Debug: npm version: $(npm --version)"
+          
+          echo "🚀 Running npm ci..."
+          npm ci --include=dev || {
+            echo "❌ npm ci failed with exit code $?"
+            exit 1
+          }
+          
+          echo "✅ npm ci completed. Verifying node_modules exists..."
+          if [ ! -d "node_modules" ]; then
+            echo "❌ node_modules directory was not created!"
+            exit 1
+          fi
+          
+          echo "✅ Dependencies installed successfully!"
+
+      - name: Setup Hugo
+        uses: ./.github/actions/setup-hugo
+        with:
+          hugo-version: ${{ inputs.hugo-version }}
+          extended: true
+
+      - name: Build theme assets
+        if: ${{ !inputs.skip-asset-build }}
+        run: |
+          echo "🎨 Building theme assets..."
+          npm run build
+          echo "✅ Theme assets built successfully"
+
+      - name: Setup theme for exampleSite
+        if: ${{ !inputs.skip-theme-setup }}
+        uses: ./.github/actions/setup-theme
+        with:
+          skip-asset-build: ${{ inputs.skip-asset-build }}

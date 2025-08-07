@@ -1,0 +1,56 @@
+name: Test Hugo Test Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      test-versions:
+        description: 'JSON array of Hugo versions to test'
+        required: false
+        default: '["0.148.1", "latest"]'
+        type: string
+
+jobs:
+  test-hugo-single-version:
+    name: Test single Hugo version
+    uses: ./.github/workflows/_hugo-test.yml
+    with:
+      hugo-versions: '["0.148.1"]'
+      upload-artifacts: false
+      artifact-retention-days: 1
+
+  test-hugo-multiple-versions:
+    name: Test multiple Hugo versions
+    uses: ./.github/workflows/_hugo-test.yml
+    with:
+      hugo-versions: ${{ inputs.test-versions }}
+      build-drafts: true
+      build-future: true
+      minify: true
+      gc: true
+      upload-artifacts: true
+      artifact-retention-days: 3
+
+  test-hugo-minimal-build:
+    name: Test minimal Hugo build
+    uses: ./.github/workflows/_hugo-test.yml
+    with:
+      hugo-versions: '["latest"]'
+      build-drafts: false
+      build-future: false
+      minify: false
+      gc: false
+      upload-artifacts: false
+
+  validate-hugo-results:
+    name: Validate Hugo Test Results
+    runs-on: ubuntu-latest
+    needs: [test-hugo-single-version, test-hugo-multiple-versions, test-hugo-minimal-build]
+    steps:
+      - name: Validate test completion
+        run: |
+          echo "✅ All Hugo test workflow tests completed successfully"
+          echo "- Single version test: completed"
+          echo "- Multiple versions test: completed"
+          echo "- Minimal build test: completed"
+          echo ""
+          echo "🔍 Hugo test workflow validation passed"

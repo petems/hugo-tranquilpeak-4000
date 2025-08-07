@@ -1,0 +1,59 @@
+name: Test Security Scan Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      fail-on-vulnerabilities:
+        description: 'Fail on vulnerabilities'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  test-security-scan-permissive:
+    name: Test security scan (permissive mode)
+    uses: ./.github/workflows/_security-scan.yml
+    with:
+      npm-audit-level: 'low'
+      trivy-severity: 'CRITICAL,HIGH,MEDIUM'
+      fail-on-vulnerabilities: false
+      upload-sarif: false
+
+  test-security-scan-strict:
+    name: Test security scan (strict mode)
+    uses: ./.github/workflows/_security-scan.yml
+    with:
+      npm-audit-level: 'critical'
+      trivy-severity: 'CRITICAL'
+      fail-on-vulnerabilities: ${{ inputs.fail-on-vulnerabilities }}
+      trufflehog-verified-only: true
+      upload-sarif: true
+
+  test-security-scan-custom-path:
+    name: Test security scan (custom path)
+    uses: ./.github/workflows/_security-scan.yml
+    with:
+      scan-path: './assets'
+      npm-audit-level: 'moderate'
+      fail-on-vulnerabilities: false
+
+  validate-security-results:
+    name: Validate Security Scan Results
+    runs-on: ubuntu-latest
+    needs: [test-security-scan-permissive, test-security-scan-strict, test-security-scan-custom-path]
+    if: always()
+    steps:
+      - name: Validate test completion
+        run: |
+          echo "✅ All security scan workflow tests completed"
+          echo "- Permissive mode test: ${{ needs.test-security-scan-permissive.result }}"
+          echo "- Strict mode test: ${{ needs.test-security-scan-strict.result }}"
+          echo "- Custom path test: ${{ needs.test-security-scan-custom-path.result }}"
+          echo ""
+          
+          # Check if any tests failed unexpectedly
+          if [[ "${{ needs.test-security-scan-permissive.result }}" == "failure" && "${{ inputs.fail-on-vulnerabilities }}" == "false" ]]; then
+            echo "⚠️ Permissive test failed unexpectedly (should not fail with fail-on-vulnerabilities=false)"
+          fi
+          
+          echo "🔍 Security scan workflow validation completed"

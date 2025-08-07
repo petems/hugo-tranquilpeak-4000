@@ -1,0 +1,196 @@
+name: Security Scan
+
+on:
+  workflow_call:
+    inputs:
+      npm-audit-level:
+        description: 'npm audit severity level (low, moderate, high, critical)'
+        required: false
+        default: 'moderate'
+        type: string
+      trivy-severity:
+        description: 'Trivy scan severity levels (UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL)'
+        required: false
+        default: 'CRITICAL,HIGH'
+        type: string
+      trivy-format:
+        description: 'Trivy output format (sarif, json, table)'
+        required: false
+        default: 'sarif'
+        type: string
+      upload-sarif:
+        description: 'Upload SARIF results to GitHub Security tab'
+        required: false
+        default: true
+        type: boolean
+      trufflehog-verified-only:
+        description: 'Only report verified secrets in TruffleHog scan'
+        required: false
+        default: true
+        type: boolean
+      fail-on-vulnerabilities:
+        description: 'Fail workflow if vulnerabilities are found'
+        required: false
+        default: true
+        type: boolean
+      scan-path:
+        description: 'Path to scan (default: current directory)'
+        required: false
+        default: '.'
+        type: string
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run npm audit
+        id: npm-audit
+        run: |
+          echo "🔍 Running npm audit with level: ${{ inputs.npm-audit-level }}"
+          
+          # Run audit and capture output
+          if npm audit --audit-level=${{ inputs.npm-audit-level }} --json > npm-audit-results.json; then
+            echo "✅ npm audit passed - no vulnerabilities found at ${{ inputs.npm-audit-level }} level or above"
+            echo "audit-status=passed" >> $GITHUB_OUTPUT
+          else
+            audit_exit_code=$?
+            echo "⚠️ npm audit found vulnerabilities at ${{ inputs.npm-audit-level }} level or above"
+            echo "audit-status=failed" >> $GITHUB_OUTPUT
+            
+            # Parse and display audit results
+            if command -v jq &> /dev/null && [ -f npm-audit-results.json ]; then
+              echo "📊 Audit Summary:"
+              jq -r '.metadata | "Total vulnerabilities: \(.vulnerabilities.total) | Info: \(.vulnerabilities.info) | Low: \(.vulnerabilities.low) | Moderate: \(.vulnerabilities.moderate) | High: \(.vulnerabilities.high) | Critical: \(.vulnerabilities.critical)"' npm-audit-results.json || echo "Could not parse audit summary"
+              
+              echo -e "\n🔍 Affected packages:"
+              jq -r '.vulnerabilities | to_entries[] | select(.value.severity == "high" or .value.severity == "critical") | "- \(.key): \(.value.severity) severity - \(.value.title)"' npm-audit-results.json | head -10 || echo "Could not parse vulnerability details"
+            fi
+            
+            echo -e "\n💡 To fix vulnerabilities, run: npm audit fix"
+            
+            if [ "${{ inputs.fail-on-vulnerabilities }}" = "true" ]; then
+              echo "❌ Failing workflow due to security vulnerabilities"
+              exit $audit_exit_code
+            else
+              echo "⚠️ Continuing workflow despite vulnerabilities (fail-on-vulnerabilities=false)"
+            fi
+          fi
+
+      - name: Upload npm audit results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-audit-results
+          path: npm-audit-results.json
+          retention-days: 30
+
+      - name: Run Trivy vulnerability scanner
+        id: trivy-scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: ${{ inputs.scan-path }}
+          format: ${{ inputs.trivy-format }}
+          output: 'trivy-results.${{ inputs.trivy-format }}'
+          severity: ${{ inputs.trivy-severity }}
+          exit-code: ${{ inputs.fail-on-vulnerabilities && '1' || '0' }}
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        if: ${{ inputs.upload-sarif && inputs.trivy-format == 'sarif' && always() }}
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results.sarif'
+        continue-on-error: true
+
+      - name: Upload Trivy scan results as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-scan-results
+          path: 'trivy-results.${{ inputs.trivy-format }}'
+          retention-days: 30
+
+      - name: Check for secrets in code
+        id: trufflehog-scan
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ${{ inputs.scan-path }}
+          base: ${{ github.event.before || 'HEAD~1' }}
+          head: ${{ github.sha }}
+          extra_args: ${{ inputs.trufflehog-verified-only && '--only-verified' || '' }}
+        continue-on-error: ${{ !inputs.fail-on-vulnerabilities }}
+
+      - name: Process TruffleHog results
+        if: always()
+        run: |
+          echo "🔍 TruffleHog secret scanning completed"
+          
+          if [ "${{ steps.trufflehog-scan.outcome }}" = "failure" ]; then
+            echo "❌ TruffleHog found potential secrets in the codebase"
+            echo "🔒 Please review the scan results and remove any exposed secrets"
+            echo "💡 Consider using environment variables or secret management services"
+            
+            if [ "${{ inputs.fail-on-vulnerabilities }}" = "false" ]; then
+              echo "⚠️ Continuing workflow despite detected secrets (fail-on-vulnerabilities=false)"
+            fi
+          else
+            echo "✅ No secrets detected by TruffleHog scan"
+          fi
+
+      - name: Security scan summary
+        if: always()
+        run: |
+          echo "## 🛡️ Security Scan Results" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          
+          # npm audit results
+          if [ "${{ steps.npm-audit.outputs.audit-status }}" = "passed" ]; then
+            echo "### ✅ npm audit: PASSED" >> "$GITHUB_STEP_SUMMARY"
+            echo "No vulnerabilities found at ${{ inputs.npm-audit-level }} level or above" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "### ❌ npm audit: VULNERABILITIES FOUND" >> "$GITHUB_STEP_SUMMARY"
+            echo "Vulnerabilities detected at ${{ inputs.npm-audit-level }} level or above" >> "$GITHUB_STEP_SUMMARY"
+            echo "Run \`npm audit fix\` to address issues" >> "$GITHUB_STEP_SUMMARY"
+          fi
+          
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          
+          # Trivy results
+          if [ "${{ steps.trivy-scan.outcome }}" = "success" ]; then
+            echo "### ✅ Trivy filesystem scan: PASSED" >> "$GITHUB_STEP_SUMMARY"
+            echo "No vulnerabilities found at ${{ inputs.trivy-severity }} severity levels" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "### ❌ Trivy filesystem scan: VULNERABILITIES FOUND" >> "$GITHUB_STEP_SUMMARY"
+            echo "Security issues detected in filesystem scan" >> "$GITHUB_STEP_SUMMARY"
+          fi
+          
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          
+          # TruffleHog results
+          if [ "${{ steps.trufflehog-scan.outcome }}" = "success" ]; then
+            echo "### ✅ TruffleHog secret scan: PASSED" >> "$GITHUB_STEP_SUMMARY"
+            echo "No secrets detected in codebase" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "### ❌ TruffleHog secret scan: SECRETS DETECTED" >> "$GITHUB_STEP_SUMMARY"
+            echo "Potential secrets found - please review and remediate" >> "$GITHUB_STEP_SUMMARY"
+          fi
+          
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "📊 Detailed results available in uploaded artifacts and Security tab" >> "$GITHUB_STEP_SUMMARY"

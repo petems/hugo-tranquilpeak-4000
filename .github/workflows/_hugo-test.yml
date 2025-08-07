@@ -1,0 +1,180 @@
+name: Hugo Test
+
+on:
+  workflow_call:
+    inputs:
+      hugo-versions:
+        description: 'JSON array of Hugo versions to test (e.g., ["0.148.1", "latest"])'
+        required: false
+        default: '["0.148.1"]'
+        type: string
+      working-directory:
+        description: 'Working directory for Hugo build'
+        required: false
+        default: 'exampleSite'
+        type: string
+      build-drafts:
+        description: 'Build draft content'
+        required: false
+        default: true
+        type: boolean
+      build-future:
+        description: 'Build future content'
+        required: false
+        default: true
+        type: boolean
+      minify:
+        description: 'Minify output'
+        required: false
+        default: true
+        type: boolean
+      gc:
+        description: 'Run garbage collection'
+        required: false
+        default: true
+        type: boolean
+      upload-artifacts:
+        description: 'Upload build artifacts'
+        required: false
+        default: true
+        type: boolean
+      artifact-retention-days:
+        description: 'Artifact retention period in days'
+        required: false
+        default: 7
+        type: number
+
+jobs:
+  hugo-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        hugo-version: ${{ fromJson(inputs.hugo-versions) }}
+      fail-fast: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Hugo ${{ matrix.hugo-version }}
+        uses: ./.github/actions/setup-hugo
+        with:
+          hugo-version: ${{ matrix.hugo-version }}
+          extended: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build theme assets
+        run: npm run build
+
+      - name: Setup theme
+        uses: ./.github/actions/setup-theme
+
+      - name: Validate Hugo environment
+        run: |
+          hugo version
+          echo "Working directory: ${{ inputs.working-directory }}"
+          ls -la ${{ inputs.working-directory }}/
+
+      - name: Build with Hugo
+        run: |
+          cd ${{ inputs.working-directory }}
+          
+          # Build Hugo command with conditional flags
+          hugo_cmd="hugo"
+          
+          if [ "${{ inputs.minify }}" = "true" ]; then
+            hugo_cmd="$hugo_cmd --minify"
+          fi
+          
+          if [ "${{ inputs.gc }}" = "true" ]; then
+            hugo_cmd="$hugo_cmd --gc"
+          fi
+          
+          if [ "${{ inputs.build-drafts }}" = "true" ]; then
+            hugo_cmd="$hugo_cmd --buildDrafts"
+          fi
+          
+          if [ "${{ inputs.build-future }}" = "true" ]; then
+            hugo_cmd="$hugo_cmd --buildFuture"
+          fi
+          
+          echo "Running: $hugo_cmd"
+          eval $hugo_cmd
+
+      - name: Validate build output
+        run: |
+          cd ${{ inputs.working-directory }}
+          if [ ! -d "public" ]; then
+            echo "❌ Hugo build failed - no public directory created"
+            exit 1
+          fi
+          
+          html_count=$(find public -name "*.html" | wc -l)
+          if [ "$html_count" -eq 0 ]; then
+            echo "❌ Hugo build failed - no HTML files generated"
+            exit 1
+          fi
+          
+          echo "✅ Hugo build successful with ${{ matrix.hugo-version }}"
+          echo "Generated $html_count HTML files"
+          
+          # Show some build statistics
+          echo "📊 Build statistics:"
+          echo "HTML files: $(find public -name "*.html" | wc -l)"
+          echo "CSS files: $(find public -name "*.css" | wc -l)"
+          echo "JS files: $(find public -name "*.js" | wc -l)"
+          echo "Image files: $(find public -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.gif" -o -name "*.svg" | wc -l)"
+          
+          # Check for common critical files
+          if [ -f "public/index.html" ]; then
+            echo "✅ Homepage generated successfully"
+          else
+            echo "⚠️ Warning: No homepage (index.html) found"
+          fi
+          
+          if [ -f "public/sitemap.xml" ]; then
+            echo "✅ Sitemap generated successfully"
+          else
+            echo "⚠️ Warning: No sitemap.xml found"
+          fi
+
+      - name: Upload build artifacts
+        if: ${{ inputs.upload-artifacts }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: hugo-${{ matrix.hugo-version }}-build
+          path: ${{ inputs.working-directory }}/public/
+          retention-days: ${{ inputs.artifact-retention-days }}
+
+      - name: Check for build errors in logs
+        if: always()
+        run: |
+          cd ${{ inputs.working-directory }}
+          echo "🔍 Checking for Hugo warnings or errors..."
+          
+          # Check if Hugo generated any warnings during build
+          if [ -f "hugo.log" ]; then
+            echo "Hugo log content:"
+            cat hugo.log
+            
+            if grep -i "error\|fatal" hugo.log; then
+              echo "❌ Build errors found in Hugo log"
+              exit 1
+            fi
+            
+            if grep -i "warn" hugo.log; then
+              echo "⚠️ Build warnings found in Hugo log (not failing build)"
+            fi
+          else
+            echo "No Hugo log file found (this is normal)"
+          fi
+          
+          echo "✅ Build completed successfully with Hugo ${{ matrix.hugo-version }}"

@@ -1,0 +1,255 @@
+name: E2E Base
+
+on:
+  workflow_call:
+    inputs:
+      test-type:
+        description: 'Type of E2E tests to run (e2e, visual, all)'
+        required: false
+        default: 'e2e'
+        type: string
+      playwright-command:
+        description: 'Playwright command to run'
+        required: false
+        default: 'npm run test:e2e:ci'
+        type: string
+      timeout-minutes:
+        description: 'Job timeout in minutes'
+        required: false
+        default: 30
+        type: number
+      upload-artifacts:
+        description: 'Upload test artifacts'
+        required: false
+        default: true
+        type: boolean
+      artifact-retention-days:
+        description: 'Artifact retention period in days'
+        required: false
+        default: 7
+        type: number
+      generate-report:
+        description: 'Generate Playwright HTML report'
+        required: false
+        default: true
+        type: boolean
+      browsers:
+        description: 'Browsers to install (chromium, firefox, webkit, all)'
+        required: false
+        default: 'all'
+        type: string
+      working-directory:
+        description: 'Working directory for tests'
+        required: false
+        default: '.'
+        type: string
+
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: ${{ inputs.timeout-minutes }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: |
+          echo "🎭 Installing Playwright browsers: ${{ inputs.browsers }}"
+          if [ "${{ inputs.browsers }}" = "all" ]; then
+            npx playwright install --with-deps
+          else
+            # Split browsers string by comma and install each
+            IFS=',' read -ra BROWSER_ARRAY <<< "${{ inputs.browsers }}"
+            for browser in "${BROWSER_ARRAY[@]}"; do
+              browser=$(echo "$browser" | xargs) # trim whitespace
+              echo "Installing $browser..."
+              npx playwright install --with-deps "$browser"
+            done
+          fi
+          echo "✅ Playwright browsers installed successfully"
+
+      - name: Verify Playwright installation
+        run: |
+          echo "🔍 Verifying Playwright installation..."
+          npx playwright --version
+          
+          # Check if browsers are installed
+          echo "📊 Installed browsers:"
+          if command -v google-chrome &> /dev/null; then
+            echo "✅ Chrome: $(google-chrome --version)"
+          fi
+          if command -v firefox &> /dev/null; then
+            echo "✅ Firefox: $(firefox --version)"
+          fi
+          
+          echo "🔍 Playwright config check..."
+          if [ -f "playwright.config.js" ]; then
+            echo "✅ Playwright config found"
+          elif [ -f "playwright.config.ts" ]; then
+            echo "✅ Playwright TypeScript config found"
+          else
+            echo "⚠️ No Playwright config found"
+          fi
+
+      - name: Setup Hugo and build site
+        uses: ./.github/actions/setup-hugo
+        with:
+          hugo-version: "0.148.1"
+          extended: true
+
+      - name: Build theme assets
+        run: |
+          echo "🎨 Building theme assets for E2E tests..."
+          npm run build
+          echo "✅ Theme assets built successfully"
+
+      - name: Make setup script executable
+        run: chmod +x setup-examplesite.sh
+
+      - name: Setup exampleSite for testing
+        run: |
+          echo "🏗️ Setting up exampleSite for E2E testing..."
+          ./setup-examplesite.sh
+          
+          # Verify setup
+          if [ -d "exampleSite/public" ]; then
+            echo "✅ ExampleSite built successfully"
+            echo "📊 Site statistics:"
+            echo "HTML files: $(find exampleSite/public -name "*.html" | wc -l)"
+            echo "CSS files: $(find exampleSite/public -name "*.css" | wc -l)"
+            echo "JS files: $(find exampleSite/public -name "*.js" | wc -l)"
+          else
+            echo "❌ ExampleSite build failed"
+            exit 1
+          fi
+
+      - name: Start background web server
+        if: ${{ contains(inputs.test-type, 'e2e') || inputs.test-type == 'all' }}
+        run: |
+          echo "🚀 Starting background web server for E2E tests..."
+          cd exampleSite
+          nohup hugo server --bind 0.0.0.0 --port 1313 --baseURL http://localhost:1313 > ../server.log 2>&1 &
+          echo $! > ../server.pid
+          
+          # Wait for server to start
+          echo "⏳ Waiting for Hugo server to start..."
+          timeout=30
+          while ! curl -s http://localhost:1313 > /dev/null; do
+            if [ $timeout -le 0 ]; then
+              echo "❌ Hugo server failed to start within 30 seconds"
+              echo "Server log:"
+              cat ../server.log
+              exit 1
+            fi
+            sleep 1
+            timeout=$((timeout - 1))
+          done
+          
+          echo "✅ Hugo server started successfully at http://localhost:1313"
+          echo "Server PID: $(cat ../server.pid)"
+
+      - name: Run Playwright tests
+        working-directory: ${{ inputs.working-directory }}
+        run: |
+          echo "🧪 Running Playwright tests: ${{ inputs.playwright-command }}"
+          echo "Test type: ${{ inputs.test-type }}"
+          
+          # Set environment variables for CI
+          export CI=true
+          export PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+          
+          # Run the specified Playwright command
+          ${{ inputs.playwright-command }}
+        env:
+          CI: true
+
+      - name: Stop background server
+        if: always()
+        run: |
+          if [ -f server.pid ]; then
+            echo "🛑 Stopping Hugo server..."
+            kill $(cat server.pid) 2>/dev/null || echo "Server already stopped"
+            rm -f server.pid server.log
+          fi
+
+      - name: Upload Playwright Report
+        if: ${{ inputs.upload-artifacts && inputs.generate-report && always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ inputs.test-type }}
+          path: playwright-report/
+          retention-days: ${{ inputs.artifact-retention-days }}
+
+      - name: Upload test results
+        if: ${{ inputs.upload-artifacts && always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-results-${{ inputs.test-type }}
+          path: test-results/
+          retention-days: ${{ inputs.artifact-retention-days }}
+
+      - name: Upload screenshots
+        if: ${{ inputs.upload-artifacts && always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-screenshots-${{ inputs.test-type }}
+          path: test-results/**/*.png
+          retention-days: ${{ inputs.artifact-retention-days }}
+        continue-on-error: true
+
+      - name: Upload videos
+        if: ${{ inputs.upload-artifacts && always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-videos-${{ inputs.test-type }}
+          path: test-results/**/*.webm
+          retention-days: ${{ inputs.artifact-retention-days }}
+        continue-on-error: true
+
+      - name: Create test summary
+        if: always()
+        run: |
+          echo "## 🧪 Playwright Test Results" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "**Test Type:** ${{ inputs.test-type }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "**Command:** \`${{ inputs.playwright-command }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          
+          # Check test results
+          if [ -f "test-results/results.json" ]; then
+            echo "### ✅ Test Results Available" >> "$GITHUB_STEP_SUMMARY"
+            echo "- Test results file generated successfully" >> "$GITHUB_STEP_SUMMARY"
+          elif [ -d "test-results" ] && [ "$(ls -A test-results)" ]; then
+            echo "### ✅ Test Artifacts Generated" >> "$GITHUB_STEP_SUMMARY"
+            echo "- Test artifacts available for download" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "### ⚠️ No Test Results Found" >> "$GITHUB_STEP_SUMMARY"
+            echo "- Tests may have failed or no test-results directory created" >> "$GITHUB_STEP_SUMMARY"
+          fi
+          
+          # Count screenshots if available
+          if [ -d "test-results" ]; then
+            screenshot_count=$(find test-results -name "*.png" 2>/dev/null | wc -l)
+            video_count=$(find test-results -name "*.webm" 2>/dev/null | wc -l)
+            
+            if [ "$screenshot_count" -gt 0 ]; then
+              echo "- 📸 Generated $screenshot_count screenshots" >> "$GITHUB_STEP_SUMMARY"
+            fi
+            
+            if [ "$video_count" -gt 0 ]; then
+              echo "- 🎥 Generated $video_count videos" >> "$GITHUB_STEP_SUMMARY"
+            fi
+          fi
+          
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "📊 View detailed results in the artifacts above." >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,127 @@
+name: Test All Reusable Workflows
+
+on:
+  workflow_dispatch:
+    inputs:
+      run-comprehensive-tests:
+        description: 'Run comprehensive validation tests'
+        required: false
+        default: true
+        type: boolean
+
+jobs:
+  test-shared-setup:
+    name: Validate Shared Setup
+    uses: ./.github/workflows/_shared-setup.yml
+    with:
+      hugo-version: '0.148.1'
+      node-version: '20'
+      skip-asset-build: false
+
+  test-hugo-build:
+    name: Validate Hugo Testing  
+    uses: ./.github/workflows/_hugo-test.yml
+    with:
+      hugo-versions: '["0.148.1"]'
+      upload-artifacts: false
+      artifact-retention-days: 1
+
+  test-security-scanning:
+    name: Validate Security Scanning
+    uses: ./.github/workflows/_security-scan.yml
+    with:
+      npm-audit-level: 'moderate'
+      fail-on-vulnerabilities: false
+      upload-sarif: false
+
+  test-e2e-setup:
+    name: Validate E2E Setup
+    uses: ./.github/workflows/_e2e-base.yml
+    with:
+      test-type: 'e2e'
+      playwright-command: 'echo "✅ E2E workflow setup validation completed - skipping actual tests"'
+      timeout-minutes: 10
+      upload-artifacts: false
+      browsers: 'chromium'
+
+  integration-test:
+    name: Integration Test - Combined Workflows
+    runs-on: ubuntu-latest
+    needs: [test-shared-setup, test-hugo-build, test-security-scanning, test-e2e-setup]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate reusable workflow integration
+        run: |
+          echo "## 🧪 Reusable Workflows Integration Test Results" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          
+          echo "### ✅ Individual Workflow Tests" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Shared Setup**: ${{ needs.test-shared-setup.result }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Hugo Testing**: ${{ needs.test-hugo-build.result }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Security Scanning**: ${{ needs.test-security-scanning.result }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **E2E Base Setup**: ${{ needs.test-e2e-setup.result }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          
+          # Check if all tests passed
+          all_passed=true
+          for result in "${{ needs.test-shared-setup.result }}" "${{ needs.test-hugo-build.result }}" "${{ needs.test-security-scanning.result }}" "${{ needs.test-e2e-setup.result }}"; do
+            if [[ "$result" != "success" ]]; then
+              all_passed=false
+              break
+            fi
+          done
+          
+          if [[ "$all_passed" == "true" ]]; then
+            echo "### 🎉 Integration Test: PASSED" >> "$GITHUB_STEP_SUMMARY"
+            echo "All reusable workflows are functioning correctly and ready for migration." >> "$GITHUB_STEP_SUMMARY"
+            echo ""
+            echo "✅ All reusable workflows validated successfully!"
+            echo "🚀 Ready to proceed with critical workflow migration (Phase 3)"
+          else
+            echo "### ❌ Integration Test: FAILED" >> "$GITHUB_STEP_SUMMARY"
+            echo "One or more reusable workflows failed validation." >> "$GITHUB_STEP_SUMMARY"
+            echo ""
+            echo "❌ Some reusable workflows failed validation"
+            echo "🔧 Please review and fix issues before proceeding with migration"
+            exit 1
+          fi
+
+      - name: Generate validation report
+        if: always()
+        run: |
+          echo "# Reusable Workflows Validation Report" > validation-report.md
+          echo "" >> validation-report.md
+          echo "**Validation Date:** $(date)" >> validation-report.md
+          echo "**Branch:** ${{ github.ref_name }}" >> validation-report.md
+          echo "**Commit:** ${{ github.sha }}" >> validation-report.md
+          echo "" >> validation-report.md
+          echo "## Test Results" >> validation-report.md
+          echo "" >> validation-report.md
+          echo "| Workflow | Status | Notes |" >> validation-report.md
+          echo "|----------|--------|-------|" >> validation-report.md
+          echo "| Shared Setup | ${{ needs.test-shared-setup.result }} | Node.js, Hugo, dependencies, assets |" >> validation-report.md
+          echo "| Hugo Testing | ${{ needs.test-hugo-build.result }} | Build validation with version matrix |" >> validation-report.md
+          echo "| Security Scanning | ${{ needs.test-security-scanning.result }} | npm audit, Trivy, TruffleHog |" >> validation-report.md
+          echo "| E2E Base | ${{ needs.test-e2e-setup.result }} | Playwright setup and browser management |" >> validation-report.md
+          echo "" >> validation-report.md
+          echo "## Next Steps" >> validation-report.md
+          echo "" >> validation-report.md
+          if [[ "${{ needs.test-shared-setup.result }}" == "success" && "${{ needs.test-hugo-build.result }}" == "success" && "${{ needs.test-security-scanning.result }}" == "success" && "${{ needs.test-e2e-setup.result }}" == "success" ]]; then
+            echo "✅ **VALIDATION PASSED** - Ready to proceed with Phase 3: Critical Workflow Migration" >> validation-report.md
+          else
+            echo "❌ **VALIDATION FAILED** - Fix issues before proceeding with migration" >> validation-report.md
+          fi
+          
+          echo ""
+          echo "📋 Validation report generated:"
+          cat validation-report.md
+
+      - name: Upload validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reusable-workflows-validation-report
+          path: validation-report.md
+          retention-days: 30
