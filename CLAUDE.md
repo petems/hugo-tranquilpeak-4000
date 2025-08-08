@@ -16,6 +16,19 @@ Hugo Tranquilpeak 4000 is a modernized fork of the hugo-tranquilpeak-theme. It's
 - `hugo server` - Run Hugo development server (requires Hugo to be installed)
 - `npm run serve` - Setup theme and start Hugo server in background with nohup
 
+#### Setup for Testing/Development
+Before running tests or Hugo server, ensure assets are properly built:
+
+1. **CRITICAL**: Always run `npm run grunt -- build` first to build CSS/JS assets
+2. **Assets Location**: Built assets are placed in `/static/css/tranquilpeak.css` and `/static/js/tranquilpeak.js`
+3. **ExampleSite Setup**: Use `./setup-examplesite.sh` to properly configure the example site with theme files
+4. **Asset Linking**: The build process updates `layouts/partials/head.html` and `layouts/partials/script.html` with correct asset paths
+
+**Common Issues:**
+- If tests fail with 404 errors for JS/CSS files, run `npm run grunt -- build` to regenerate assets
+- The setup script will skip asset building if `node_modules` is missing - ensure dependencies are installed first
+- Favicon should be configured in `exampleSite/config.toml` using the `favicon` parameter (defaults to `/favicon.png`)
+
 ### Code Quality
 - `npm run lint` - Run ESLint for JavaScript code style checking
 - `npm run grunt` - Run Grunt task runner directly

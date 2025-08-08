@@ -110,7 +110,7 @@ The project includes GitHub Actions workflows for automated testing:
 ### Configuration
 
 - `playwright.config.js` - Local development configuration
-- `playwright.ci.config.js` - CI/CD optimized configuration
+- `playwright.config.js` - Main configuration with CI/CD optimizations built-in
 
 ## 📁 Project Structure
 
