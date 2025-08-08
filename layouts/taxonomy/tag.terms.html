@@ -1,5 +1,4 @@
-{{ partial "head.html" . }}
-  <body>
+{{ define "main" }}
     <div id="blog">
       {{ partial "header.html" . }}
       {{ partial "sidebar.html" . }}
@@ -50,8 +49,4 @@
         {{ partial "footer.html" . }}
       </div>
     </div>
-    {{ partial "about.html" . }}
-    {{ partial "cover.html" . }}
-  </body>
-  {{ partial "script.html" . }}
-</html>
+{{ end }}

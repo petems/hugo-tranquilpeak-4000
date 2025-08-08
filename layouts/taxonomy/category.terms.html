@@ -1,3 +1,4 @@
+{{ define "main" }}
 {{ if $.Site.Params.hierarchicalCategories }}
   {{ $.Scratch.Set "max-level" 0 }}
   {{ range where $.Site.RegularPages "Type" "in" site.Params.mainSections }}
@@ -30,8 +31,6 @@
     {{ end }}
   {{ end }}
 {{ end }}
-{{ partial "head.html" . }}
-  <body>
     <div id="blog">
       {{ partial "header.html" . }}
       {{ partial "sidebar.html" . }}
@@ -119,8 +118,4 @@
         {{ partial "footer.html" . }}
       </div>
     </div>
-    {{ partial "about.html" . }}
-    {{ partial "cover.html" . }}
-  </body>
-  {{ partial "script.html" . }}
-</html>
+{{ end }}

@@ -1,0 +1,99 @@
+name: Vercel Deploy Previews (Hugo matrix)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: vercel-previews-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  deploy-previews:
+    name: Deploy preview (Hugo ${{ matrix.hugo_version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        hugo_version: ['0.121.0', '0.146.2']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Prepare example site
+        run: |
+          chmod +x ./setup-examplesite.sh
+          ./setup-examplesite.sh
+
+      - name: Deploy to Vercel (matrix)
+        id: vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: exampleSite
+          vercel-args: >-
+            --build-env HUGO_VERSION=${{ matrix.hugo_version }}
+            --build-env HUGO_EXTENDED=true
+            --meta hugoVersion=${{ matrix.hugo_version }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Save preview URL artifact
+        shell: bash
+        run: |
+          mkdir -p preview
+          echo "- Hugo ${{ matrix.hugo_version }}: ${{ steps.vercel.outputs.preview-url }}" > preview/preview-${{ matrix.hugo_version }}.md
+
+      - name: Upload preview URL
+        uses: actions/upload-artifact@v4
+        with:
+          name: vercel-preview-${{ matrix.hugo_version }}
+          path: preview/preview-${{ matrix.hugo_version }}.md
+          if-no-files-found: error
+
+  comment-previews:
+    name: Comment preview links
+    needs: [deploy-previews]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all preview artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: previews
+
+      - name: Build comment body
+        id: body
+        shell: bash
+        run: |
+          LINKS_FILE="/tmp/vercel_preview_links.md"
+          : > "$LINKS_FILE"
+          echo "### Vercel Deploy Previews" >> "$LINKS_FILE"
+          echo "Pull Request #${{ github.event.pull_request.number }}" >> "$LINKS_FILE"
+          echo "" >> "$LINKS_FILE"
+          find previews -type f -name 'preview-*.md' -print0 | sort -z | xargs -0 cat >> "$LINKS_FILE"
+          echo "path=$LINKS_FILE" >> "$GITHUB_OUTPUT"
+
+      - name: Find existing preview comment
+        id: fc
+        uses: peter-evans/find-comment@v3
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: '### Vercel Deploy Previews'
+
+      - name: Create or update PR comment with links
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          edit-mode: replace
+          body-path: ${{ steps.body.outputs.path }}
+
+
