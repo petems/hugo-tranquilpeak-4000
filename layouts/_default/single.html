@@ -1,5 +1,4 @@
-{{ partial "head.html" . }}
-  <body>
+{{ define "main" }}
     <div id="blog">
       {{ partial "header.html" . }}
       {{ partial "sidebar.html" . }}
@@ -44,4 +43,4 @@
       </div>
       {{ partial "post/share-options.html" . }}
     </div>
-{{ partial "foot.html" . }}
+{{ end }}
