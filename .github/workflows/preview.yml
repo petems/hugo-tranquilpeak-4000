@@ -9,8 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
     permissions:
-      contents: write
+      contents: read
+      pages: write
+      id-token: write
       pull-requests: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}preview/pr-${{ github.event.number }}/
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -46,17 +51,26 @@ jobs:
         cd exampleSite
         hugo --minify --baseURL "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/preview/pr-${{ github.event.number }}/"
         
+    - name: Setup Pages
+      if: github.event.pull_request.head.repo.full_name == github.repository
+      uses: actions/configure-pages@v5
+      
+    - name: Create preview directory structure
+      if: github.event.pull_request.head.repo.full_name == github.repository
+      run: |
+        mkdir -p ./pages-artifact/preview/pr-${{ github.event.number }}
+        cp -r ./exampleSite/public/* ./pages-artifact/preview/pr-${{ github.event.number }}/
+        
+    - name: Upload Pages artifact
+      if: github.event.pull_request.head.repo.full_name == github.repository
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./pages-artifact
+        
     - name: Deploy to GitHub Pages
       if: github.event.pull_request.head.repo.full_name == github.repository
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./exampleSite/public
-        destination_dir: preview/pr-${{ github.event.number }}
-        user_name: 'github-actions[bot]'
-        user_email: 'github-actions[bot]@users.noreply.github.com'
-        commit_message: "Deploy preview for PR #${{ github.event.number }}"
-        full_commit_message: "Deploy preview for PR #${{ github.event.number }} - ${{ github.event.pull_request.title }}"
+      id: deployment
+      uses: actions/deploy-pages@v4
 
     - name: Comment PR with preview URL
       if: github.event.pull_request.head.repo.full_name == github.repository
