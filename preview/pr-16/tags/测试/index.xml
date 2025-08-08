@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>测试 on Hugo tranquilpeak theme</title><link>https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-16/tags/%E6%B5%8B%E8%AF%95/</link><description>Recent content in 测试 on Hugo tranquilpeak theme</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 24 Oct 2013 22:40:32 +0000</lastBuildDate><atom:link href="https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-16/tags/%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml"/><item><title>中文测试</title><link>https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-16/2013/10/%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95/</link><pubDate>Thu, 24 Oct 2013 22:40:32 +0000</pubDate><guid>https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-16/2013/10/%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95/</guid><description>&lt;p>这是一篇中文测试文章，用于演示Tranquilpeak主题的国际化支持。Tranquilpeak主题完全支持中文内容，包括正确的字体显示、排版和布局。&lt;/p>
+&lt;h2 id="中文字体支持">中文字体支持&lt;/h2>
+&lt;p>Tranquilpeak主题使用优秀的中文字体，确保中文内容显示清晰美观：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>思源黑体&lt;/strong>：现代、清晰的中文字体&lt;/li>
+&lt;li>&lt;strong>思源宋体&lt;/strong>：优雅的衬线字体&lt;/li>
+&lt;li>&lt;strong>系统字体回退&lt;/strong>：确保在所有设备上都能正确显示&lt;/li>
+&lt;/ul>
+&lt;h2 id="中文排版">中文排版&lt;/h2>
+&lt;p>主题针对中文内容进行了优化：&lt;/p>
+&lt;h3 id="标点符号">标点符号&lt;/h3>
+&lt;p>中文标点符号在行首行尾的处理：&lt;/p>
+&lt;ul>
+&lt;li>行首禁则：避免标点符号出现在行首&lt;/li>
+&lt;li>行尾禁则：避免标点符号出现在行尾&lt;/li>
+&lt;li>标点挤压：适当压缩标点符号间距&lt;/li>
+&lt;/ul>
+&lt;h3 id="字间距">字间距&lt;/h3>
+&lt;ul>
+&lt;li>中文字符间距：适当的字符间距&lt;/li>
+&lt;li>英文混排：中英文混排时的间距处理&lt;/li>
+&lt;li>数字间距：数字与中文字符的间距&lt;/li>
+&lt;/ul>
+&lt;h2 id="代码高亮">代码高亮&lt;/h2>
+&lt;p>中文注释在代码块中也能正确显示：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 这是一个JavaScript示例
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">问候&lt;/span>(&lt;span style="color:#a6e22e">姓名&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">`你好，&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">姓名&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">！`&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">问候&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;世界&amp;#39;&lt;/span>)); &lt;span style="color:#75715e">// 输出：你好，世界！
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 这是一个Python示例&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">斐波那契&lt;/span>(n):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;&amp;#34;&amp;#34;计算第n个斐波那契数&amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> n &lt;span style="color:#f92672">&amp;lt;=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> n
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> 斐波那契(n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>) &lt;span style="color:#f92672">+&lt;/span> 斐波那契(n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 使用示例&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> i &lt;span style="color:#f92672">in&lt;/span> range(&lt;span style="color:#ae81ff">10&lt;/span>):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> print(&lt;span style="color:#e6db74">f&lt;/span>&lt;span style="color:#e6db74">&amp;#34;F(&lt;/span>&lt;span style="color:#e6db74">{&lt;/span>i&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">) = &lt;/span>&lt;span style="color:#e6db74">{&lt;/span>斐波那契(i)&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="响应式设计">响应式设计&lt;/h2>
+&lt;p>中文内容在不同设备上都能完美显示：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>桌面端&lt;/strong>：完整的中文排版功能&lt;/li>
+&lt;li>&lt;strong>平板端&lt;/strong>：优化的中文显示&lt;/li>
+&lt;li>&lt;strong>移动端&lt;/strong>：触摸友好的中文界面&lt;/li>
+&lt;/ul>
+&lt;h2 id="国际化功能">国际化功能&lt;/h2>
+&lt;h3 id="多语言支持">多语言支持&lt;/h3>
+&lt;p>Tranquilpeak主题支持多种语言：&lt;/p>
+&lt;ul>
+&lt;li>中文（简体）&lt;/li>
+&lt;li>中文（繁体）&lt;/li>
+&lt;li>英文&lt;/li>
+&lt;li>日文&lt;/li>
+&lt;li>韩文&lt;/li>
+&lt;li>其他语言&lt;/li>
+&lt;/ul>
+&lt;h3 id="本地化配置">本地化配置&lt;/h3>
+&lt;p>可以在配置文件中设置语言：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-toml" data-lang="toml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">languageCode&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;zh-cn&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">defaultContentLanguage&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;zh-cn&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="中文seo优化">中文SEO优化&lt;/h2>
+&lt;p>主题针对中文SEO进行了优化：&lt;/p></description></item></channel></rss>

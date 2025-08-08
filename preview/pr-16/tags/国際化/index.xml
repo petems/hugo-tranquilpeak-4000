@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>国際化 on Hugo tranquilpeak theme</title><link>https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-16/tags/%E5%9B%BD%E9%9A%9B%E5%8C%96/</link><description>Recent content in 国際化 on Hugo tranquilpeak theme</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 24 Jan 2013 22:40:32 +0000</lastBuildDate><atom:link href="https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-16/tags/%E5%9B%BD%E9%9A%9B%E5%8C%96/index.xml" rel="self" type="application/rss+xml"/><item><title>日本語テスト</title><link>https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-16/2013/01/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%86%E3%82%B9%E3%83%88/</link><pubDate>Thu, 24 Jan 2013 22:40:32 +0000</pubDate><guid>https://petems.github.io/hugo-tranquilpeak-4000/preview/pr-16/2013/01/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%86%E3%82%B9%E3%83%88/</guid><description>&lt;p>これは日本語テスト記事で、Tranquilpeakテーマの国際化サポートをデモンストレーションします。Tranquilpeakテーマは日本語コンテンツを完全にサポートしており、正しいフォント表示、タイポグラフィ、レイアウトを提供します。&lt;/p>
+&lt;h2 id="日本語フォントサポート">日本語フォントサポート&lt;/h2>
+&lt;p>Tranquilpeakテーマは優れた日本語フォントを使用し、日本語コンテンツが美しく表示されることを保証します：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Noto Sans JP&lt;/strong>：モダンで読みやすい日本語フォント&lt;/li>
+&lt;li>&lt;strong>Noto Serif JP&lt;/strong>：エレガントなセリフフォント&lt;/li>
+&lt;li>&lt;strong>システムフォントフォールバック&lt;/strong>：すべてのデバイスで正しく表示されることを保証&lt;/li>
+&lt;/ul>
+&lt;h2 id="日本語タイポグラフィ">日本語タイポグラフィ&lt;/h2>
+&lt;p>テーマは日本語コンテンツ用に最適化されています：&lt;/p>
+&lt;h3 id="句読点">句読点&lt;/h3>
+&lt;p>日本語の句読点の行頭行末処理：&lt;/p>
+&lt;ul>
+&lt;li>行頭禁則：句読点が行頭に現れることを避ける&lt;/li>
+&lt;li>行末禁則：句読点が行末に現れることを避ける&lt;/li>
+&lt;li>句読点圧縮：句読点の間隔を適切に圧縮&lt;/li>
+&lt;/ul>
+&lt;h3 id="文字間隔">文字間隔&lt;/h3>
+&lt;ul>
+&lt;li>日本語文字間隔：適切な文字間隔&lt;/li>
+&lt;li>英日混在：日本語と英語が混在する場合の間隔処理&lt;/li>
+&lt;li>数字間隔：数字と日本語文字の間隔&lt;/li>
+&lt;/ul>
+&lt;h2 id="コードハイライト">コードハイライト&lt;/h2>
+&lt;p>日本語コメントもコードブロックで正しく表示されます：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// これはJavaScriptの例です
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">挨拶&lt;/span>(&lt;span style="color:#a6e22e">名前&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">`こんにちは、&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">名前&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">さん！`&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">挨拶&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;世界&amp;#39;&lt;/span>)); &lt;span style="color:#75715e">// 出力：こんにちは、世界さん！
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># これはPythonの例です&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">フィボナッチ&lt;/span>(n):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;&amp;#34;&amp;#34;n番目のフィボナッチ数を計算します&amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> n &lt;span style="color:#f92672">&amp;lt;=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> n
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> フィボナッチ(n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>) &lt;span style="color:#f92672">+&lt;/span> フィボナッチ(n&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 使用例&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> i &lt;span style="color:#f92672">in&lt;/span> range(&lt;span style="color:#ae81ff">10&lt;/span>):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> print(&lt;span style="color:#e6db74">f&lt;/span>&lt;span style="color:#e6db74">&amp;#34;F(&lt;/span>&lt;span style="color:#e6db74">{&lt;/span>i&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">) = &lt;/span>&lt;span style="color:#e6db74">{&lt;/span>フィボナッチ(i)&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="レスポンシブデザイン">レスポンシブデザイン&lt;/h2>
+&lt;p>日本語コンテンツは様々なデバイスで完璧に表示されます：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>デスクトップ&lt;/strong>：完全な日本語タイポグラフィ機能&lt;/li>
+&lt;li>&lt;strong>タブレット&lt;/strong>：最適化された日本語表示&lt;/li>
+&lt;li>&lt;strong>モバイル&lt;/strong>：タッチフレンドリーな日本語インターフェース&lt;/li>
+&lt;/ul>
+&lt;h2 id="国際化機能">国際化機能&lt;/h2>
+&lt;h3 id="多言語サポート">多言語サポート&lt;/h3>
+&lt;p>Tranquilpeakテーマは複数の言語をサポートします：&lt;/p>
+&lt;ul>
+&lt;li>日本語&lt;/li>
+&lt;li>英語&lt;/li>
+&lt;li>中国語（簡体字）&lt;/li>
+&lt;li>中国語（繁体字）&lt;/li>
+&lt;li>韓国語&lt;/li>
+&lt;li>その他の言語&lt;/li>
+&lt;/ul>
+&lt;h3 id="ローカライゼーション設定">ローカライゼーション設定&lt;/h3>
+&lt;p>設定ファイルで言語を設定できます：&lt;/p></description></item></channel></rss>
