@@ -50,11 +50,11 @@ jobs:
     - name: Build example site
       env:
         HUGO_IS_PREVIEW: "true"
-        GITHUB_PR_NUMBER: ${{ github.event.number }}
-        GITHUB_BRANCH: ${{ github.head_ref }}
-        GITHUB_PR_URL: ${{ github.event.pull_request.html_url }}
-        GITHUB_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        BUILD_TIME: ${{ steps.date.outputs.date }}
+        HUGO_PR_NUMBER: ${{ github.event.number }}
+        HUGO_BRANCH: ${{ github.head_ref }}
+        HUGO_PR_URL: ${{ github.event.pull_request.html_url }}
+        HUGO_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        HUGO_BUILD_TIME: ${{ steps.date.outputs.date }}
       run: |
         cd exampleSite
         hugo --minify --baseURL "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/preview/pr-${{ github.event.number }}/"
