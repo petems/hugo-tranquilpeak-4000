@@ -61,14 +61,30 @@ npx playwright install --with-deps
 echo "🏗️ Building theme assets..."
 npm run build
 
-# Create cache directory
+# Create cache directory (with fallback for Windows compatibility)
 echo "📁 Creating cache directory..."
-mkdir -p .devcontainer/cache
+mkdir -p .devcontainer/cache || {
+    echo "⚠️  Could not create .devcontainer/cache directory"
+    echo "📁 Creating cache directory in workspace root..."
+    mkdir -p cache
+    echo "ℹ️  Cache directory created in workspace root instead"
+}
 
 # Set up Git configuration
 echo "⚙️ Configuring Git..."
 git config --global init.defaultBranch main
 git config --global pull.rebase false
+
+# Configure Git to trust the workspace directory (fixes ownership issues in devcontainers)
+echo "🔒 Configuring Git safe directories..."
+if [ -n "$WORKSPACE_FOLDER" ]; then
+    git config --global --add safe.directory "$WORKSPACE_FOLDER"
+    echo "✅ Added $WORKSPACE_FOLDER to Git safe directories"
+else
+    # Fallback to the specific workspace path
+    git config --global --add safe.directory /workspaces/hugo-tranquilpeak-4000
+    echo "✅ Added /workspaces/hugo-tranquilpeak-4000 to Git safe directories"
+fi
 
 # Create helpful aliases
 echo "🔗 Creating helpful aliases..."

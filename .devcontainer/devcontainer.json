@@ -66,11 +66,13 @@
 
   "remoteUser": "node",
 
+  "containerEnv": {
+    "WORKSPACE_FOLDER": "/workspaces/hugo-tranquilpeak-4000"
+  },
+
   "mounts": [
     "source=${localWorkspaceFolder}/.devcontainer/cache,target=/home/node/.npm,type=bind"
   ],
-
-  "initializeCommand": "mkdir -p .devcontainer/cache",
 
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/hugo-tranquilpeak-4000,type=bind,consistency=cached",
 
