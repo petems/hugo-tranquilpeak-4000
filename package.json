@@ -59,7 +59,7 @@
   "devDependencies": {
     "@playwright/test": "^1.54.2",
     "allure-playwright": "^3.3.3",
-    "eslint": "^8.57.0",
+    "eslint": "^9.34.0",
     "eslint-config-google": "^0.14.0",
     "grunt": "^1.4.1",
     "grunt-cli": "^1.5.0",
