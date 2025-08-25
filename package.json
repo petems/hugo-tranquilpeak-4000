@@ -57,7 +57,7 @@
   },
   "homepage": "https://github.com/petems/hugo-tranquilpeak-4000",
   "devDependencies": {
-    "@playwright/test": "^1.54.2",
+    "@playwright/test": "^1.55.0",
     "allure-playwright": "^3.3.3",
     "eslint": "^8.57.0",
     "eslint-config-google": "^0.14.0",
